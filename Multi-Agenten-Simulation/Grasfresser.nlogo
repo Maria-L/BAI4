@@ -8,6 +8,7 @@ to setup
 end
 
 to go
+  if ticks > maxtick [ stop ]
   move-turtles
   eat-grass
   reproduce
@@ -21,7 +22,7 @@ to setup-patches
 end
 
 to setup-turtles
-  create-turtles 100
+  create-turtles number
   ask turtles [ setxy random-xcor random-ycor ]
 end
 
@@ -37,7 +38,7 @@ to eat-grass
   ask turtles [
     if pcolor = green [
      set pcolor black
-     set energy energy + 10 
+     set energy energy + energy-from-grass 
     ]
     ifelse show-energy?
     [ set label energy ]
@@ -47,9 +48,9 @@ end
 
 to reproduce
   ask turtles [
-    if energy > 50 [
-      set energy energy - 50
-      hatch 1 [ set energy 50 ]
+    if energy > birth-energy [
+      set energy energy - birth-energy
+      hatch 1 [ set energy birth-energy ]
     ]
   ]
 end
@@ -152,15 +153,95 @@ count patches with [pcolor = green]
 11
 
 SWITCH
-29
-136
-163
-169
+34
+263
+168
+296
 show-energy?
 show-energy?
-0
+1
 1
 -1000
+
+PLOT
+212
+482
+650
+662
+Totals
+time
+totals
+0.0
+10.0
+0.0
+20.0
+true
+false
+"" ""
+PENS
+"turtles" 1.0 0 -2674135 true "" "plot count turtles"
+"grass" 1.0 0 -10899396 true "" "plot count patches with [pcolor = green]"
+"not grass" 1.0 0 -16777216 true "" "plot count patches with [pcolor = black]"
+
+SLIDER
+12
+106
+184
+139
+number
+number
+0
+500
+102
+1
+1
+Sheeps
+HORIZONTAL
+
+SLIDER
+13
+220
+185
+253
+maxtick
+maxtick
+0
+1000
+503
+1
+1
+Ticks
+HORIZONTAL
+
+SLIDER
+12
+144
+184
+177
+energy-from-grass
+energy-from-grass
+0
+100
+2
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+13
+182
+185
+215
+birth-energy
+birth-energy
+0
+100
+50
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
