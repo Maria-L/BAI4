@@ -7,12 +7,12 @@ import java.util.*;
 
 public class Client {
 	public static int port;
-	public static String ip;
+	public static String host;
 	
 	private static Socket clientSocket;
 	
-	private static DataOutputStream out;
-	private static BufferedReader in;
+	private static DataOutputStream outputStream;
+	private static BufferedReader inputStream;
 	
 	private static boolean running = true;
 	
@@ -25,7 +25,7 @@ public class Client {
 			//Get IP Address from user
 			System.out.println("\nEnter an IP-Address, Sir!\n");
 			inputFromUser = scanFromUser.nextLine();
-			ip = inputFromUser;
+			host = inputFromUser;
 			
 			//Get port from user
 			System.out.println("\nEnter a Port\n");
@@ -33,11 +33,11 @@ public class Client {
 			port = Integer.valueOf(inputFromUser);
 			
 			//Connect to socket
-			clientSocket = new Socket(ip, port);
+			clientSocket = new Socket(host, port);
 			
 			//Initialice Streams
-			out = new DataOutputStream(clientSocket.getOutputStream());
-			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			outputStream = new DataOutputStream(clientSocket.getOutputStream());
+			inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			
 			
 			//Communication with Server
@@ -65,11 +65,11 @@ public class Client {
 	}
 	
 	private static void writeToServer(String request) throws IOException {
-		out.writeBytes(request + '\n');
+		outputStream.writeBytes(request + '\n');
 	}
 	
 	private static String readFromServer() throws IOException {
-		String reply = in.readLine();
+		String reply = inputStream.readLine();
 		System.out.println("\nServer Answer: " + reply + "\n");
 		return reply;
 	}
