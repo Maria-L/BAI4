@@ -7,8 +7,8 @@ import java.lang.Object;
 
 
 public class ServerThread extends Thread {
-	//####### Start Globals ######
 	
+	//####### Start Globals ######
 	private final int RECEIVEBUFFERSIZE = 255;
 	private final String OK = "OK";
 	private final String ERROR = "ERROR";
@@ -16,7 +16,7 @@ public class ServerThread extends Thread {
 	//###### Start Variables ######
 	private int name;
 	private Socket socket;
-	boolean running = true;
+	boolean running = true; //Schleifenbedingung
 	
 	private BufferedReader inputStream;
 	private DataOutputStream outputStream;
@@ -30,6 +30,7 @@ public class ServerThread extends Thread {
 	//Run started from start()
 	//Methods
 	public void run() {
+		
 		String inputFromClient;
 		String answerToClient;
 		String command;
@@ -37,14 +38,19 @@ public class ServerThread extends Thread {
 		System.out.println("\nServerThread no " + name + " is running\n");
 		
 		try {
-			socket.setReceiveBufferSize(RECEIVEBUFFERSIZE);
+			socket.setReceiveBufferSize(RECEIVEBUFFERSIZE); // Socket mit gewünschter Buffersize initialisieren
 			
+			//Daten ein und Ausgabe Stream initialisieren
 			inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			outputStream = new DataOutputStream(socket.getOutputStream());
 
 			while(running) {
+				//Eingabe auslesen
 				inputFromClient = readFromClient();
 				
+				//Überprüfen ob Leerzeichen in der Eingabe vorhanden sind, wenn nicht wird die gesamte
+				//Eingabe als Befehl gewertet --> benötigt für BYE
+				//ansonsten wird die Eingabe am Leerzeichen gesplittet
 				if(inputFromClient.indexOf(' ') > -1) {
 					command = inputFromClient.substring(0, inputFromClient.indexOf(' '));
 					inputFromClient = inputFromClient.substring(inputFromClient.indexOf(' '));
@@ -52,6 +58,7 @@ public class ServerThread extends Thread {
 					command = inputFromClient;
 				}
 				
+				//Auswertung des Befehlsteils der Eingabe
 				switch(command) {
 					case "LOWERCASE":
 						answerToClient = OK + inputFromClient.toLowerCase();
