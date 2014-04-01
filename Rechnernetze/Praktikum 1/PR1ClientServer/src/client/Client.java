@@ -43,6 +43,11 @@ public class Client {
 			//Communication with Server
 			while(running) {
 				//Get input from User
+				if(!clientSocket.isConnected()) {
+					System.out.println("\nYour Emperor is annoyed!\n");
+					break;
+				}
+				
 				System.out.println("\nNow enter greetings to our emperor\n");
 				inputFromUser = scanFromUser.nextLine();
 				
@@ -52,12 +57,15 @@ public class Client {
 				//Get answer from Server
 				inputFromServer = readFromServer();
 				
-				if(inputFromServer.indexOf("QUIT") > -1) {
+				if(inputFromServer.indexOf("BYE") > -1 
+						|| inputFromUser.indexOf("SHUTDOWN") == 0 && inputFromServer.equals("OK")) {
 					running = false;
 				}
 			}
 			
-			clientSocket.close();
+			if(clientSocket.isConnected()) {
+				clientSocket.close();
+			}
 			
 		} catch (IOException e) {
 			System.out.println("Connection failed: " + e.toString());

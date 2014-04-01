@@ -6,30 +6,58 @@ import java.util.*;
 
 
 public class Server {
-	public static final int MAX_THREADS = 10;
+	private static final int MAX_THREADS = 1;
 	public static final int PORT = 50000;
+	private static int threadNameCounter = 0;
 	private static int threadCounter = 0;
-	private static boolean running = true;
+	private static boolean serverRunning = true;
+	private static String password = "toastbrot";
+	private static ServerSocket welcomeSocket;
 	
 	public static void main(String[] args) {
-		ServerSocket welcomeSocket;
-		Socket connectionSocket;
+		welcomeSocket = null;
+		Socket connectionSocket = null;
 		
 		try {
 			welcomeSocket = new ServerSocket(PORT);
 			
-			while(running) {
-				if(threadCounter > MAX_THREADS) {
-					welcomeSocket.close();
-				} else {
-					System.out.println("\nWaiting for connection - listening to port " + PORT + "\n");
-					connectionSocket = welcomeSocket.accept();
+			while(serverRunning) {
+				System.out.println("\nWaiting for connection - listening to port " + PORT + "\n");
+				connectionSocket = welcomeSocket.accept();
 					
-					(new ServerThread(++threadCounter, connectionSocket)).start();
+				if(threadCounter >= MAX_THREADS) {
+					connectionSocket.close();
+				} else {
+					threadCounter++;
+					(new ServerThread(++threadNameCounter, connectionSocket)).start();
 				}
 			}
+			
+			while(threadCounter > 0) {
+				System.out.println("Number of Threads: " + threadCounter + "\n");
+			}
+			
+			welcomeSocket.close();
+			
 		} catch (IOException e) {
 			System.out.println("Error: " + e.toString());
 		}
+		
+	}
+	
+	public static boolean shutdown(String password_) throws IOException {
+		if(password_.indexOf(password) == 1) {
+			System.out.println("\nServer shutting down - no new connections will be accepted\n");
+			serverRunning = false;
+			welcomeSocket.close();
+			return true;
+		} else {
+			System.out.println("\nFalse password!\n");
+			return false;
+		}
+	}
+	
+	public static void decrementThreadCounter() {
+		threadCounter--;
 	}
 }
