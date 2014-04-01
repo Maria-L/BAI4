@@ -35,7 +35,7 @@ public class Client {
 			//Connect to socket
 			clientSocket = new Socket(host, port);
 			
-			//Initialice Streams
+			//Initialize streams
 			outputStream = new DataOutputStream(clientSocket.getOutputStream());
 			inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			
@@ -44,7 +44,7 @@ public class Client {
 			while(running) {
 				//Get input from User
 				if(!clientSocket.isConnected()) {
-					System.out.println("\nYour Emperor is annoyed!\n");
+					System.out.println("\nYour emperor is annoyed!\n");
 					break;
 				}
 				

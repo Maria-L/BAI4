@@ -7,22 +7,28 @@ import java.lang.Object;
 
 
 public class ServerThread extends Thread {
-	private int name;
+	//####### Start Globals ######
+	
 	private final int RECEIVEBUFFERSIZE = 255;
 	private final String OK = "OK";
 	private final String ERROR = "ERROR";
+	
+	//###### Start Variables ######
+	private int name;
 	private Socket socket;
+	boolean running = true;
 	
 	private BufferedReader inputStream;
 	private DataOutputStream outputStream;
 	
-	boolean running = true;
-	
+	//Konstruktor
 	public ServerThread(int name, Socket socket) {
 		this.name = name;
 		this.socket = socket;
 	}
 	
+	//Run started from start()
+	//Methods
 	public void run() {
 		String inputFromClient;
 		String answerToClient;
@@ -98,11 +104,17 @@ public class ServerThread extends Thread {
 		return request;
 	}
 	
+	/*
+	 * 
+	 */
 	private void writeToClient(String reply) throws IOException {
 		outputStream.writeBytes(reply + "\n");
 		System.out.println("Thread " + name + " answered: " + reply + "\n");
 	}
 	
+	/*
+	 * 
+	 */
 	private String reverse(String string) {
 		String akku = "";
 		for(int i = 0; i < string.length(); i++) {
