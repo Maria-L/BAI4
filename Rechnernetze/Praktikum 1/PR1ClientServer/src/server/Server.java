@@ -24,26 +24,32 @@ public class Server {
 		try {
 			//Initialisieren der Empfangs Socket, die die Anfragen verteilt
 			welcomeSocket = new ServerSocket(PORT);
+			welcomeSocket.setSoTimeout(500);
 			
 			while(serverRunning) {
-				System.out.println("\nWaiting for connection - listening to port " + PORT + "\n");
-				//TODO 
-				connectionSocket = welcomeSocket.accept();
+				
+				try {
+					connectionSocket = welcomeSocket.accept();
+				} catch (SocketTimeoutException e) {
+					System.out.println("Waiting...");
+				}
 					
-				//TODO Check Thread safety
-				if(threadCounter >= MAX_THREADS) {
+				if(threadCounter >= MAX_THREADS && connectionSocket != null) {
 					connectionSocket.close();
-				} else {
-					threadCounter++;
+				} else if(connectionSocket != null) {
+					incrementThreadCounter();
 					(new ServerThread(++threadNameCounter, connectionSocket)).start();
 				}
+				
+				connectionSocket = null;
 			}
+			
+			//Socket schließen?!?
+			welcomeSocket.close();
 			
 			while(threadCounter > 0) {
-				System.out.println("Number of Threads: " + threadCounter + "\n");
+				System.out.println("Number of Threads: " + threadCounter);
 			}
-			
-			welcomeSocket.close();
 			
 		} catch (IOException e) {
 			System.out.println("Error: " + e.toString());
@@ -52,18 +58,21 @@ public class Server {
 	}
 	
 	public static boolean shutdown(String password_) throws IOException {
-		if(password_.indexOf(password) == 1) {
-			System.out.println("\nServer shutting down - no new connections will be accepted\n");
+		if(password_.equals(password)) {
+			System.out.println("Server shutting down - no new connections will be accepted");
 			serverRunning = false;
-			welcomeSocket.close();
 			return true;
 		} else {
-			System.out.println("\nFalse password!\n");
+			System.out.println("False password!");
 			return false;
 		}
 	}
 	
-	public static void decrementThreadCounter() {
+	public static synchronized void decrementThreadCounter() {
 		threadCounter--;
+	}
+	
+	public static synchronized void incrementThreadCounter() {
+		threadCounter++;
 	}
 }

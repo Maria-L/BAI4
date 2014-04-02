@@ -11,8 +11,8 @@ public class Client {
 	
 	private static Socket clientSocket;
 	
-	private static DataOutputStream outputStream;
-	private static BufferedReader inputStream;
+	private static OutputStream outputStream;
+	private static InputStream inputStream;
 	
 	private static boolean running = true;
 	
@@ -36,8 +36,8 @@ public class Client {
 			clientSocket = new Socket(host, port);
 			
 			//Initialize streams
-			outputStream = new DataOutputStream(clientSocket.getOutputStream());
-			inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			outputStream = clientSocket.getOutputStream();
+			inputStream = clientSocket.getInputStream();
 			
 			
 			//Communication with Server
@@ -56,8 +56,9 @@ public class Client {
 				
 				//Get answer from Server
 				inputFromServer = readFromServer();
+				inputFromServer = inputFromServer.trim();
 				
-				if(inputFromServer.indexOf("BYE") > -1 
+				if(inputFromServer.equals("BYE") 
 						|| inputFromUser.indexOf("SHUTDOWN") == 0 && inputFromServer.equals("OK")) {
 					running = false;
 				}
@@ -73,12 +74,36 @@ public class Client {
 	}
 	
 	private static void writeToServer(String request) throws IOException {
-		outputStream.writeBytes(request + '\n');
+		byte[] byteArray = (request + "\n").getBytes("UTF-8");
+		
+		outputStream.write(byteArray, 0, byteArray.length);
 	}
 	
 	private static String readFromServer() throws IOException {
-		String reply = inputStream.readLine();
-		System.out.println("\nServer Answer: " + reply + "\n");
-		return reply;
+		int read;
+		String request;
+		byte[] byteArray = new byte[255];
+		boolean flag = true;
+		
+		
+		for(int i = 0; i < 255 && flag == true; i++) {
+			read = inputStream.read();
+
+			if(read == 10 || read == -1) {
+				flag = false;
+			} else {
+				byteArray[i] = (byte) read; 
+			}
+		}
+		
+		if(flag) {
+			request = "ERROR Message too long";
+			inputStream.skip(inputStream.available());
+		} else {
+			request =  new String(byteArray, "UTF-8");
+		}
+
+		System.out.println("Server answer: " + request);
+		return request;
 	}
 }

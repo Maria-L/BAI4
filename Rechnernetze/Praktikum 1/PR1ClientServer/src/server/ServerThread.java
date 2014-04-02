@@ -10,16 +10,18 @@ public class ServerThread extends Thread {
 	
 	//####### Start Globals ######
 	private final int RECEIVEBUFFERSIZE = 255;
-	private final String OK = "OK";
-	private final String ERROR = "ERROR";
+	private final String OK = "OK ";
+	private final String ERROR = "ERROR ";
 	
 	//###### Start Variables ######
 	private int name;
 	private Socket socket;
 	boolean running = true; //Schleifenbedingung
 	
-	private BufferedReader inputStream;
-	private DataOutputStream outputStream;
+	//private BufferedReader inputStream;
+	//private DataOutputStream outputStream;
+	private InputStream inputStream;
+	private OutputStream outputStream;
 	
 	//Konstruktor
 	public ServerThread(int name, Socket socket) {
@@ -35,14 +37,16 @@ public class ServerThread extends Thread {
 		String answerToClient;
 		String command;
 		
-		System.out.println("\nServerThread no " + name + " is running\n");
+		
+		System.out.println("ServerThread no " + name + " is running");
 		
 		try {
 			socket.setReceiveBufferSize(RECEIVEBUFFERSIZE); // Socket mit gewünschter Buffersize initialisieren
 			
 			//Daten ein und Ausgabe Stream initialisieren
-			inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			outputStream = new DataOutputStream(socket.getOutputStream());
+			outputStream = socket.getOutputStream();
+			inputStream = socket.getInputStream();
+			
 
 			while(running) {
 				//Eingabe auslesen
@@ -53,9 +57,9 @@ public class ServerThread extends Thread {
 				//ansonsten wird die Eingabe am Leerzeichen gesplittet
 				if(inputFromClient.indexOf(' ') > -1) {
 					command = inputFromClient.substring(0, inputFromClient.indexOf(' '));
-					inputFromClient = inputFromClient.substring(inputFromClient.indexOf(' '));
+					inputFromClient = inputFromClient.substring(inputFromClient.indexOf(' ')).trim();
 				} else {
-					command = inputFromClient;
+					command = inputFromClient.trim();
 				}
 				
 				//Auswertung des Befehlsteils der Eingabe
@@ -76,17 +80,17 @@ public class ServerThread extends Thread {
 						answerToClient = "BYE";
 						running = false;
 						break;
-						
 					case "SHUTDOWN":
 						if(Server.shutdown(inputFromClient)) {
 							running = false;
 							answerToClient = OK;
 						} else {
-							answerToClient = ERROR;
+							answerToClient = ERROR + "wrong password";
 						}
 						break;
 						
 					default:
+						System.out.println("Command not known");
 						answerToClient = "Unknown command";
 						break;
 				}
@@ -101,13 +105,35 @@ public class ServerThread extends Thread {
 			}
 			
 		} catch (IOException e){
-			System.out.println("\nError: " + e.toString() + "\n");
+			System.out.println("Error: " + e.toString());
 		}
 	}
 	
 	private String readFromClient() throws IOException {
-		String request = inputStream.readLine();
-		System.out.println("\nThread " + name + " got message: " + request + "\n");
+		int read;
+		String request;
+		byte[] byteArray = new byte[255];
+		boolean flag = true;
+		
+		
+		for(int i = 0; i < 255 && flag == true; i++) {
+			read = inputStream.read();
+
+			if(read == 10 || read == -1) {
+				flag = false;
+			} else {
+				byteArray[i] = (byte) read; 
+			}
+		}
+		
+		if(flag) {
+			request = "ERROR Message too long";
+			inputStream.skip(inputStream.available());
+		} else {
+			request =  new String(byteArray, "UTF-8");
+		}
+
+		System.out.println("Thread " + name + " got message: " + request);
 		return request;
 	}
 	
@@ -115,8 +141,11 @@ public class ServerThread extends Thread {
 	 * 
 	 */
 	private void writeToClient(String reply) throws IOException {
-		outputStream.writeBytes(reply + "\n");
-		System.out.println("Thread " + name + " answered: " + reply + "\n");
+		byte[] byteArray = (reply + "\n").getBytes("UTF-8");
+		
+		outputStream.write(byteArray, 0, byteArray.length);
+
+		System.out.println("Thread " + name + " answered: " + reply);
 	}
 	
 	/*
