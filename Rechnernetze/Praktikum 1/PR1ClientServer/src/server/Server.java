@@ -7,12 +7,12 @@ import java.util.*;
 
 public class Server {
 	
-	private static final int MAX_THREADS = 1;
-	public static final int PORT = 50000;
+	private static final int MAX_THREADS = 10;
+	public static int port = 50000;
 		
 	private static ServerSocket welcomeSocket;
 	private static int threadNameCounter = 0;
-	private static int threadCounter = 0;
+	private static volatile int threadCounter = 0;
 	private static volatile boolean serverRunning = true;
 	private static String password = "toastbrot";
 	
@@ -21,9 +21,14 @@ public class Server {
 		welcomeSocket = null;
 		Socket connectionSocket = null;
 
+		if(args[0] != "" && args != null) {
+			port = Integer.parseInt(args[0]);
+		}
+		System.out.println("Port " + port + " is choosen");
+		
+		
 		try {		
-			
-			welcomeSocket = new ServerSocket(PORT); 						// Initialisieren der Empfangs Socket, die die Anfragen verteilt
+			welcomeSocket = new ServerSocket(port); 						// Initialisieren der Empfangs Socket, die die Anfragen verteilt
 			/*
 			 * Timeout auf eine halbe Sekunde gesetzt um zu verhindern, dass der
 			 * Server im accept() fest hängt, alle 0,5sec wacht er einmal auf
@@ -39,7 +44,8 @@ public class Server {
 					System.out.println("Waiting...");
 				}
 
-				if (threadCounter >= MAX_THREADS && connectionSocket != null) {
+				if (threadCounter >= MAX_THREADS && connectionSocket != null 
+						|| !serverRunning && connectionSocket != null) {
 					connectionSocket.close();
 				} else if (connectionSocket != null) {
 					incrementThreadCounter();
@@ -82,11 +88,11 @@ public class Server {
 	 * Syncronized Methoden zum decrementieren und incrementieren des
 	 * ThreadCounters um Thread Sicherheit zu schaffen.
 	 */
-	public static synchronized void decrementThreadCounter() {
+	public static void decrementThreadCounter() {
 		threadCounter--;
 	}
 
-	public static synchronized void incrementThreadCounter() {
+	public static void incrementThreadCounter() {
 		threadCounter++;
 	}
 }

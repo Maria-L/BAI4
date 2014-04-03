@@ -23,12 +23,12 @@ public class Client {
 
 		try {
 			// Get IP Address from user
-			System.out.println("\nEnter an IP-Address, Sir!\n");
+			System.out.println("Enter an IP-Address!");
 			inputFromUser = scanFromUser.nextLine();
 			host = inputFromUser;
 			
 			// Get port from user
-			System.out.println("\nEnter a Port\n");
+			System.out.println("Enter a Port");
 			inputFromUser = scanFromUser.nextLine();
 			port = Integer.valueOf(inputFromUser);
 
@@ -43,12 +43,12 @@ public class Client {
 			// Communication with Server
 			while (running) {
 				// Get input from User
-				if (!clientSocket.isConnected()) {
-					System.out.println("\nYour emperor is annoyed!\n");
+				/*if (!clientSocket.isConnected()) {
+					System.out.println("Your emperor is annoyed!");
 					break;
-				}
+				}*/
 
-				System.out.println("\nNow enter greetings to our emperor\n");
+				System.out.println("Now enter greetings to our emperor");
 				inputFromUser = scanFromUser.nextLine();
 
 				// Send String to Server
@@ -68,6 +68,8 @@ public class Client {
 				clientSocket.close();
 			}
 
+		} catch (ConnectException e) {
+			System.out.println("Connection terminated");
 		} catch (IOException e) {
 			System.out.println("Connection failed: " + e.toString());
 		}
@@ -80,28 +82,30 @@ public class Client {
 	}
 	
 	private static String readFromServer() throws IOException {
-		int read;
+		int read, i;
 		String request;
-		byte[] byteArray = new byte[255];
-		boolean flag = true;
+		byte[] byteArray = new byte[256];					//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
 		
+		if(inputStream.available() > 1) {
+			
+		}
 		
-		for(int i = 0; i < 255 && flag == true; i++) {
+		i = 0;
+		do {
 			read = inputStream.read();
-
-			if(read == 10 || read == -1) {
-				flag = false;
-			} else {
-				byteArray[i] = (byte) read; 
-			}
+			byteArray[i] = (byte) read;
+			i++;
+		} while(read != 10 && read != -1 && i < 256);
+		
+		if(read == -1 && i == 1) {
+			throw new ConnectException();
 		}
 		
-		if(flag) {
-			request = "ERROR Message too long";
-			inputStream.skip(inputStream.available());
-		} else {
-			request =  new String(byteArray, "UTF-8");
+		if(i > 255) {
+			throw new IllegalArgumentException();
 		}
+		
+		request = new String(byteArray, "UTF-8");
 
 		System.out.println("Server answer: " + request);
 		return request;

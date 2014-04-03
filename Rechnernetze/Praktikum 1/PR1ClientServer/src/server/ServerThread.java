@@ -36,7 +36,7 @@ public class ServerThread extends Thread {
 		System.out.println("ServerThread no " + name + " is running");
 
 		try {
-			socket.setReceiveBufferSize(RECEIVEBUFFERSIZE); // Socket mit gewünschter Buffersize initialisieren
+			//socket.setReceiveBufferSize(RECEIVEBUFFERSIZE); // Socket mit gewünschter Buffersize initialisieren
 			
 			//Daten ein und Ausgabe Stream initialisieren
 			outputStream = socket.getOutputStream();
@@ -44,12 +44,17 @@ public class ServerThread extends Thread {
 			
 			while(running) {
 				//Eingabe auslesen
-				inputFromClient = readFromClient();
+				try {
+					inputFromClient = readFromClient();
+				} catch(IllegalArgumentException e) {
+					inputFromClient = "ERROR Message too long";
+					inputStream.skip(inputStream.available());
+				}
 				
 				/*
 				 * Überprüfen ob Leerzeichen in der Eingabe vorhanden sind, wenn
 				 * nicht wird die gesamteEingabe als Befehl gewertet -->
-				 * benötigt für BYEansonsten wird die Eingabe am Leerzeichen
+				 * benötigt für BYE ansonsten wird die Eingabe am Leerzeichen
 				 * gesplittet
 				 */
 				if(inputFromClient.indexOf(' ') > -1) {
@@ -57,6 +62,7 @@ public class ServerThread extends Thread {
 					inputFromClient = inputFromClient.substring(inputFromClient.indexOf(' ')).trim();
 				} else {
 					command = inputFromClient.trim();
+					inputFromClient = "";
 				}
 				
 				// Auswertung des Befehlsteils der Eingabe
@@ -85,6 +91,9 @@ public class ServerThread extends Thread {
 						answerToClient = ERROR + "wrong password";
 					}
 					break;
+				case "ERROR":
+					answerToClient = ERROR + " " + inputFromClient;
+					break;
 
 				default:
 					System.out.println("Command not known");
@@ -95,15 +104,18 @@ public class ServerThread extends Thread {
 				writeToClient(answerToClient);
 			}
 
-			Server.decrementThreadCounter(); 				//Ruft die synchronized Methode zum decrementieren der Server Zählvariable auf
-
 			if (socket.isConnected()) {
 				socket.close();
 			}
-
+		} catch (ConnectException e) {
+			System.out.println("Client disconnected improperly");
+		} catch (SocketException e) {
+			System.out.println("Client disconnected improperly");
 		} catch (IOException e) {
 			System.out.println("Error: " + e.toString());
 		}
+		
+		Server.decrementThreadCounter(); 				//Ruft die synchronized Methode zum decrementieren der Server Zählvariable auf
 	}
 	
 	/*
@@ -113,27 +125,26 @@ public class ServerThread extends Thread {
 	 * @return String request die Anfrage die vom Client gestellt wurde
 	 */
 	private String readFromClient() throws IOException {
-		int read;
+		int read, i;
 		String request;
-		byte[] byteArray = new byte[255];					//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
-		boolean flag = true;
-
-		for (int i = 0; i < 255 && flag == true; i++) {		//maximale Länge von 255 Byte wird überpüft
+		byte[] byteArray = new byte[256];					//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
+		
+		i = 0;
+		do {
 			read = inputStream.read();
-
-			if (read == 10 || read == -1) {					//10 ist die ASCII Codierung für Leerzeichen, dieses darf hier nicht vorn stehen
-				flag = false;
-			} else {
-				byteArray[i] = (byte) read;
-			}
+			byteArray[i] = (byte) read;
+			i++;
+		} while(read != 10 && read != -1 && i < 256);
+		
+		if(read == -1 && i == 1) {
+			throw new ConnectException();
 		}
-
-		if (flag) {
-			request = "ERROR Message too long";
-			inputStream.skip(inputStream.available());
-		} else {
-			request = new String(byteArray, "UTF-8");
+		
+		if(i > 255) {
+			throw new IllegalArgumentException();
 		}
+		
+		request = new String(byteArray, "UTF-8");
 
 		System.out.println("Thread " + name + " got message: " + request);
 		return request;
