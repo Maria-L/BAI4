@@ -52,9 +52,12 @@ public class ServerThread extends Thread {
 				//Eingabe auslesen
 				inputFromClient = readFromClient();
 				
-				//Überprüfen ob Leerzeichen in der Eingabe vorhanden sind, wenn nicht wird die gesamte
-				//Eingabe als Befehl gewertet --> benötigt für BYE
-				//ansonsten wird die Eingabe am Leerzeichen gesplittet
+				/*
+				 * Überprüfen ob Leerzeichen in der Eingabe vorhanden sind, wenn
+				 * nicht wird die gesamteEingabe als Befehl gewertet -->
+				 * benötigt für BYEansonsten wird die Eingabe am Leerzeichen
+				 * gesplittet
+				 */
 				if(inputFromClient.indexOf(' ') > -1) {
 					command = inputFromClient.substring(0, inputFromClient.indexOf(' '));
 					inputFromClient = inputFromClient.substring(inputFromClient.indexOf(' ')).trim();
@@ -148,7 +151,7 @@ public class ServerThread extends Thread {
 		System.out.println("Thread " + name + " answered: " + reply);
 	}
 	
-	/*
+	/*TODO überprüfen ob  Methoddé korrekt ist
 	 * 
 	 */
 	private String reverse(String string) {
