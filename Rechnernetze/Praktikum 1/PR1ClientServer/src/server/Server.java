@@ -10,11 +10,12 @@ public class Server {
 	private static final int MAX_THREADS = 1;
 	public static final int PORT = 50000;
 		
+	private static ServerSocket welcomeSocket;
 	private static int threadNameCounter = 0;
 	private static int threadCounter = 0;
-	private static boolean serverRunning = true;
+	private static volatile boolean serverRunning = true;
 	private static String password = "toastbrot";
-	private static ServerSocket welcomeSocket;
+	
 
 	public static void main(String[] args) {
 		welcomeSocket = null;

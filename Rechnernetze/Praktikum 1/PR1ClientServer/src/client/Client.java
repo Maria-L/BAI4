@@ -6,55 +6,55 @@ import java.util.*;
 
 
 public class Client {
+
 	public static int port;
 	public static String host;
-	
+
 	private static Socket clientSocket;
-	
 	private static OutputStream outputStream;
 	private static InputStream inputStream;
-	
+
 	private static boolean running = true;
-	
+
 	public static void main(String[] args) {
 		Scanner scanFromUser = new Scanner(System.in);
 		String inputFromUser = null;
 		String inputFromServer = null;
-		
+
 		try {
-			//Get IP Address from user
+			// Get IP Address from user
 			System.out.println("\nEnter an IP-Address, Sir!\n");
 			inputFromUser = scanFromUser.nextLine();
 			host = inputFromUser;
 			
-			//Get port from user
+			// Get port from user
 			System.out.println("\nEnter a Port\n");
 			inputFromUser = scanFromUser.nextLine();
 			port = Integer.valueOf(inputFromUser);
-			
-			//Connect to socket
+
+			// Connect to socket
 			clientSocket = new Socket(host, port);
-			
-			//Initialize streams
+
+			// Initialize streams
 			outputStream = clientSocket.getOutputStream();
 			inputStream = clientSocket.getInputStream();
 			
 			
-			//Communication with Server
-			while(running) {
-				//Get input from User
-				if(!clientSocket.isConnected()) {
+			// Communication with Server
+			while (running) {
+				// Get input from User
+				if (!clientSocket.isConnected()) {
 					System.out.println("\nYour emperor is annoyed!\n");
 					break;
 				}
-				
+
 				System.out.println("\nNow enter greetings to our emperor\n");
 				inputFromUser = scanFromUser.nextLine();
-				
-				//Send String to Server
+
+				// Send String to Server
 				writeToServer(inputFromUser);
-				
-				//Get answer from Server
+
+				// Get answer from Server
 				inputFromServer = readFromServer();
 				inputFromServer = inputFromServer.trim();
 				
@@ -64,10 +64,10 @@ public class Client {
 				}
 			}
 			
-			if(clientSocket.isConnected()) {
+			if (clientSocket.isConnected()) {
 				clientSocket.close();
 			}
-			
+
 		} catch (IOException e) {
 			System.out.println("Connection failed: " + e.toString());
 		}

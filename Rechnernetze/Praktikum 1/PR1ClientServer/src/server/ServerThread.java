@@ -8,12 +8,10 @@ import java.lang.Object;
 
 public class ServerThread extends Thread {
 	
-	//####### Start Globals ######
 	private final int RECEIVEBUFFERSIZE = 255;
 	private final String OK = "OK ";
 	private final String ERROR = "ERROR ";
 	
-	//###### Start Variables ######
 	private int name;
 	private Socket socket;
 	boolean running = true; //Schleifenbedingung
@@ -23,14 +21,12 @@ public class ServerThread extends Thread {
 	private InputStream inputStream;
 	private OutputStream outputStream;
 	
-	//Konstruktor
 	public ServerThread(int name, Socket socket) {
 		this.name = name;
 		this.socket = socket;
 	}
 	
 	//Run started from start()
-	//Methods
 	public void run() {
 		
 		String inputFromClient;
@@ -99,7 +95,7 @@ public class ServerThread extends Thread {
 				writeToClient(answerToClient);
 			}
 
-			Server.decrementThreadCounter();
+			Server.decrementThreadCounter(); //Ruft die synchronized Methode zum decrementieren der Server Zählvariable auf
 
 			if (socket.isConnected()) {
 				socket.close();
