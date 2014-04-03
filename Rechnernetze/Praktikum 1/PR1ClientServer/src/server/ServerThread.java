@@ -95,7 +95,7 @@ public class ServerThread extends Thread {
 				writeToClient(answerToClient);
 			}
 
-			Server.decrementThreadCounter(); //Ruft die synchronized Methode zum decrementieren der Server Zählvariable auf
+			Server.decrementThreadCounter(); 				//Ruft die synchronized Methode zum decrementieren der Server Zählvariable auf
 
 			if (socket.isConnected()) {
 				socket.close();
@@ -115,7 +115,7 @@ public class ServerThread extends Thread {
 	private String readFromClient() throws IOException {
 		int read;
 		String request;
-		byte[] byteArray = new byte[255];		//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
+		byte[] byteArray = new byte[255];					//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
 		boolean flag = true;
 
 		for (int i = 0; i < 255 && flag == true; i++) {		//maximale Länge von 255 Byte wird überpüft

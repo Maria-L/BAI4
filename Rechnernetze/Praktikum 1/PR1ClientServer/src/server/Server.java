@@ -21,9 +21,9 @@ public class Server {
 		welcomeSocket = null;
 		Socket connectionSocket = null;
 
-		try {
-			// Initialisieren der Empfangs Socket, die die Anfragen verteilt
-			welcomeSocket = new ServerSocket(PORT);
+		try {		
+			
+			welcomeSocket = new ServerSocket(PORT); 						// Initialisieren der Empfangs Socket, die die Anfragen verteilt
 			/*
 			 * Timeout auf eine halbe Sekunde gesetzt um zu verhindern, dass der
 			 * Server im accept() fest hängt, alle 0,5sec wacht er einmal auf
@@ -46,23 +46,18 @@ public class Server {
 					(new ServerThread(++threadNameCounter, connectionSocket)).start();
 				}
 
-				connectionSocket = null; // Connection ausnullen um erneute
-											// Verbindung auf selben Thread zu
-											// verhindern
+				connectionSocket = null; 									// Connection ausnullen um erneute
+																			// Verbindung auf selben Thread zu verhindern
 			}
 
-			welcomeSocket.close(); // Annahme Socket schließen um keine neuen
-									// Threads mehr anzunehmen wenn der Server
-									// heruntergefahren werden soll
-
+			welcomeSocket.close(); 											// Annahme Socket schließen um keine neuen Threads mehr 
+																			// anzunehmen wenn der Server heruntergefahren werden soll
 			while (threadCounter > 0) {
-				System.out.println("Number of Threads: " + threadCounter); // Darauf warten, dass																			// sich  die Threads beenden
+				System.out.println("Number of Threads: " + threadCounter); 	// Darauf warten, dass																			// sich  die Threads beenden
 			}
-
 		} catch (IOException e) {
 			System.out.println("Error: " + e.toString());
 		}
-
 	}
 
 	/*
