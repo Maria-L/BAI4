@@ -6,7 +6,7 @@ import java.util.*;
 
 
 public class Client {
-
+	
 	public static int port;
 	public static String host;
 
@@ -82,29 +82,28 @@ public class Client {
 	}
 	
 	private static String readFromServer() throws IOException {
-		int read, i;
+		int read, byteIndex;
 		String request;
-		byte[] byteArray = new byte[256];					//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
+		byte[] byteArray = new byte[255]; 
 		
-		if(inputStream.available() > 1) {
-			
+		if (inputStream.available() > 1) {
+
 		}
 		
-		i = 0;
+		byteIndex = 0;
 		do {
+			if (byteIndex == 255) {
+				throw new IllegalArgumentException();
+			}
 			read = inputStream.read();
-			byteArray[i] = (byte) read;
-			i++;
-		} while(read != 10 && read != -1 && i < 256);
+			byteArray[byteIndex] = (byte) read;
+			byteIndex++;
+		} while(read != 10 && read != -1);
 		
-		if(read == -1 && i == 1) {
+		if(read == -1 && byteIndex == 1) {
 			throw new ConnectException();
 		}
-		
-		if(i > 255) {
-			throw new IllegalArgumentException();
-		}
-		
+	
 		request = new String(byteArray, "UTF-8");
 
 		System.out.println("Server answer: " + request);

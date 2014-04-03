@@ -8,16 +8,17 @@ import java.lang.Object;
 
 public class ServerThread extends Thread {
 	
-	private final int RECEIVEBUFFERSIZE = 255;
 	private final String OK = "OK ";
 	private final String ERROR = "ERROR ";
+	private final int ASCII_NEWLINE = 10;
+	private final int STREAM_DEFAULT = -1;
+	private final int INPUT_SIZE_BYTE = 255;
+	private final char SPACE = ' ';
 	
 	private int name;
 	private Socket socket;
 	boolean running = true; //Schleifenbedingung
 	
-	//private BufferedReader inputStream;
-	//private DataOutputStream outputStream;
 	private InputStream inputStream;
 	private OutputStream outputStream;
 	
@@ -36,7 +37,6 @@ public class ServerThread extends Thread {
 		System.out.println("ServerThread no " + name + " is running");
 
 		try {
-			//socket.setReceiveBufferSize(RECEIVEBUFFERSIZE); // Socket mit gewünschter Buffersize initialisieren
 			
 			//Daten ein und Ausgabe Stream initialisieren
 			outputStream = socket.getOutputStream();
@@ -57,9 +57,9 @@ public class ServerThread extends Thread {
 				 * benötigt für BYE ansonsten wird die Eingabe am Leerzeichen
 				 * gesplittet
 				 */
-				if(inputFromClient.indexOf(' ') > -1) {
-					command = inputFromClient.substring(0, inputFromClient.indexOf(' '));
-					inputFromClient = inputFromClient.substring(inputFromClient.indexOf(' ')).trim();
+				if(inputFromClient.indexOf(SPACE) > -1) {
+					command = inputFromClient.substring(0, inputFromClient.indexOf(SPACE));
+					inputFromClient = inputFromClient.substring(inputFromClient.indexOf(SPACE)).trim();
 				} else {
 					command = inputFromClient.trim();
 					inputFromClient = "";
@@ -113,11 +113,11 @@ public class ServerThread extends Thread {
 			System.out.println("Client disconnected improperly");
 		} catch (IOException e) {
 			System.out.println("Error: " + e.toString());
+		}finally{											//führt die Anweisung sicher aus, auch wenn unbehandelte Exceptions kommen
+			Server.decrementThreadCounter(); 				//Ruft die synchronized Methode zum decrementieren der Server Zählvariable auf	
 		}
-		
-		Server.decrementThreadCounter(); 				//Ruft die synchronized Methode zum decrementieren der Server Zählvariable auf
 	}
-	
+
 	/*
 	 * Liest Nachrichten mit einer maximalen Länge von 255 Byte aus dem inputStream des Servers aus
 	 * und sendet eine Erfolg oder Misserfolg Nachricht an den Client
@@ -125,25 +125,28 @@ public class ServerThread extends Thread {
 	 * @return String request die Anfrage die vom Client gestellt wurde
 	 */
 	private String readFromClient() throws IOException {
-		int read, i;
+		int read, byteIndex;
 		String request;
-		byte[] byteArray = new byte[256];					//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
+		byte[] byteArray = new byte[INPUT_SIZE_BYTE];					//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
 		
-		i = 0;
+		if (inputStream.available() > 1) {
+
+		}	
+		
+		byteIndex = 0;
 		do {
+			if (byteIndex == INPUT_SIZE_BYTE) {
+				throw new IllegalArgumentException();
+			}
 			read = inputStream.read();
-			byteArray[i] = (byte) read;
-			i++;
-		} while(read != 10 && read != -1 && i < 256);
+			byteArray[byteIndex] = (byte) read;
+			byteIndex++;
+		} while(read != ASCII_NEWLINE && read != STREAM_DEFAULT);
 		
-		if(read == -1 && i == 1) {
+		if(read == STREAM_DEFAULT && byteIndex == 1) {
 			throw new ConnectException();
 		}
-		
-		if(i > 255) {
-			throw new IllegalArgumentException();
-		}
-		
+	
 		request = new String(byteArray, "UTF-8");
 
 		System.out.println("Thread " + name + " got message: " + request);
@@ -154,7 +157,7 @@ public class ServerThread extends Thread {
 	 * Methode die einen String entgegen nimmt und ihn byte weise in den OutputStream schreibt
 	 */
 	private void writeToClient(String reply) throws IOException {
-		byte[] byteArray = (reply + "\n").getBytes("UTF-8");
+		byte[] byteArray = (reply + (char) 10).getBytes("UTF-8");
 		
 		outputStream.write(byteArray, 0, byteArray.length);
 
