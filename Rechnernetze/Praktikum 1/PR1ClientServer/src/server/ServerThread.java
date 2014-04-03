@@ -36,10 +36,9 @@ public class ServerThread extends Thread {
 		String inputFromClient;
 		String answerToClient;
 		String command;
-		
-		
+
 		System.out.println("ServerThread no " + name + " is running");
-		
+
 		try {
 			socket.setReceiveBufferSize(RECEIVEBUFFERSIZE); // Socket mit gewünschter Buffersize initialisieren
 			
@@ -47,7 +46,6 @@ public class ServerThread extends Thread {
 			outputStream = socket.getOutputStream();
 			inputStream = socket.getInputStream();
 			
-
 			while(running) {
 				//Eingabe auslesen
 				inputFromClient = readFromClient();
@@ -65,75 +63,80 @@ public class ServerThread extends Thread {
 					command = inputFromClient.trim();
 				}
 				
-				//Auswertung des Befehlsteils der Eingabe
-				switch(command) {
-					case "LOWERCASE":
-						answerToClient = OK + inputFromClient.toLowerCase();
-						break;
-						
-					case "UPPERCASE":
-						answerToClient = OK + inputFromClient.toUpperCase();
-						break;
-						
-					case "REVERSE":
-						answerToClient = OK + reverse(inputFromClient);
-						break;
-						
-					case "BYE":
-						answerToClient = "BYE";
+				// Auswertung des Befehlsteils der Eingabe
+				switch (command) {
+				case "LOWERCASE":
+					answerToClient = OK + inputFromClient.toLowerCase();
+					break;
+
+				case "UPPERCASE":
+					answerToClient = OK + inputFromClient.toUpperCase();
+					break;
+
+				case "REVERSE":
+					answerToClient = OK + reverse(inputFromClient);
+					break;
+
+				case "BYE":
+					answerToClient = "BYE";
+					running = false;
+					break;
+				case "SHUTDOWN":
+					if (Server.shutdown(inputFromClient)) {
 						running = false;
-						break;
-					case "SHUTDOWN":
-						if(Server.shutdown(inputFromClient)) {
-							running = false;
-							answerToClient = OK;
-						} else {
-							answerToClient = ERROR + "wrong password";
-						}
-						break;
-						
-					default:
-						System.out.println("Command not known");
-						answerToClient = "Unknown command";
-						break;
+						answerToClient = OK;
+					} else {
+						answerToClient = ERROR + "wrong password";
+					}
+					break;
+
+				default:
+					System.out.println("Command not known");
+					answerToClient = "Unknown command";
+					break;
 				}
-				
+
 				writeToClient(answerToClient);
 			}
-			
+
 			Server.decrementThreadCounter();
-			
+
 			if (socket.isConnected()) {
 				socket.close();
 			}
-			
-		} catch (IOException e){
+
+		} catch (IOException e) {
 			System.out.println("Error: " + e.toString());
 		}
 	}
 	
+	/*
+	 * Liest Nachrichten mit einer maximalen Länge von 255 Byte aus dem inputStream des Servers aus
+	 * und sendet eine Erfolg oder Misserfolg Nachricht an den Client
+	 * 
+	 * @return String request die Anfrage die vom Client gestellt wurde
+	 */
 	private String readFromClient() throws IOException {
 		int read;
 		String request;
-		byte[] byteArray = new byte[255];
+		byte[] byteArray = new byte[255];		//Begrenzt die mögliche Nachrichtenlänge auf ein Array der Länge 256 
 		boolean flag = true;
-		
-		
-		for(int i = 0; i < 255 && flag == true; i++) {
+
+		for (int i = 0; i < 255 && flag == true; i++) {		//maximale Länge von 255 Byte wird überpüft
 			read = inputStream.read();
 
-			if(read == 10 || read == -1) {
+			if (read == 10 || read == -1) {					//10 ist die ASCII Codierung für Leerzeichen, dieses darf hier nicht vorn stehen
 				flag = false;
 			} else {
-				byteArray[i] = (byte) read; 
+				byteArray[i] = (byte) read;
 			}
 		}
-		
-		if(flag) {
+
+		if (flag) {
 			request = "ERROR Message too long";
 			inputStream.skip(inputStream.available());
 		} else {
-			request =  new String(byteArray, "UTF-8");
+			request = new String(byteArray, "UTF-8");
 		}
 
 		System.out.println("Thread " + name + " got message: " + request);
@@ -141,7 +144,7 @@ public class ServerThread extends Thread {
 	}
 	
 	/*
-	 * 
+	 * Methode die einen String entgegen nimmt und ihn byte weise in den OutputStream schreibt
 	 */
 	private void writeToClient(String reply) throws IOException {
 		byte[] byteArray = (reply + "\n").getBytes("UTF-8");
@@ -151,13 +154,17 @@ public class ServerThread extends Thread {
 		System.out.println("Thread " + name + " answered: " + reply);
 	}
 	
-	/*TODO überprüfen ob  Methoddé korrekt ist
+	/*
+	 * Methode um einen String umzudrehen
 	 * 
+	 * @param String string übergebene Nachricht die umgedreht werden soll
+	 * 
+	 * @return String akku der umgedrehte String
 	 */
 	private String reverse(String string) {
 		String akku = "";
-		for(int i = 0; i < string.length(); i++) {
-			akku = string.valueOf(i) + akku;
+		for (int i = 0; i < string.length(); i++) {
+			akku = string.charAt(i) + akku;
 		}
 		return akku;
 	}
