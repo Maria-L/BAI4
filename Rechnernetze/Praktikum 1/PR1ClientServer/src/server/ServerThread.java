@@ -172,10 +172,7 @@ public class ServerThread extends Thread {
 	 * @return String akku der umgedrehte String
 	 */
 	private String reverse(String string) {
-		String akku = "";
-		for (int i = 0; i < string.length(); i++) {
-			akku = string.charAt(i) + akku;
-		}
+		String akku = new StringBuffer(string).reverse().toString();
 		return akku;
 	}
 }
