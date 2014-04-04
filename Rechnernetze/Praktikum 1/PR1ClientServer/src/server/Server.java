@@ -2,7 +2,6 @@ package server;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
 
 
 public class Server {
@@ -21,7 +20,7 @@ public class Server {
 		welcomeSocket = null;
 		Socket connectionSocket = null;
 
-		if(args[0] != "" && args != null) {
+		if(args.length != 0 && args[0] != "" && args != null) {
 			port = Integer.parseInt(args[0]);
 		}
 		System.out.println("Port " + port + " is choosen");
