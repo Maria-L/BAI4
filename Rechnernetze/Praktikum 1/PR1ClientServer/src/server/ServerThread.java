@@ -2,8 +2,6 @@ package server;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
-import java.lang.Object;
 
 
 public class ServerThread extends Thread {
@@ -157,7 +155,7 @@ public class ServerThread extends Thread {
 	 * Methode die einen String entgegen nimmt und ihn byte weise in den OutputStream schreibt
 	 */
 	private void writeToClient(String reply) throws IOException {
-		byte[] byteArray = (reply + (char) 10).getBytes("UTF-8");
+		byte[] byteArray = (reply + (char) ASCII_NEWLINE).getBytes("UTF-8");
 		
 		outputStream.write(byteArray, 0, byteArray.length);
 
