@@ -43,11 +43,6 @@ public class Client {
 			// Communication with Server
 			while (running) {
 				// Get input from User
-				/*if (!clientSocket.isConnected()) {
-					System.out.println("Your emperor is annoyed!");
-					break;
-				}*/
-
 				System.out.println("Now enter greetings to our emperor");
 				inputFromUser = scanFromUser.nextLine();
 

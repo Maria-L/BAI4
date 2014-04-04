@@ -54,7 +54,12 @@ public class Server {
 			welcomeSocket.close(); 											// Annahme Socket schlie�en um keine neuen Threads mehr 
 																			// anzunehmen wenn der Server heruntergefahren werden soll
 			while (threadCounter > 0) {
-				System.out.println("Number of Threads: " + threadCounter); // Darauf warten, dass																			// sich  die Threads beenden
+				System.out.println("Number of Threads: " + threadCounter); // Darauf warten, dass sich  die Threads beenden
+				try {
+					Thread.currentThread().sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (IOException e) {
 			System.out.println("Error: " + e.toString());
