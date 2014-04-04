@@ -31,8 +31,8 @@ public class Server {
 			welcomeSocket = new ServerSocket(port); 						// Initialisieren der Empfangs Socket, die die Anfragen verteilt
 			/*
 			 * Timeout auf eine halbe Sekunde gesetzt um zu verhindern, dass der
-			 * Server im accept() fest hï¿½ngt, alle 0,5sec wacht er einmal auf
-			 * und prï¿½ft ob serverRunning noch true ist
+			 * Server im accept() fest hängt, alle 0,5sec wacht er einmal auf
+			 * und prüft ob serverRunning noch true ist
 			 */
 			welcomeSocket.setSoTimeout(500);
 
@@ -54,12 +54,7 @@ public class Server {
 			welcomeSocket.close(); 											// Annahme Socket schlieï¿½en um keine neuen Threads mehr 
 																			// anzunehmen wenn der Server heruntergefahren werden soll
 			while (threadCounter > 0) {
-				System.out.println("Number of Threads: " + threadCounter); 	// Darauf warten, dass																			// sich  die Threads beenden
-				try {
-					Thread.currentThread().sleep(500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				System.out.println("Number of Threads: " + threadCounter); // Darauf warten, dass																			// sich  die Threads beenden
 			}
 		} catch (IOException e) {
 			System.out.println("Error: " + e.toString());
