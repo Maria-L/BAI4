@@ -8,7 +8,7 @@ public class ServerThread extends Thread {
 	
 	private final String OK = "OK ";
 	private final String ERROR = "ERROR ";
-	private final int ASCII_NEWLINE = 10;
+	private final int ASCII_LINEFEED = 10;
 	private final int STREAM_DEFAULT = -1;
 	private final int INPUT_SIZE_BYTE = 255;
 	private final char SPACE = ' ';
@@ -139,7 +139,7 @@ public class ServerThread extends Thread {
 			read = inputStream.read();
 			byteArray[byteIndex] = (byte) read;
 			byteIndex++;
-		} while(read != ASCII_NEWLINE && read != STREAM_DEFAULT);
+		} while(read != ASCII_LINEFEED && read != STREAM_DEFAULT);
 		
 		if(read == STREAM_DEFAULT && byteIndex == 1) {
 			throw new ConnectException();
@@ -155,7 +155,7 @@ public class ServerThread extends Thread {
 	 * Methode die einen String entgegen nimmt und ihn byte weise in den OutputStream schreibt
 	 */
 	private void writeToClient(String reply) throws IOException {
-		byte[] byteArray = (reply + (char) ASCII_NEWLINE).getBytes("UTF-8");
+		byte[] byteArray = (reply + (char) ASCII_LINEFEED).getBytes("UTF-8");
 		
 		outputStream.write(byteArray, 0, byteArray.length);
 
