@@ -7,6 +7,7 @@ import java.net.*;
 public class Server {
 	
 	private static final int MAX_THREADS = 10;
+	private static final int WAITING_TIME_MS = 500;
 	public static int port = 50000;
 		
 	private static ServerSocket welcomeSocket;
@@ -30,10 +31,10 @@ public class Server {
 			welcomeSocket = new ServerSocket(port); 						// Initialisieren der Empfangs Socket, die die Anfragen verteilt
 			/*
 			 * Timeout auf eine halbe Sekunde gesetzt um zu verhindern, dass der
-			 * Server im accept() fest hängt, alle 0,5sec wacht er einmal auf
-			 * und prüft ob serverRunning noch true ist
+			 * Server im accept() fest hï¿½ngt, alle 0,5sec wacht er einmal auf
+			 * und prï¿½ft ob serverRunning noch true ist
 			 */
-			welcomeSocket.setSoTimeout(500);
+			welcomeSocket.setSoTimeout(WAITING_TIME_MS);
 
 			while (serverRunning) {
 
@@ -55,7 +56,8 @@ public class Server {
 			while (threadCounter > 0) {
 				System.out.println("Number of Threads: " + threadCounter); // Darauf warten, dass sich  die Threads beenden
 				try {
-					Thread.currentThread().sleep(500);
+					Thread.currentThread();
+					Thread.sleep(WAITING_TIME_MS);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
