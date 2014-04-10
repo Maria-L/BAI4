@@ -15,6 +15,7 @@ idList	:	ID (',' ID)*
 	;
 	
 commands:	(command K_SEM | flowControl)+
+
 	;
 	
 command	:	definition | read | print
@@ -25,11 +26,17 @@ flowControl
 	;
 	
 definition
-	:	ID ':=' (STRING | ID definition_ | '(' arith ')' | INTEGER definition__? | REAL definition__?)
+	:	ID ':=' 
+	(STRING 
+	| BOOLEAN (praedicate_ praedicats_?)?
+	| ID definition_ 
+	| '(' arith ')' (arith_ | term_)? 
+	| INTEGER definition__? 
+	| REAL definition__?)
 	;
 	
 definition_
-	:	arith_ | term_ | praedicate_ | praedicats_ |
+	:	arith_ | term_ arith_?| praedicate_ praedicats_? /*| praedicats_*/ |
 	;
 	
 definition__
@@ -59,11 +66,11 @@ praedicats_
 	;
 	
 praedicate
-	:	(ID | BOOLEAN)  praedicate_?
+	:	(ID | BOOLEAN | REAL | INTEGER)  praedicate_?
 	;
 	
 praedicate_
-	:	OP_PRAEDICATE (ID | BOOLEAN)
+	:	OP_PRAEDICATE (ID | BOOLEAN | REAL | INTEGER)
 	;
 	
 arith	:	term arith_?
@@ -164,8 +171,7 @@ REAL
     	;
 
 COMMENT
-    	:   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-    	|   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
+    	: '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     	;
 
 WS  	:   ( ' '
