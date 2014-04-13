@@ -1,21 +1,28 @@
 program
-	integer foo;
-begin
-	foo := 3+4;
-	foo := (3+4) * bar;
-	foo := bar * (baz + (rofl / ((4))));
-	foo := "hallo";
-	foo := foo >= 7 || 3 < baz;
-	foo := true = foo && 3 < bar || rofl;
 
-	while 5 < roflow || do
-		if bar then
-			foo := 3+baz;
-			println(foo);
-		else
-			foo := true;
-			println("bar");
-			read(foo);
-		fi
-	od
+begin
+
+if x=y then
+	foo := foo;
+fi
+
+foo := (((6))) / 31 * (foo) * 8;
+foo := foo > 7;
+foo := 3 < foo;
+foo := "String";
+foo := foo * 3 + 70;
+foo := foo < 6;
+foo := true || false && bar;
+foo := 3 && foo;
+foo := 3 > foo && baz;
+
+while foo do
+	if 3 < foo then
+		foo := (foo + 3);
+		read(foo);
+	else
+		foo := 3 - ((foo));
+		println("hallo");
+	fi
+od
 end

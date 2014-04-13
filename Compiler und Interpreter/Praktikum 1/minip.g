@@ -28,7 +28,26 @@ flowControl
 definition
 	:	ID ':=' 
 	(STRING 
-	| BOOLEAN (praedicate_ praedicats_?)?
+	| BOOLEAN praedicats_?
+	| ID definition__ 
+	| '(' arith ')' (arith_ | term_)? 
+	| INTEGER definition_ 
+	| REAL definition_)
+	;
+	
+definition_
+	:	arith_ | term_ arith_? | praedicate_ praedicats_? |
+	;
+	
+definition__
+	:	arith_ | term_ arith_? | praedicate_? praedicats_?
+	;
+	
+	
+/*definition
+	:	ID ':=' 
+	(STRING 
+	| BOOLEAN praedicate_? praedicats_?
 	| ID definition_ 
 	| '(' arith ')' (arith_ | term_)? 
 	| INTEGER definition__? 
@@ -36,12 +55,12 @@ definition
 	;
 	
 definition_
-	:	arith_ | term_ arith_?| praedicate_ praedicats_? /*| praedicats_*/ |
+	:	arith_ | term_ arith_?| praedicate_ praedicats_? |
 	;
 	
 definition__
 	:	arith_ | term_ arith_? | praedicate_ praedicats_?
-	;
+	;*/
 
 read	:	K_READ '(' ID ')'
 	;
@@ -66,7 +85,7 @@ praedicats_
 	;
 	
 praedicate
-	:	(ID | BOOLEAN | REAL | INTEGER)  praedicate_?
+	:	ID praedicate_? | (REAL | INTEGER) praedicate_ | BOOLEAN
 	;
 	
 praedicate_

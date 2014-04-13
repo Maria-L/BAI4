@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g 2014-04-10 13:32:39
+// $ANTLR 3.4 E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g 2014-04-13 10:20:56
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -62,15 +62,15 @@ public class minipLexer extends Lexer {
     public minipLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g"; }
+    public String getGrammarFileName() { return "E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g"; }
 
     // $ANTLR start "T__36"
     public final void mT__36() throws RecognitionException {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:2:7: ( '(' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:2:9: '('
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:2:7: ( '(' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:2:9: '('
             {
             match('('); 
 
@@ -90,8 +90,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:3:7: ( ')' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:3:9: ')'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:3:7: ( ')' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:3:9: ')'
             {
             match(')'); 
 
@@ -111,8 +111,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:4:7: ( '*' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:4:9: '*'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:4:7: ( '*' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:4:9: '*'
             {
             match('*'); 
 
@@ -132,8 +132,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:5:7: ( '+' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:5:9: '+'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:5:7: ( '+' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:5:9: '+'
             {
             match('+'); 
 
@@ -153,8 +153,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:6:7: ( ',' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:6:9: ','
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:6:7: ( ',' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:6:9: ','
             {
             match(','); 
 
@@ -174,8 +174,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:7:7: ( '-' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:7:9: '-'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:7:7: ( '-' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:7:9: '-'
             {
             match('-'); 
 
@@ -195,8 +195,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:8:7: ( '/' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:8:9: '/'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:8:7: ( '/' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:8:9: '/'
             {
             match('/'); 
 
@@ -216,8 +216,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:9:7: ( ':=' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:9:9: ':='
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:9:7: ( ':=' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:9:9: ':='
             {
             match(":="); 
 
@@ -239,8 +239,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_PROGRAM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:95:2: ( 'program' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:95:4: 'program'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:114:2: ( 'program' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:114:4: 'program'
             {
             match("program"); 
 
@@ -262,8 +262,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_BEGIN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:98:9: ( 'begin' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:98:11: 'begin'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:117:9: ( 'begin' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:117:11: 'begin'
             {
             match("begin"); 
 
@@ -285,8 +285,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_END;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:101:7: ( 'end' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:101:9: 'end'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:120:7: ( 'end' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:120:9: 'end'
             {
             match("end"); 
 
@@ -308,8 +308,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:105:2: ( 'integer' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:105:4: 'integer'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:124:2: ( 'integer' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:124:4: 'integer'
             {
             match("integer"); 
 
@@ -331,8 +331,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_REAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:108:8: ( 'real' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:108:10: 'real'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:127:8: ( 'real' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:127:10: 'real'
             {
             match("real"); 
 
@@ -354,8 +354,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:111:9: ( 'string' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:111:11: 'string'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:130:9: ( 'string' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:130:11: 'string'
             {
             match("string"); 
 
@@ -377,8 +377,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:115:2: ( 'boolean' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:115:4: 'boolean'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:134:2: ( 'boolean' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:134:4: 'boolean'
             {
             match("boolean"); 
 
@@ -400,8 +400,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_READ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:118:8: ( 'read' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:118:10: 'read'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:137:8: ( 'read' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:137:10: 'read'
             {
             match("read"); 
 
@@ -423,8 +423,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_PRINTLN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:122:2: ( 'println' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:122:4: 'println'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:141:2: ( 'println' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:141:4: 'println'
             {
             match("println"); 
 
@@ -446,8 +446,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:125:6: ( 'if' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:125:8: 'if'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:144:6: ( 'if' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:144:8: 'if'
             {
             match("if"); 
 
@@ -469,8 +469,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_THEN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:128:8: ( 'then' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:128:10: 'then'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:147:8: ( 'then' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:147:10: 'then'
             {
             match("then"); 
 
@@ -492,8 +492,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:131:8: ( 'else' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:131:10: 'else'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:150:8: ( 'else' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:150:10: 'else'
             {
             match("else"); 
 
@@ -515,8 +515,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_FI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:134:6: ( 'fi' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:134:8: 'fi'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:6: ( 'fi' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:8: 'fi'
             {
             match("fi"); 
 
@@ -538,8 +538,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:137:9: ( 'while' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:137:11: 'while'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:156:9: ( 'while' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:156:11: 'while'
             {
             match("while"); 
 
@@ -561,8 +561,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_DO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:140:6: ( 'do' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:140:8: 'do'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:159:6: ( 'do' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:159:8: 'do'
             {
             match("do"); 
 
@@ -584,8 +584,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_OD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:143:6: ( 'od' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:143:8: 'od'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:162:6: ( 'od' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:162:8: 'od'
             {
             match("od"); 
 
@@ -607,8 +607,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = K_SEM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:146:7: ( ';' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:146:9: ';'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:165:7: ( ';' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:165:9: ';'
             {
             match(';'); 
 
@@ -628,7 +628,7 @@ public class minipLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:149:9: ( 'true' | 'false' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:9: ( 'true' | 'false' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -647,7 +647,7 @@ public class minipLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:149:11: 'true'
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:11: 'true'
                     {
                     match("true"); 
 
@@ -656,7 +656,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:149:20: 'false'
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:20: 'false'
                     {
                     match("false"); 
 
@@ -680,7 +680,7 @@ public class minipLexer extends Lexer {
         try {
             int _type = OP_PRAEDICATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:2: ( '=' | '<' | '>' | '!=' | '<>' | '>=' | '<=' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:172:2: ( '=' | '<' | '>' | '!=' | '<>' | '>=' | '<=' )
             int alt2=7;
             switch ( input.LA(1) ) {
             case '=':
@@ -734,28 +734,28 @@ public class minipLexer extends Lexer {
 
             switch (alt2) {
                 case 1 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:7: '='
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:172:7: '='
                     {
                     match('='); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:12: '<'
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:172:12: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:16: '>'
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:172:16: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:20: '!='
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:172:20: '!='
                     {
                     match("!="); 
 
@@ -764,7 +764,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:25: '<>'
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:172:25: '<>'
                     {
                     match("<>"); 
 
@@ -773,7 +773,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:30: '>='
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:172:30: '>='
                     {
                     match(">="); 
 
@@ -782,7 +782,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:153:35: '<='
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:172:35: '<='
                     {
                     match("<="); 
 
@@ -806,7 +806,7 @@ public class minipLexer extends Lexer {
         try {
             int _type = OP_LOGICAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:157:2: ( '&&' | '||' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:176:2: ( '&&' | '||' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -825,7 +825,7 @@ public class minipLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:157:4: '&&'
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:176:4: '&&'
                     {
                     match("&&"); 
 
@@ -834,7 +834,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:157:11: '||'
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:176:11: '||'
                     {
                     match("||"); 
 
@@ -858,8 +858,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:160:6: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:160:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:179:6: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:179:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -871,7 +871,7 @@ public class minipLexer extends Lexer {
             }
 
 
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:160:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:179:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop4:
             do {
                 int alt4=2;
@@ -884,7 +884,7 @@ public class minipLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+            	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
             	        input.consume();
@@ -921,10 +921,10 @@ public class minipLexer extends Lexer {
         try {
             int _type = INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:164:2: ( ( '0' .. '9' )+ )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:164:4: ( '0' .. '9' )+
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:183:2: ( ( '0' .. '9' )+ )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:183:4: ( '0' .. '9' )+
             {
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:164:4: ( '0' .. '9' )+
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:183:4: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -938,7 +938,7 @@ public class minipLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+            	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
             	        input.consume();
@@ -979,14 +979,14 @@ public class minipLexer extends Lexer {
         try {
             int _type = REAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:6: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:187:6: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
             int alt12=3;
             alt12 = dfa12.predict(input);
             switch (alt12) {
                 case 1 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:10: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:187:10: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
                     {
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:10: ( '0' .. '9' )+
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:187:10: ( '0' .. '9' )+
                     int cnt6=0;
                     loop6:
                     do {
@@ -1000,7 +1000,7 @@ public class minipLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+                    	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -1027,7 +1027,7 @@ public class minipLexer extends Lexer {
 
                     match('.'); 
 
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:26: ( '0' .. '9' )*
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:187:26: ( '0' .. '9' )*
                     loop7:
                     do {
                         int alt7=2;
@@ -1040,7 +1040,7 @@ public class minipLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+                    	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -1061,7 +1061,7 @@ public class minipLexer extends Lexer {
                     } while (true);
 
 
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:38: ( EXPONENT )?
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:187:38: ( EXPONENT )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -1070,7 +1070,7 @@ public class minipLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:168:38: EXPONENT
+                            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:187:38: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -1084,11 +1084,11 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:169:10: '.' ( '0' .. '9' )+ ( EXPONENT )?
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:10: '.' ( '0' .. '9' )+ ( EXPONENT )?
                     {
                     match('.'); 
 
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:169:14: ( '0' .. '9' )+
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:14: ( '0' .. '9' )+
                     int cnt9=0;
                     loop9:
                     do {
@@ -1102,7 +1102,7 @@ public class minipLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+                    	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -1127,7 +1127,7 @@ public class minipLexer extends Lexer {
                     } while (true);
 
 
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:169:26: ( EXPONENT )?
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:26: ( EXPONENT )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1136,7 +1136,7 @@ public class minipLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:169:26: EXPONENT
+                            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:26: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -1150,9 +1150,9 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:170:10: ( '0' .. '9' )+ EXPONENT
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:189:10: ( '0' .. '9' )+ EXPONENT
                     {
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:170:10: ( '0' .. '9' )+
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:189:10: ( '0' .. '9' )+
                     int cnt11=0;
                     loop11:
                     do {
@@ -1166,7 +1166,7 @@ public class minipLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+                    	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -1212,14 +1212,14 @@ public class minipLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:174:6: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:174:8: '/*' ( options {greedy=false; } : . )* '*/'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:193:6: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:193:8: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
 
 
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:174:13: ( options {greedy=false; } : . )*
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:193:13: ( options {greedy=false; } : . )*
             loop13:
             do {
                 int alt13=2;
@@ -1244,7 +1244,7 @@ public class minipLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:174:41: .
+            	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:193:41: .
             	    {
             	    matchAny(); 
 
@@ -1279,8 +1279,8 @@ public class minipLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:177:6: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:177:10: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:196:6: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:196:10: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1310,12 +1310,12 @@ public class minipLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:185:6: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:185:9: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:204:6: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:204:9: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:185:13: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:204:13: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
             loop14:
             do {
                 int alt14=3;
@@ -1331,7 +1331,7 @@ public class minipLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:185:15: ESC_SEQ
+            	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:204:15: ESC_SEQ
             	    {
             	    mESC_SEQ(); 
 
@@ -1339,7 +1339,7 @@ public class minipLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:185:25: ~ ( '\\\\' | '\"' )
+            	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:204:25: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1378,12 +1378,12 @@ public class minipLexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:8: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:207:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:207:8: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
             {
             match('\''); 
 
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:13: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:207:13: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1402,7 +1402,7 @@ public class minipLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:15: ESC_SEQ
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:207:15: ESC_SEQ
                     {
                     mESC_SEQ(); 
 
@@ -1410,7 +1410,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:188:25: ~ ( '\\'' | '\\\\' )
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:207:25: ~ ( '\\'' | '\\\\' )
                     {
                     if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
                         input.consume();
@@ -1444,8 +1444,8 @@ public class minipLexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:193:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:193:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:212:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:212:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1457,7 +1457,7 @@ public class minipLexer extends Lexer {
             }
 
 
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:193:22: ( '+' | '-' )?
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:212:22: ( '+' | '-' )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -1466,7 +1466,7 @@ public class minipLexer extends Lexer {
             }
             switch (alt16) {
                 case 1 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
                     {
                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                         input.consume();
@@ -1484,7 +1484,7 @@ public class minipLexer extends Lexer {
             }
 
 
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:193:33: ( '0' .. '9' )+
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:212:33: ( '0' .. '9' )+
             int cnt17=0;
             loop17:
             do {
@@ -1498,7 +1498,7 @@ public class minipLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+            	    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
             	        input.consume();
@@ -1536,8 +1536,8 @@ public class minipLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:196:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:215:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
                 input.consume();
@@ -1562,7 +1562,7 @@ public class minipLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:200:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:219:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt18=3;
             int LA18_0 = input.LA(1);
 
@@ -1615,7 +1615,7 @@ public class minipLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:200:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:219:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -1632,7 +1632,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:201:9: UNICODE_ESC
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:220:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
@@ -1640,7 +1640,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:202:9: OCTAL_ESC
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:221:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -1660,7 +1660,7 @@ public class minipLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:207:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:226:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt19=3;
             int LA19_0 = input.LA(1);
 
@@ -1711,7 +1711,7 @@ public class minipLexer extends Lexer {
             }
             switch (alt19) {
                 case 1 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:207:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:226:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1748,7 +1748,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:208:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:227:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1775,7 +1775,7 @@ public class minipLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:209:9: '\\\\' ( '0' .. '7' )
+                    // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:228:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1804,8 +1804,8 @@ public class minipLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:214:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:214:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:233:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:233:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
 
@@ -1834,12 +1834,12 @@ public class minipLexer extends Lexer {
     // $ANTLR end "UNICODE_ESC"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:8: ( T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | K_PROGRAM | K_BEGIN | K_END | K_INTEGER | K_REAL | K_STRING | K_BOOLEAN | K_READ | K_PRINTLN | K_IF | K_THEN | K_ELSE | K_FI | K_WHILE | K_DO | K_OD | K_SEM | BOOLEAN | OP_PRAEDICATE | OP_LOGICAL | ID | INTEGER | REAL | COMMENT | WS | STRING | CHAR )
+        // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:8: ( T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | K_PROGRAM | K_BEGIN | K_END | K_INTEGER | K_REAL | K_STRING | K_BOOLEAN | K_READ | K_PRINTLN | K_IF | K_THEN | K_ELSE | K_FI | K_WHILE | K_DO | K_OD | K_SEM | BOOLEAN | OP_PRAEDICATE | OP_LOGICAL | ID | INTEGER | REAL | COMMENT | WS | STRING | CHAR )
         int alt20=35;
         alt20 = dfa20.predict(input);
         switch (alt20) {
             case 1 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:10: T__36
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:10: T__36
                 {
                 mT__36(); 
 
@@ -1847,7 +1847,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:16: T__37
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:16: T__37
                 {
                 mT__37(); 
 
@@ -1855,7 +1855,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 3 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:22: T__38
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:22: T__38
                 {
                 mT__38(); 
 
@@ -1863,7 +1863,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 4 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:28: T__39
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:28: T__39
                 {
                 mT__39(); 
 
@@ -1871,7 +1871,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 5 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:34: T__40
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:34: T__40
                 {
                 mT__40(); 
 
@@ -1879,7 +1879,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 6 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:40: T__41
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:40: T__41
                 {
                 mT__41(); 
 
@@ -1887,7 +1887,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 7 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:46: T__42
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:46: T__42
                 {
                 mT__42(); 
 
@@ -1895,7 +1895,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 8 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:52: T__43
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:52: T__43
                 {
                 mT__43(); 
 
@@ -1903,7 +1903,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 9 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:58: K_PROGRAM
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:58: K_PROGRAM
                 {
                 mK_PROGRAM(); 
 
@@ -1911,7 +1911,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 10 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:68: K_BEGIN
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:68: K_BEGIN
                 {
                 mK_BEGIN(); 
 
@@ -1919,7 +1919,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 11 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:76: K_END
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:76: K_END
                 {
                 mK_END(); 
 
@@ -1927,7 +1927,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 12 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:82: K_INTEGER
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:82: K_INTEGER
                 {
                 mK_INTEGER(); 
 
@@ -1935,7 +1935,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 13 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:92: K_REAL
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:92: K_REAL
                 {
                 mK_REAL(); 
 
@@ -1943,7 +1943,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 14 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:99: K_STRING
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:99: K_STRING
                 {
                 mK_STRING(); 
 
@@ -1951,7 +1951,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 15 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:108: K_BOOLEAN
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:108: K_BOOLEAN
                 {
                 mK_BOOLEAN(); 
 
@@ -1959,7 +1959,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 16 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:118: K_READ
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:118: K_READ
                 {
                 mK_READ(); 
 
@@ -1967,7 +1967,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 17 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:125: K_PRINTLN
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:125: K_PRINTLN
                 {
                 mK_PRINTLN(); 
 
@@ -1975,7 +1975,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 18 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:135: K_IF
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:135: K_IF
                 {
                 mK_IF(); 
 
@@ -1983,7 +1983,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 19 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:140: K_THEN
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:140: K_THEN
                 {
                 mK_THEN(); 
 
@@ -1991,7 +1991,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 20 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:147: K_ELSE
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:147: K_ELSE
                 {
                 mK_ELSE(); 
 
@@ -1999,7 +1999,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 21 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:154: K_FI
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:154: K_FI
                 {
                 mK_FI(); 
 
@@ -2007,7 +2007,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 22 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:159: K_WHILE
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:159: K_WHILE
                 {
                 mK_WHILE(); 
 
@@ -2015,7 +2015,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 23 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:167: K_DO
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:167: K_DO
                 {
                 mK_DO(); 
 
@@ -2023,7 +2023,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 24 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:172: K_OD
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:172: K_OD
                 {
                 mK_OD(); 
 
@@ -2031,7 +2031,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 25 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:177: K_SEM
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:177: K_SEM
                 {
                 mK_SEM(); 
 
@@ -2039,7 +2039,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 26 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:183: BOOLEAN
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:183: BOOLEAN
                 {
                 mBOOLEAN(); 
 
@@ -2047,7 +2047,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 27 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:191: OP_PRAEDICATE
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:191: OP_PRAEDICATE
                 {
                 mOP_PRAEDICATE(); 
 
@@ -2055,7 +2055,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 28 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:205: OP_LOGICAL
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:205: OP_LOGICAL
                 {
                 mOP_LOGICAL(); 
 
@@ -2063,7 +2063,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 29 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:216: ID
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:216: ID
                 {
                 mID(); 
 
@@ -2071,7 +2071,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 30 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:219: INTEGER
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:219: INTEGER
                 {
                 mINTEGER(); 
 
@@ -2079,7 +2079,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 31 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:227: REAL
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:227: REAL
                 {
                 mREAL(); 
 
@@ -2087,7 +2087,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 32 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:232: COMMENT
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:232: COMMENT
                 {
                 mCOMMENT(); 
 
@@ -2095,7 +2095,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 33 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:240: WS
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:240: WS
                 {
                 mWS(); 
 
@@ -2103,7 +2103,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 34 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:243: STRING
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:243: STRING
                 {
                 mSTRING(); 
 
@@ -2111,7 +2111,7 @@ public class minipLexer extends Lexer {
                 }
                 break;
             case 35 :
-                // C:\\Users\\Maria\\Documents\\HAW\\Sommersemester 2014_AI4\\GIT\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:250: CHAR
+                // E:\\GitDaten\\BAI4\\Compiler und Interpreter\\Praktikum 1\\minip.g:1:250: CHAR
                 {
                 mCHAR(); 
 
@@ -2176,7 +2176,7 @@ public class minipLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "167:1: REAL : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
+            return "186:1: REAL : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
         }
     }
     static final String DFA20_eotS =
