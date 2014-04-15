@@ -1,0 +1,6 @@
+BCHAR=4
+COMMENT=5
+EQ=6
+NL=7
+OP=8
+WS=9
