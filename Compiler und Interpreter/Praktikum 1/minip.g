@@ -1,21 +1,29 @@
 grammar minip;
 
+@header {
+	import java.util.HashMap;
+}
+
+@members {
+	HashMap<String, String> idTable = new HashMap<String, String>();
+}
+
 start	:	K_PROGRAM declarations K_BEGIN commands K_END
 	;
 	
 declarations
 	:	declaration*
+	{System.out.println(idTable.toString());}
 	;
 
 declaration
-	:	(K_INTEGER | K_REAL | K_STRING | K_BOOLEAN) idList K_SEM
+	:	type id=ID {idTable.put($id.text, $type.text);} (',' id_=ID {idTable.put($id_.text, $type.text);})* K_SEM
 	;
 	
 idList	:	ID (',' ID)*
 	;
 	
 commands:	(command K_SEM | flowControl)+
-
 	;
 	
 command	:	definition | read | print
@@ -25,7 +33,7 @@ flowControl
 	:	ifControl | whileControl
 	;
 	
-definition
+/*definition
 	:	ID ':=' 
 	(STRING 
 	| BOOLEAN praedicats_?
@@ -41,26 +49,14 @@ definition_
 	
 definition__
 	:	arith_ | term_ arith_? | praedicate_? praedicats_?
-	;
-	
-	
-/*definition
-	:	ID ':=' 
-	(STRING 
-	| BOOLEAN praedicate_? praedicats_?
-	| ID definition_ 
-	| '(' arith ')' (arith_ | term_)? 
-	| INTEGER definition__? 
-	| REAL definition__?)
-	;
-	
-definition_
-	:	arith_ | term_ arith_?| praedicate_ praedicats_? |
-	;
-	
-definition__
-	:	arith_ | term_ arith_? | praedicate_ praedicats_?
 	;*/
+	
+definition 
+options {backtrack = true;}
+	:	ID ':=' (STRING 
+	| {false}?=> praedicats 
+	| arith);
+
 
 read	:	K_READ '(' ID ')'
 	;
@@ -92,7 +88,7 @@ praedicate_
 	:	OP_PRAEDICATE (ID | BOOLEAN | REAL | INTEGER)
 	;
 	
-arith	:	term arith_?
+/*arith	:	term arith_?
 	;
 	
 arith_	:	'+' arith | '-' arith
@@ -107,10 +103,24 @@ term_	:	'*' term | '/' term
 factor	:	(ID | REAL | INTEGER)
 	|	'(' arith ')'
 	|	'-' factor
+	;*/
+	
+arith	:	term ('+' arith | '-' arith)*
+	;
+	
+	
+term	:	factor ('*' term | '/' term)*
 	;
 
+	
+factor	:	(ID | REAL | INTEGER)
+	|	'(' arith ')'
+	;
 
-K_PROGRAM	
+type	:	K_INTEGER | K_REAL | K_STRING | K_BOOLEAN
+	;
+
+K_PROGRAM
 	:	'program'
 	;
 	
