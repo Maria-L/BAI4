@@ -19,32 +19,21 @@ public class Server {
 	private static int threadNameCounter = 0;
 	private static volatile int threadCounter = 0;
 	private static volatile boolean serverRunning = true;
-	private static String password = "toastbrot";
+	private static String serverPassword = "toastbrot";
 	
-	public static Handler hand;
-	public static Logger log = Logger.getLogger("MailServerLog");
 	
 	//Mail-Variablen
 	private static volatile List<MailKonto> mailKontoListe = new ArrayList<MailKonto>();
 	private static volatile List<Mail> mailListe = new ArrayList<Mail>();
+	private static UniqueIdGenerator idGenerator = new UniqueIdGenerator();
+	
+	//Login-Daten
+	private static String userName = "maffen";
+	private static String userPassword = "toastbrot";
 	
 
 	public static void main(String[] args) {
-		
-		try {
-			hand = new FileHandler("log.txt");
-		} catch (SecurityException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		log.addHandler(hand);
-		
-		
-		
+
 		
 		welcomeSocket = null;
 		Socket connectionSocket = null;
@@ -76,7 +65,7 @@ public class Server {
 						connectionSocket.close();
 					} else  {
 						incrementThreadCounter();
-						//(new ServerServerThread(++threadNameCounter, connectionSocket)).start();
+						(new ServerServerThread(++threadNameCounter, connectionSocket)).start();
 					}
 				} catch (SocketTimeoutException e) {
 					//System.out.println("Waiting...");
@@ -107,7 +96,7 @@ public class Server {
 	 * @Exception IOException sollte das Passwort falsch sein
 	 */
 	public static boolean shutdown(String password_) throws IOException {
-		if (password_.equals(password)) {
+		if (password_.equals(serverPassword)) {
 			System.out.println("Server shutting down - no new connections will be accepted");
 			serverRunning = false;
 			return true;
@@ -135,5 +124,31 @@ public class Server {
 	
 	public static List<Mail> mails() {
 		return mailListe;
+	}
+	
+	public static void addMail(String inhalt, String id) {
+		mailListe.add(new Mail(inhalt, id));
+	}
+	
+	public static String userName() {
+		return userName;
+	}
+	
+	public static String userPass() {
+		return userPassword;
+	}
+	
+	public static String getId() {
+		return idGenerator.getId();
+	}
+	
+	public static int maildropSize() {
+		int akku = 0;
+		
+		for(Mail m : mailListe) {
+			akku += m.length() + 1;
+		}
+		
+		return akku;
 	}
 }

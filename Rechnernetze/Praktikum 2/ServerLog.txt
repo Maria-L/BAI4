@@ -1,0 +1,116 @@
+28.04.2014 14:16:16
+Info: ServerLog - Beginn
+28.04.2014 14:16:16
+Info: Thread 2 hat eine Verbindung zum Client hergestellt
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK Verbindung zu POP3-Proxy Aufgebaut
+28.04.2014 14:16:16
+Info: Client answer: CAPA
+28.04.2014 14:16:16
+Info: Wrote to Client: -ERR Unbekannter Befehl
+28.04.2014 14:16:16
+Info: Client answer: USER maffen
+28.04.2014 14:16:16
+Info: Client-Username: maffen
+28.04.2014 14:16:16
+Info: Server-Username: maffen
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK Benutzername bekannt
+28.04.2014 14:16:16
+Info: Client answer: PASS toastbrot
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK Erfolgreich eingeloggt
+28.04.2014 14:16:16
+Info: Client answer: STAT
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK 1 1358
+28.04.2014 14:16:16
+Info: Client answer: LIST
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK Mail-Liste folgt
+28.04.2014 14:16:16
+Info: Wrote to Client: 1 1357
+28.04.2014 14:16:16
+Info: Wrote to Client: .
+28.04.2014 14:16:16
+Info: Client answer: UIDL
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK Mail-ID Liste folgt
+28.04.2014 14:16:16
+Info: Wrote to Client: 1 1
+28.04.2014 14:16:16
+Info: Wrote to Client: .
+28.04.2014 14:16:16
+Info: Client answer: RETR 1
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK
+28.04.2014 14:16:16
+Info: Wrote to Client: Return-Path: <prvs=1886eebc3=steffen.giersch@haw-hamburg.de>Delivered-To: steffen@theinbox.de
+28.04.2014 14:16:16
+Info: Wrote to Client: Received: from mx6.haw-public.haw-hamburg.de (mx6.haw-public.haw-hamburg.de [141.22.6.3])
+28.04.2014 14:16:16
+Info: Wrote to Client: 	(using TLSv1 with cipher RC4-SHA (128/128 bits))
+28.04.2014 14:16:16
+Info: Wrote to Client: 	(No client certificate requested)
+28.04.2014 14:16:16
+Info: Wrote to Client: 	by theinbox.de (Postfix) with ESMTPS id D199622200EE
+28.04.2014 14:16:16
+Info: Wrote to Client: 	for <steffen@theinbox.de>; Mon, 28 Apr 2014 14:16:07 +0200 (CEST)
+28.04.2014 14:16:16
+Info: Wrote to Client: Received: from post.haw-hamburg.de (HELO HUB01.mailcluster.haw-hamburg.de) ([141.22.24.50])
+28.04.2014 14:16:16
+Info: Wrote to Client:   by mail6.is.haw-hamburg.de with ESMTP/TLS/AES128-SHA; 28 Apr 2014 14:16:07 +0200
+28.04.2014 14:16:16
+Info: Wrote to Client: Received: from MB04.mailcluster.haw-hamburg.de ([fe80::2c24:1a9e:8914:7940])
+28.04.2014 14:16:16
+Info: Wrote to Client:  by HUB01.mailcluster.haw-hamburg.de ([fe80::10f1:c9e4:b25d:ce0d%16]) with
+28.04.2014 14:16:16
+Info: Wrote to Client:  mapi id 14.03.0174.001; Mon, 28 Apr 2014 14:16:07 +0200
+28.04.2014 14:16:16
+Info: Wrote to Client: From: "Giersch, Steffen" <steffen.giersch@haw-hamburg.de>
+28.04.2014 14:16:16
+Info: Wrote to Client: To: "steffen@theinbox.de" <steffen@theinbox.de>
+28.04.2014 14:16:16
+Info: Wrote to Client: Subject: Testmail
+28.04.2014 14:16:16
+Info: Wrote to Client: Thread-Topic: Testmail
+28.04.2014 14:16:16
+Info: Wrote to Client: Thread-Index: Ac9i26GJweT+E+FNQK+TLaTioMCAbQ==
+28.04.2014 14:16:16
+Info: Wrote to Client: Date: Mon, 28 Apr 2014 12:16:06 +0000
+28.04.2014 14:16:16
+Info: Wrote to Client: Message-ID: <2824428D-A054-4E4F-8FC2-5C9E267E02CC@haw-hamburg.de>
+28.04.2014 14:16:16
+Info: Wrote to Client: Accept-Language: de-DE, en-US
+28.04.2014 14:16:16
+Info: Wrote to Client: Content-Language: en-US
+28.04.2014 14:16:16
+Info: Wrote to Client: X-MS-Has-Attach:
+28.04.2014 14:16:16
+Info: Wrote to Client: X-MS-TNEF-Correlator:
+28.04.2014 14:16:16
+Info: Wrote to Client: Content-Type: text/plain; charset="us-ascii"
+28.04.2014 14:16:16
+Info: Wrote to Client: Content-ID: <29B21CC7033A064F877CBF22006DE97B@mailcluster.haw-hamburg.de>
+28.04.2014 14:16:16
+Info: Wrote to Client: Content-Transfer-Encoding: quoted-printable
+28.04.2014 14:16:16
+Info: Wrote to Client: MIME-Version: 1.0
+28.04.2014 14:16:16
+Info: Wrote to Client: 
+28.04.2014 14:16:16
+Info: Wrote to Client: Inhalt.
+28.04.2014 14:16:16
+Info: Wrote to Client: .
+28.04.2014 14:16:16
+Info: Wrote to Client: .
+28.04.2014 14:16:16
+Info: Client answer: DELE 1
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK
+28.04.2014 14:16:16
+Info: Client answer: QUIT
+28.04.2014 14:16:16
+Info: Wrote to Client: +OK Es wurden 1 Nachrichten gelöscht
+28.04.2014 14:16:16
+Info: Client answer: null

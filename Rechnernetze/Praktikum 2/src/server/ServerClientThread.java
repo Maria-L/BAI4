@@ -1,13 +1,19 @@
 package server;
 
-import java.net.ConnectException;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.Socket;
-import java.net.SocketException;
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
-import data.*;
+import data.Log;
+import data.Mail;
+import data.MailKonto;
 
 public class ServerClientThread extends Thread {
 	
@@ -28,6 +34,8 @@ public class ServerClientThread extends Thread {
 	
 	private BufferedReader br;
 	private DataOutputStream da;
+
+	private Log log;
 	
 	
 	public ServerClientThread(int name) {
@@ -43,6 +51,9 @@ public class ServerClientThread extends Thread {
 		
 		int i;
 		String buffer;
+		
+		log = new Log("ClientLog");
+		
 		
 		while(running) {
 			
@@ -66,9 +77,11 @@ public class ServerClientThread extends Thread {
 					
 					
 				} catch (UnknownHostException e) {
+					log.newWarning("Die Hostaddresse " + mailKonto.serverAddresse() + " konnte nicht aufgelöst werden");
 					System.out.println("Die Hostaddresse " + mailKonto.serverAddresse() + " konnte nicht aufgelöst werden");
 					continue run;
 				} catch (IOException e) {
+					log.newWarning("Der Socket zu " + mailKonto.serverAddresse() + " konnte nicht erstellt werden");
 					System.out.println("Der Socket zu " + mailKonto.serverAddresse() + " konnte nicht erstellt werden");
 					continue run;
 				}
@@ -79,14 +92,14 @@ public class ServerClientThread extends Thread {
 					//Erwarte nach Aufbau der Verbindung ein "+OK"
 					inputFromServer = readFromServer();
 					
-					System.out.println("Server Antwort: " + inputFromServer);
-					
 					if(inputFromServer.indexOf("+OK") != 0) {
-						System.out.println("Mailserver von " + mailKonto.serverAddresse() + " lehnt eine Verbindung gääääänzlich ab - nicht mit dir!");
+						log.newWarning("Mailserver von " + mailKonto.serverAddresse() + " lehnt eine Verbindung ab");
+						System.out.println("Mailserver von " + mailKonto.serverAddresse() + " lehnt eine Verbindung ab");
 						terminateSession();
 						continue run;
 					}
 					
+					log.newInfo("POP3-Verbindung zu " + mailKonto.serverAddresse() + " wurde erfolgreich aufgebaut");
 					System.out.println("POP3-Verbindung zu " + mailKonto.serverAddresse() + " wurde erfolgreich aufgebaut");
 					
 					//Schreibe "USER username" an den Server
@@ -96,6 +109,7 @@ public class ServerClientThread extends Thread {
 					inputFromServer = readFromServer();
 					
 					if(inputFromServer.indexOf("+OK") != 0) {
+						log.newWarning("Der User " + mailKonto.user() + " ist bei dem Server " + mailKonto.serverAddresse() + " nicht bekannt");
 						System.out.println("Der User " + mailKonto.user() + " ist bei dem Server " + mailKonto.serverAddresse() + " nicht bekannt");
 						terminateSession();
 						continue run;
@@ -108,14 +122,12 @@ public class ServerClientThread extends Thread {
 					inputFromServer = readFromServer();
 					
 					if(inputFromServer.indexOf("+OK") != 0) {
+						log.newWarning("Das Passwort von " + mailKonto.user() + " war falsch");
 						System.out.println("Das Passwort von " + mailKonto.user() + " war falsch");
 						terminateSession();
 						continue run;
 					}
 					
-					/*writeToServer("DELE 1");
-					readFromServer();
-					writeToServer("QUIT");*/
 					
 					//Schreibe "LIST" an den Server
 					writeToServer("LIST");
@@ -124,6 +136,7 @@ public class ServerClientThread extends Thread {
 					inputFromServer = readFromServer();
 					
 					if(inputFromServer.indexOf("+OK") != 0) {
+						log.newWarning("Der Server " + mailKonto.serverAddresse() + " hat eine unbekannte Nachricht verschickt");
 						System.out.println("Der Server " + mailKonto.serverAddresse() + " hat eine unbekannte Nachricht verschickt");
 						terminateSession();
 						continue run;
@@ -149,42 +162,47 @@ public class ServerClientThread extends Thread {
 					//Empfange alle E-Mails
 					mailSchleife:
 					for(int messageNum : availableMessages) {
+						//Schreibe "RETR messageNum" an den Server
 						writeToServer("RETR " + messageNum);
 						
+						//Erwarte "+OK" vom Server
 						inputFromServer = readFromServer();
 						
 						if(inputFromServer.indexOf("+OK") != 0) {
+							log.newWarning("Fehler beim Auslesen von Nachricht Nummer " + messageNum + " vom Server " + mailKonto.serverAddresse());
 							System.out.println("Fehler beim Auslesen von Nachricht Nummer " + messageNum + " vom Server " + mailKonto.serverAddresse());
 							continue mailSchleife;
 						}
 						
+						//Gefolgt vom Inhalt der Email in mehreren Zeilen
 						inputFromServer = readFromServer();
 						buffer = inputFromServer;
 						
+						//Bis das Terminalsymbol, alleine in einer Zeile kommt
 						while (!terminition(inputFromServer)) {
 							inputFromServer = readFromServer();
-							buffer += inputFromServer;
+							buffer += inputFromServer + "\n";
 						}
 						
-
-						/*do  {
-							
-							buffer += inputFromServer;
-							
-							
-							
-						} /*while (inputFromServer.charAt(inputFromServer.length() - 1) != '.' ||
-								inputFromServer.length() > 1 && 
-								inputFromServer.charAt(inputFromServer.length() - 1) == '.' &&
-								inputFromServer.charAt(inputFromServer.length() - 2) == '.');
+						Server.addMail(buffer, Server.getId());
 						
-						Server.mails().add(new Mail(buffer));*/
+						writeToServer("DELE " + messageNum);
+					
+						
+						inputFromServer = readFromServer();
+						
+						if(inputFromServer.indexOf("+OK") != 0) {
+							log.newWarning("Fehler beim Löschen von Nachricht Nummer " + messageNum + " vom Server " + mailKonto.serverAddresse());
+							System.out.println("Fehler beim Lölschen von Nachricht Nummer " + messageNum + " vom Server " + mailKonto.serverAddresse());
+							continue mailSchleife;
+						}
 					}
 					
 					terminateSession();
 					
 				
 				} catch (IOException e) {
+					log.newWarning("Fehler beim lesen oder schreiben zu " + mailKonto.serverAddresse());
 					System.out.println("Fehler beim lesen oder schreiben zu " + mailKonto.serverAddresse());
 					continue run;
 				}
@@ -195,6 +213,7 @@ public class ServerClientThread extends Thread {
 					this.wait(POPPERIOD);
 				}
 			} catch (InterruptedException e) {
+				log.newWarning("Client Thread konnte nicht bis zu Ende warten");
 				System.out.println("Client Thread konnte nicht bis zu Ende warten");
 			}
 			
@@ -208,8 +227,8 @@ public class ServerClientThread extends Thread {
 	private void writeToServer(String request) throws IOException {
 		
 		da.writeBytes(request + "\n");
+		log.newInfo("Wrote to Server: " + request);
 		System.out.println("Wrote to Server: " + request);
-		System.out.flush();
 		
 		
 		/*byte[] byteArray = (request + "\n").getBytes("UTF-8");
@@ -220,8 +239,8 @@ public class ServerClientThread extends Thread {
 	private String readFromServer() throws IOException {
 		
 		String request = br.readLine();
+		log.newInfo("Server answer: " + request);
 		System.out.println("Server answer: " + request);
-		System.out.flush();
 		return request;
 		
 		
@@ -260,10 +279,12 @@ public class ServerClientThread extends Thread {
 	}
 	
 	private boolean terminition(String message) {
-		if(message.length() > 0) {
-			return message.indexOf('.') == 0 && message.length() == 1;
-		} else {
-			return false;
+		if(message.length() > 1) {										//Wenn die Zeile länger als ein Zeichen ist
+			return message.charAt(0) == '.' && message.charAt(1) != '.';//	True -> wenn das erste Zeichen = '.' und das zweite Zeichen != '.' ist | False -> sonst
+		} else if(message.length() == 1) {								//Wenn die Nachricht genau ein Zeichen lang ist
+			return message.charAt(0) == '.';							//	True -> wenn das Zeichen = '.' ist | False -> sonst
+		} else {														//Sonst (Nachricht ist genau 0 Zeichen lang)
+			return false;												//	False
 		}
 	}
 }

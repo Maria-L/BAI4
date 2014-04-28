@@ -1,0 +1,11 @@
+maria@theinbox.de
+steffen@theinbox.de
+
+PW: 0bbb4db4d2
+User ist die Komplette Mail-Adresse und die Domain ist mail.theinbox.de
+
+Ports:
+POP3 110
+SMTP 25
+
+SMTP hab ich unverschlüsselt nicht getestet wenns nicht geht Port: 587 und STARTTLS
