@@ -52,7 +52,7 @@ public class ServerClientThread extends Thread {
 		int i;
 		String buffer;
 		
-		log = new Log("ClientLog");
+		log = new Log("ServerClientLog");
 		
 		
 		while(running) {

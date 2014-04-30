@@ -60,9 +60,8 @@ public class ServerServerThread extends Thread {
 		current_state = STATE_AUTHORIZATION;
 		validUser = false;
 		
-		log = new Log("ServerLog");
-		
-		log.newInfo("ServerLog - Beginn");
+		log = new Log("ServerServerLog");
+
 		
 		try {
 			inputStream = socket.getInputStream();
@@ -113,7 +112,7 @@ public class ServerServerThread extends Thread {
 					case COMMAND_USER:
 						log.newInfo("Client-Username: " + argument);
 						log.newInfo("Server-Username: " + Server.userName());
-						if(Server.userName().indexOf(argument) == 0) {
+						if(Server.userName().equals(argument)) {
 							validUser = true;
 							writeToClient("+OK Benutzername bekannt");
 						} else {
@@ -124,7 +123,7 @@ public class ServerServerThread extends Thread {
 					case COMMAND_PASS:
 						if(!validUser) {
 							writeToClient("-ERR Kein Benutzername angegeben");
-						} else if(Server.userPass().indexOf(argument) == 0){
+						} else if(Server.userPass().equals(argument)){
 							current_state = STATE_TRANSACTION;
 							writeToClient("+OK Erfolgreich eingeloggt");
 						} else {
@@ -187,7 +186,6 @@ public class ServerServerThread extends Thread {
 								for(String m : messageArray) {
 									writeToClient(m);
 								}
-								writeToClient(".");
 								
 							} else {
 								writeToClient("-ERR Keine Nachricht mit der Nummer " + messageNum + " vorhanden");
@@ -246,15 +244,15 @@ public class ServerServerThread extends Thread {
 						break;
 						
 					case COMMAND_QUIT:
-						List<Mail> mail_mirror = new ArrayList<Mail>();
+						List<Mail> mailsToDelete = new ArrayList<Mail>();
 						
 						for(Mail m : Server.mails()) {
-							mail_mirror.add(m);
+							mailsToDelete.add(m);
 						}
 						
-						Server.mails().removeAll(mail_mirror);
+						Server.deleteMails(mailsToDelete);
 						
-						writeToClient("+OK Es wurden " + mail_mirror.size() + " Nachrichten gelöscht");
+						writeToClient("+OK Es wurden " + mailsToDelete.size() + " Nachrichten gelöscht");
 						
 						break;
 						

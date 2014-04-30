@@ -1,12 +1,22 @@
 package server;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
-import java.util.logging.Logger;
-import data.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.nio.CharBuffer;
+import java.util.ArrayList;
+import java.util.List;
+
+import data.Log;
+import data.Mail;
+import data.MailKonto;
+import data.UniqueIdGenerator;
 
 
 public class Server {
@@ -26,6 +36,8 @@ public class Server {
 	private static volatile List<MailKonto> mailKontoListe = new ArrayList<MailKonto>();
 	private static volatile List<Mail> mailListe = new ArrayList<Mail>();
 	private static UniqueIdGenerator idGenerator = new UniqueIdGenerator();
+	private static Log log = new Log("ServerLog");
+	private static String mailsDir = "mails";
 	
 	//Login-Daten
 	private static String userName = "maffen";
@@ -34,6 +46,7 @@ public class Server {
 
 	public static void main(String[] args) {
 
+		loadMails();
 		
 		welcomeSocket = null;
 		Socket connectionSocket = null;
@@ -106,10 +119,7 @@ public class Server {
 		}
 	}
 	
-	/*
-	 * Syncronized Methoden zum decrementieren und incrementieren des
-	 * ThreadCounters um Thread Sicherheit zu schaffen.
-	 */
+
 	public static void decrementThreadCounter() {
 		threadCounter--;
 	}
@@ -126,8 +136,56 @@ public class Server {
 		return mailListe;
 	}
 	
+	private static void loadMails() {
+		File dir = new File(mailsDir);
+		
+		if(!dir.isDirectory()) {
+			dir.mkdir();
+		}
+		
+		for(File f : dir.listFiles()) {
+			System.out.println(f.getName());
+			String uniqueId = f.getName().split(".")[0];
+			
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(f));
+				
+				char[] data = new char[(int) f.length()];
+				br.read(data, 0, (int) f.length());
+				
+				String content = new String(data);
+				
+				mailListe.add(new Mail(content, uniqueId));
+				
+			} catch (FileNotFoundException e) {
+				log.newWarning("Die Mail mit ID " + uniqueId + " konnte nicht eingelesen werden");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public static void addMail(String inhalt, String id) {
 		mailListe.add(new Mail(inhalt, id));
+		
+		try {
+			PrintWriter pw = new PrintWriter(mailsDir + "//" + id + ".txt");
+			pw.print(inhalt);
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			log.newWarning("Mail Nummer " + id + " konnte nicht gespeichert werden");
+		}
+	}
+	
+	public static void deleteMails(List <Mail> mails) {
+		mailListe.removeAll(mails);
+		
+		for(Mail m : mails) {
+			File f = new File(mailsDir + "//" + m.getId() + ".txt");
+			f.delete();
+		}
 	}
 	
 	public static String userName() {
@@ -151,4 +209,5 @@ public class Server {
 		
 		return akku;
 	}
+	
 }

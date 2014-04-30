@@ -1,114 +1,144 @@
-28.04.2014 14:16:10
+29.04.2014 15:13:09
 Info: Server answer: +OK Dovecot ready.
-28.04.2014 14:16:10
+29.04.2014 15:13:09
 Info: POP3-Verbindung zu mail.theinbox.de wurde erfolgreich aufgebaut
-28.04.2014 14:16:10
+29.04.2014 15:13:09
 Info: Wrote to Server: USER steffen@theinbox.de
-28.04.2014 14:16:10
+29.04.2014 15:13:09
 Info: Server answer: +OK
-28.04.2014 14:16:10
+29.04.2014 15:13:09
 Info: Wrote to Server: PASS 0bbb4db4d2
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: +OK Logged in.
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Wrote to Server: LIST
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: +OK 1 messages:
-28.04.2014 14:16:10
-Info: Server answer: 1 1385
-28.04.2014 14:16:10
+29.04.2014 15:13:10
+Info: Server answer: 1 1391
+29.04.2014 15:13:10
 Info: Server answer: .
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Wrote to Server: RETR 1
-28.04.2014 14:16:10
-Info: Server answer: +OK 1385 octets
-28.04.2014 14:16:10
-Info: Server answer: Return-Path: <prvs=1886eebc3=steffen.giersch@haw-hamburg.de>
-28.04.2014 14:16:10
+29.04.2014 15:13:10
+Info: Server answer: +OK 1391 octets
+29.04.2014 15:13:10
+Info: Server answer: Return-Path: <prvs=1891b6ad5=steffen.giersch@haw-hamburg.de>
+29.04.2014 15:13:10
 Info: Server answer: Delivered-To: steffen@theinbox.de
-28.04.2014 14:16:10
-Info: Server answer: Received: from mx6.haw-public.haw-hamburg.de (mx6.haw-public.haw-hamburg.de [141.22.6.3])
-28.04.2014 14:16:10
+29.04.2014 15:13:10
+Info: Server answer: Received: from mx3.haw-public.haw-hamburg.de (mx3.haw-public.haw-hamburg.de [141.22.6.2])
+29.04.2014 15:13:10
 Info: Server answer: 	(using TLSv1 with cipher RC4-SHA (128/128 bits))
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: 	(No client certificate requested)
-28.04.2014 14:16:10
-Info: Server answer: 	by theinbox.de (Postfix) with ESMTPS id D199622200EE
-28.04.2014 14:16:10
-Info: Server answer: 	for <steffen@theinbox.de>; Mon, 28 Apr 2014 14:16:07 +0200 (CEST)
-28.04.2014 14:16:10
-Info: Server answer: Received: from post.haw-hamburg.de (HELO HUB01.mailcluster.haw-hamburg.de) ([141.22.24.50])
-28.04.2014 14:16:10
-Info: Server answer:   by mail6.is.haw-hamburg.de with ESMTP/TLS/AES128-SHA; 28 Apr 2014 14:16:07 +0200
-28.04.2014 14:16:10
+29.04.2014 15:13:10
+Info: Server answer: 	by theinbox.de (Postfix) with ESMTPS id C2996222039D
+29.04.2014 15:13:10
+Info: Server answer: 	for <steffen@theinbox.de>; Tue, 29 Apr 2014 15:12:59 +0200 (CEST)
+29.04.2014 15:13:10
+Info: Server answer: Received: from post.haw-hamburg.de (HELO HUB02.mailcluster.haw-hamburg.de) ([141.22.24.51])
+29.04.2014 15:13:10
+Info: Server answer:   by mail3.is.haw-hamburg.de with ESMTP/TLS/AES128-SHA; 29 Apr 2014 15:12:59 +0200
+29.04.2014 15:13:10
 Info: Server answer: Received: from MB04.mailcluster.haw-hamburg.de ([fe80::2c24:1a9e:8914:7940])
-28.04.2014 14:16:10
-Info: Server answer:  by HUB01.mailcluster.haw-hamburg.de ([fe80::10f1:c9e4:b25d:ce0d%16]) with
-28.04.2014 14:16:10
-Info: Server answer:  mapi id 14.03.0174.001; Mon, 28 Apr 2014 14:16:07 +0200
-28.04.2014 14:16:10
+29.04.2014 15:13:10
+Info: Server answer:  by HUB02.mailcluster.haw-hamburg.de ([fe80::6859:6647:f295:1a73%16]) with
+29.04.2014 15:13:10
+Info: Server answer:  mapi id 14.03.0174.001; Tue, 29 Apr 2014 15:12:59 +0200
+29.04.2014 15:13:10
 Info: Server answer: From: "Giersch, Steffen" <steffen.giersch@haw-hamburg.de>
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: To: "steffen@theinbox.de" <steffen@theinbox.de>
-28.04.2014 14:16:10
-Info: Server answer: Subject: Testmail
-28.04.2014 14:16:10
-Info: Server answer: Thread-Topic: Testmail
-28.04.2014 14:16:10
-Info: Server answer: Thread-Index: Ac9i26GJweT+E+FNQK+TLaTioMCAbQ==
-28.04.2014 14:16:10
-Info: Server answer: Date: Mon, 28 Apr 2014 12:16:06 +0000
-28.04.2014 14:16:10
-Info: Server answer: Message-ID: <2824428D-A054-4E4F-8FC2-5C9E267E02CC@haw-hamburg.de>
-28.04.2014 14:16:10
+29.04.2014 15:13:10
+Info: Server answer: Subject: .test
+29.04.2014 15:13:10
+Info: Server answer: Thread-Topic: .test
+29.04.2014 15:13:10
+Info: Server answer: Thread-Index: Ac9jrL3j/MgdSTXqS/G4EFB9GPXUPg==
+29.04.2014 15:13:10
+Info: Server answer: Date: Tue, 29 Apr 2014 13:12:58 +0000
+29.04.2014 15:13:10
+Info: Server answer: Message-ID: <95CDE53D-7485-4F63-9E4F-70249057D457@haw-hamburg.de>
+29.04.2014 15:13:10
 Info: Server answer: Accept-Language: de-DE, en-US
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: Content-Language: en-US
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: X-MS-Has-Attach:
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: X-MS-TNEF-Correlator:
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: Content-Type: text/plain; charset="us-ascii"
-28.04.2014 14:16:10
-Info: Server answer: Content-ID: <29B21CC7033A064F877CBF22006DE97B@mailcluster.haw-hamburg.de>
-28.04.2014 14:16:10
+29.04.2014 15:13:10
+Info: Server answer: Content-ID: <4A4A2D1119E7724B8BD4ED3880773979@mailcluster.haw-hamburg.de>
+29.04.2014 15:13:10
 Info: Server answer: Content-Transfer-Encoding: quoted-printable
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: MIME-Version: 1.0
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: 
-28.04.2014 14:16:10
-Info: Server answer: Inhalt.
-28.04.2014 14:16:10
+29.04.2014 15:13:10
+Info: Server answer: ....
+29.04.2014 15:13:10
+Info: Server answer: ...
+29.04.2014 15:13:10
+Info: Server answer: ..
+29.04.2014 15:13:10
+Info: Server answer: 
+29.04.2014 15:13:10
+Info: Server answer: ..test
+29.04.2014 15:13:10
 Info: Server answer: .
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Wrote to Server: DELE 1
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Server answer: +OK Marked to be deleted.
-28.04.2014 14:16:10
+29.04.2014 15:13:10
 Info: Wrote to Server: QUIT
-28.04.2014 14:16:11
+29.04.2014 15:13:10
 Info: Server answer: +OK Logging out, messages deleted.
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Server answer: +OK Dovecot ready.
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: POP3-Verbindung zu mail.theinbox.de wurde erfolgreich aufgebaut
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Wrote to Server: USER steffen@theinbox.de
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Server answer: +OK
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Wrote to Server: PASS 0bbb4db4d2
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Server answer: +OK Logged in.
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Wrote to Server: LIST
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Server answer: +OK 0 messages:
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Server answer: .
-28.04.2014 14:16:41
+29.04.2014 15:13:40
 Info: Wrote to Server: QUIT
-28.04.2014 14:16:41
+29.04.2014 15:13:40
+Info: Server answer: +OK Logging out.
+29.04.2014 15:14:10
+Info: Server answer: +OK Dovecot ready.
+29.04.2014 15:14:10
+Info: POP3-Verbindung zu mail.theinbox.de wurde erfolgreich aufgebaut
+29.04.2014 15:14:10
+Info: Wrote to Server: USER steffen@theinbox.de
+29.04.2014 15:14:10
+Info: Server answer: +OK
+29.04.2014 15:14:10
+Info: Wrote to Server: PASS 0bbb4db4d2
+29.04.2014 15:14:10
+Info: Server answer: +OK Logged in.
+29.04.2014 15:14:10
+Info: Wrote to Server: LIST
+29.04.2014 15:14:11
+Info: Server answer: +OK 0 messages:
+29.04.2014 15:14:11
+Info: Server answer: .
+29.04.2014 15:14:11
+Info: Wrote to Server: QUIT
+29.04.2014 15:14:11
 Info: Server answer: +OK Logging out.
