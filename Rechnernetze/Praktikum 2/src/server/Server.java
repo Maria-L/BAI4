@@ -9,8 +9,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.nio.CharBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -25,7 +25,7 @@ public class Server {
 	
 	private static final int MAX_THREADS = 1;
 	private static final int WAITING_TIME_MS = 500;
-	public static int port = 11000;
+	public static int port = 11010;
 		
 	private static ServerSocket welcomeSocket;
 	private static int threadNameCounter = 0;
@@ -160,6 +160,34 @@ public class Server {
 				e.printStackTrace();
 			}
 		}
+		
+		System.out.println(mailListe.size() + " Mails eingelesen");
+	
+		/*Arrays.asList(dir.listFiles()).parallelStream()
+			.forEach(f -> {
+				String name = f.getName();
+				String uniqueId = name.substring(0, name.indexOf('.'));
+				
+				try {
+					BufferedReader br = new BufferedReader(new FileReader(f));
+					
+					char[] data = new char[(int) f.length()];
+					br.read(data, 0, (int) f.length());
+					
+					String content = new String(data);
+					
+					mailListe.add(new Mail(content, uniqueId));
+					
+				} catch (FileNotFoundException e) {
+					log.newWarning("Die Mail mit ID " + uniqueId + " konnte nicht eingelesen werden");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			});*/
+		
+		
 	}
 	
 	public static void addMail(String inhalt, String id) {
@@ -182,6 +210,12 @@ public class Server {
 			File f = new File(mailsDir + "//" + m.getId() + ".txt");
 			f.delete();
 		}
+		
+		/*mails.parallelStream().forEach(m -> {
+			File f = new File(mailsDir + "//" + m.getId() + ".txt");
+			f.delete();
+		});*/
+		
 	}
 	
 	public static String userName() {
@@ -204,6 +238,9 @@ public class Server {
 		}
 		
 		return akku;
+		
+		
+		
 	}
 	
 }
