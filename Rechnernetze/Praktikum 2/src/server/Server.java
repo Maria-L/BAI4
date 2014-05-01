@@ -13,6 +13,8 @@ import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+
 import data.Log;
 import data.Mail;
 import data.MailKonto;
@@ -145,16 +147,10 @@ public class Server {
 		
 		for(File f : dir.listFiles()) {
 			System.out.println(f.getName());
-			String uniqueId = f.getName().split(".")[0];
+			String uniqueId = f.getName().split("\\.")[0];
 			
 			try {
-				BufferedReader br = new BufferedReader(new FileReader(f));
-				
-				char[] data = new char[(int) f.length()];
-				br.read(data, 0, (int) f.length());
-				
-				String content = new String(data);
-				
+				String content = FileUtils.readFileToString(f);
 				mailListe.add(new Mail(content, uniqueId));
 				
 			} catch (FileNotFoundException e) {
