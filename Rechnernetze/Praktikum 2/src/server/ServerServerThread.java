@@ -88,7 +88,9 @@ public class ServerServerThread extends Thread {
 				//Clientinput empfangen und aufsplitten
 				inputFromUser = readFromClient();
 				
-				if(inputFromUser == null || inputFromUser.length() == 0) {
+				if(inputFromUser == null) {
+					break;
+				} else if(inputFromUser.length() == 0) {
 					command = "";
 					argument = "";
 				} else {
@@ -107,7 +109,7 @@ public class ServerServerThread extends Thread {
 				switch(current_state) {
 				//########## Authorization State ##########
 				case STATE_AUTHORIZATION:
-					//Kommando auswählen
+					//Kommando auswï¿½hlen
 					switch(command) {
 					case COMMAND_USER:
 						log.newInfo("Client-Username: " + argument);
@@ -146,14 +148,14 @@ public class ServerServerThread extends Thread {
 					
 				//########## Transaction State ##########
 				case STATE_TRANSACTION:
-					//Kommando auswählen
+					//Kommando auswï¿½hlen
 					switch(command) {
 					case COMMAND_STAT:
 						writeToClient("+OK " + Server.mails().size() + " " + Server.maildropSize());
 						break;
 					
 					case COMMAND_LIST:
-						if(argument.equals("")) {											//Kein Argument gegeben - Informationen über alle Mails ausgeben
+						if(argument.equals("")) {											//Kein Argument gegeben - Informationen ï¿½ber alle Mails ausgeben
 							writeToClient("+OK Mail-Liste folgt");
 							for(int i = 1; i <= Server.mails().size(); i++) {
 								writeToClient(i + " " + Server.mails().get(i - 1).length());
@@ -247,12 +249,16 @@ public class ServerServerThread extends Thread {
 						List<Mail> mailsToDelete = new ArrayList<Mail>();
 						
 						for(Mail m : Server.mails()) {
-							mailsToDelete.add(m);
+							if(m.toDelete()) {
+								mailsToDelete.add(m);
+							}
 						}
 						
 						Server.deleteMails(mailsToDelete);
 						
-						writeToClient("+OK Es wurden " + mailsToDelete.size() + " Nachrichten gelöscht");
+						writeToClient("+OK Es wurden " + mailsToDelete.size() + " Nachrichten geloescht");
+						
+						
 						
 						break;
 						
@@ -270,9 +276,20 @@ public class ServerServerThread extends Thread {
 			}								//Runningschleife Ende
 			
 			
-		} catch(IOException e) {
 			
+		} catch(IOException e) {
+			System.out.println("Ich bin gefaehrlich!");
 		}
+		
+		try {
+			socket.close();
+			Server.decrementThreadCounter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Ich bin beendet");
 	}
 	
 	

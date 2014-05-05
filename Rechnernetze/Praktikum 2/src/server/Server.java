@@ -58,7 +58,10 @@ public class Server {
 		}
 		System.out.println("Port " + port + " is choosen");
 		
-		mailKontoListe.add(new MailKonto("steffen@theinbox.de", "0bbb4db4d2", "mail.theinbox.de", 110));
+		//mailKontoListe.add(new MailKonto("steffen@theinbox.de", "0bbb4db4d2", "mail.theinbox.de", 110));
+		
+		mailKontoListe.add(new MailKonto("bai4rnpI", "cffhqm2l", "lab30.cpt.haw-hamburg.de", 11000));
+		mailKontoListe.add(new MailKonto("bai4rnpI", "cffhqm2l", "lab31.cpt.haw-hamburg.de", 11000));
 		
 		(new ServerClientThread(++threadNameCounter)).start();
 		
