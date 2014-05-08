@@ -1,242 +1,76 @@
-01.05.2014 13:01:54
-Info: Thread 2 hat eine Verbindung zum Client hergestellt
-01.05.2014 13:01:54
+05.05.2014 11:29:36
+Info: Thread 3 hat eine Verbindung zum Client hergestellt
+05.05.2014 11:29:36
 Info: Wrote to Client: +OK Verbindung zu POP3-Proxy Aufgebaut
-01.05.2014 13:01:54
-Info: Client answer: AUTH
-01.05.2014 13:01:54
-Info: Wrote to Client: -ERR Unbekannter Befehl
-01.05.2014 13:01:54
+05.05.2014 11:29:36
 Info: Client answer: CAPA
-01.05.2014 13:01:54
+05.05.2014 11:29:36
 Info: Wrote to Client: -ERR Unbekannter Befehl
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Client answer: USER maffen
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Client-Username: maffen
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Server-Username: maffen
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Wrote to Client: +OK Benutzername bekannt
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Client answer: PASS toastbrot
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Wrote to Client: +OK Erfolgreich eingeloggt
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Client answer: STAT
-01.05.2014 13:01:57
-Info: Wrote to Client: +OK 3 3843
-01.05.2014 13:01:57
+05.05.2014 11:29:36
+Info: Wrote to Client: +OK 1 409
+05.05.2014 11:29:36
 Info: Client answer: LIST
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Wrote to Client: +OK Mail-Liste folgt
-01.05.2014 13:01:57
-Info: Wrote to Client: 1 1902
-01.05.2014 13:01:57
-Info: Wrote to Client: 2 1917
-01.05.2014 13:01:57
-Info: Wrote to Client: 3 21
-01.05.2014 13:01:57
+05.05.2014 11:29:36
+Info: Wrote to Client: 1 408
+05.05.2014 11:29:36
 Info: Wrote to Client: .
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Client answer: UIDL
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Wrote to Client: +OK Mail-ID Liste folgt
-01.05.2014 13:01:57
-Info: Wrote to Client: 1 12
-01.05.2014 13:01:57
-Info: Wrote to Client: 2 14
-01.05.2014 13:01:57
-Info: Wrote to Client: 3 2
-01.05.2014 13:01:57
+05.05.2014 11:29:36
+Info: Wrote to Client: 1 23
+05.05.2014 11:29:36
 Info: Wrote to Client: .
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Client answer: RETR 1
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Wrote to Client: +OK
-01.05.2014 13:01:57
-Info: Wrote to Client: Return-Path: <artanoah@gmail.com>Delivered-To: steffen@theinbox.de
-01.05.2014 13:01:57
-Info: Wrote to Client: Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
-01.05.2014 13:01:57
-Info: Wrote to Client: 	(using TLSv1 with cipher ECDHE-RSA-RC4-SHA (128/128 bits))
-01.05.2014 13:01:57
-Info: Wrote to Client: 	(No client certificate requested)
-01.05.2014 13:01:57
-Info: Wrote to Client: 	by theinbox.de (Postfix) with ESMTPS id A785722200EF
-01.05.2014 13:01:57
-Info: Wrote to Client: 	for <steffen@theinbox.de>; Thu,  1 May 2014 01:20:30 +0200 (CEST)
-01.05.2014 13:01:57
-Info: Wrote to Client: Received: by mail-ee0-f42.google.com with SMTP id d17so1842695eek.29
-01.05.2014 13:01:57
-Info: Wrote to Client:         for <steffen@theinbox.de>; Wed, 30 Apr 2014 16:20:30 -0700 (PDT)
-01.05.2014 13:01:57
-Info: Wrote to Client: DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-01.05.2014 13:01:57
-Info: Wrote to Client:         d=gmail.com; s=20120113;
-01.05.2014 13:01:57
-Info: Wrote to Client:         h=subject:from:content-type:message-id:date:to
-01.05.2014 13:01:57
-Info: Wrote to Client:          :content-transfer-encoding:mime-version;
-01.05.2014 13:01:57
-Info: Wrote to Client:         bh=HrzEJGWfqrFOlsLPRAPAHzy/EhzxpwyqYwPHd/L6P2k=;
-01.05.2014 13:01:57
-Info: Wrote to Client:         b=acIw0ZyWLs8vRbAiqf2892Q68NoNfJYHhiFbiNS5eE3NC75itbM3nGLZkAStvEYyIm
-01.05.2014 13:01:57
-Info: Wrote to Client:          dpFlQehS2JLdJqz9/Zkwy2mGsInp1dGKoCJw4ahVfRH4bKgM9HHMWo/RbkeszeGEUu6S
-01.05.2014 13:01:57
-Info: Wrote to Client:          D9nM5ou9YPoF8OWlpCTt3o7Dx6K2CfInde3ZERYAkA5sBKIURoDtJCjyvx5zwU3PAnpn
-01.05.2014 13:01:57
-Info: Wrote to Client:          I5aUS7SE0pOW3XKU2dYku9xdATa+/6EwmhpZ5h7Ek09MOAwINJVFAsmZ0v46ehFxFDBL
-01.05.2014 13:01:57
-Info: Wrote to Client:          XnieTlqba05FUrhRLCfoB459tutuGQmZ4xx4lzR228Ptbh0duyth42cIa6R9VzgYD/5l
-01.05.2014 13:01:57
-Info: Wrote to Client:          TkNQ==
-01.05.2014 13:01:57
-Info: Wrote to Client: X-Received: by 10.15.64.75 with SMTP id n51mr6831100eex.33.1398900030350;
-01.05.2014 13:01:57
-Info: Wrote to Client:         Wed, 30 Apr 2014 16:20:30 -0700 (PDT)
-01.05.2014 13:01:57
-Info: Wrote to Client: Received: from [192.168.1.53] (f050166208.adsl.alicedsl.de. [78.50.166.208])
-01.05.2014 13:01:57
-Info: Wrote to Client:         by mx.google.com with ESMTPSA id u1sm71563648eex.31.2014.04.30.16.20.28
-01.05.2014 13:01:57
-Info: Wrote to Client:         for <steffen@theinbox.de>
-01.05.2014 13:01:57
-Info: Wrote to Client:         (version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-01.05.2014 13:01:57
-Info: Wrote to Client:         Wed, 30 Apr 2014 16:20:28 -0700 (PDT)
-01.05.2014 13:01:57
-Info: Wrote to Client: Subject: Rtbrzh
-01.05.2014 13:01:57
-Info: Wrote to Client: From: Steffen Giersch <artanoah@gmail.com>
-01.05.2014 13:01:57
-Info: Wrote to Client: Content-Type: text/plain;
-01.05.2014 13:01:57
-Info: Wrote to Client: 	charset=us-ascii
-01.05.2014 13:01:57
-Info: Wrote to Client: X-Mailer: iPad Mail (11D167)
-01.05.2014 13:01:57
-Info: Wrote to Client: Message-Id: <1944D5C3-69FA-4AFD-AEEB-687E934FCAFB@gmail.com>
-01.05.2014 13:01:57
-Info: Wrote to Client: Date: Thu, 1 May 2014 01:20:29 +0200
-01.05.2014 13:01:57
-Info: Wrote to Client: To: steffen@theinbox.de
-01.05.2014 13:01:57
+05.05.2014 11:29:36
+Info: Wrote to Client: Message-ID: <536759BE.2080307@lab30.cpt.haw-hamburg.de>Date: Mon, 05 May 2014 11:28:30 +0200
+05.05.2014 11:29:36
+Info: Wrote to Client: From: bai4rnpI <bai4rnpI@lab30.cpt.haw-hamburg.de>
+05.05.2014 11:29:36
+Info: Wrote to Client: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+05.05.2014 11:29:36
+Info: Wrote to Client: MIME-Version: 1.0
+05.05.2014 11:29:36
+Info: Wrote to Client: To: bai4rnpI@lab31.cpt.haw-hamburg.de
+05.05.2014 11:29:36
+Info: Wrote to Client: Subject: Testmail
+05.05.2014 11:29:36
+Info: Wrote to Client: Content-Type: text/plain; charset=ISO-8859-1
+05.05.2014 11:29:36
 Info: Wrote to Client: Content-Transfer-Encoding: 7bit
-01.05.2014 13:01:57
-Info: Wrote to Client: Mime-Version: 1.0 (1.0)
-01.05.2014 13:01:57
+05.05.2014 11:29:36
 Info: Wrote to Client: 
-01.05.2014 13:01:57
-Info: Wrote to Client: Rhnrznrzn
-01.05.2014 13:01:57
+05.05.2014 11:29:36
+Info: Wrote to Client: Ich bin eine Testmail.
+05.05.2014 11:29:36
 Info: Wrote to Client: .
-01.05.2014 13:01:57
+05.05.2014 11:29:37
 Info: Client answer: DELE 1
-01.05.2014 13:01:57
+05.05.2014 11:29:37
 Info: Wrote to Client: +OK
-01.05.2014 13:01:57
-Info: Client answer: RETR 2
-01.05.2014 13:01:57
-Info: Wrote to Client: +OK
-01.05.2014 13:01:57
-Info: Wrote to Client: Return-Path: <artanoah@gmail.com>Delivered-To: steffen@theinbox.de
-01.05.2014 13:01:57
-Info: Wrote to Client: Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
-01.05.2014 13:01:57
-Info: Wrote to Client: 	(using TLSv1 with cipher ECDHE-RSA-RC4-SHA (128/128 bits))
-01.05.2014 13:01:57
-Info: Wrote to Client: 	(No client certificate requested)
-01.05.2014 13:01:57
-Info: Wrote to Client: 	by theinbox.de (Postfix) with ESMTPS id F028A22200EF
-01.05.2014 13:01:57
-Info: Wrote to Client: 	for <steffen@theinbox.de>; Thu,  1 May 2014 12:50:04 +0200 (CEST)
-01.05.2014 13:01:57
-Info: Wrote to Client: Received: by mail-ee0-f42.google.com with SMTP id d17so2161220eek.29
-01.05.2014 13:01:57
-Info: Wrote to Client:         for <steffen@theinbox.de>; Thu, 01 May 2014 03:50:04 -0700 (PDT)
-01.05.2014 13:01:57
-Info: Wrote to Client: DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-01.05.2014 13:01:57
-Info: Wrote to Client:         d=gmail.com; s=20120113;
-01.05.2014 13:01:57
-Info: Wrote to Client:         h=subject:from:content-type:message-id:date:to
-01.05.2014 13:01:57
-Info: Wrote to Client:          :content-transfer-encoding:mime-version;
-01.05.2014 13:01:57
-Info: Wrote to Client:         bh=izIzxjH2Usn6iO6EzJx5axNBwl6fLXv5zs5/cxBY8QE=;
-01.05.2014 13:01:57
-Info: Wrote to Client:         b=kL3aglACjGJ+1YDBSlWXGUz+y79nNu9X9Cd0sJgg+S0rFuxq5ZECYcgB/AC/M02XVr
-01.05.2014 13:01:57
-Info: Wrote to Client:          +vW59+6PxOL0Dt4PhkDvpkfE9RMugt87qB6ZfnuB2e77M+CvKP1wQu7dOb5RtbIogODE
-01.05.2014 13:01:57
-Info: Wrote to Client:          xlXF7YE1nQbvpNLy2efvyucEdqFYbvQPYzyJe8t7Jof3GVaBnBd9jwT8Dk+dGDoFNPB/
-01.05.2014 13:01:57
-Info: Wrote to Client:          g7mazkz94dyBd4oJtIPRsvRVOBmBZ1kRMQWKs4YDGfujeHTQFNLxZVuK+1vHgZEZQopM
-01.05.2014 13:01:57
-Info: Wrote to Client:          axbuMYounApII7HE1xEI3yW/wVRpqcvVGv05rZNVGXjGBPQeFL++S+sqvlA46hYrRjKm
-01.05.2014 13:01:57
-Info: Wrote to Client:          b77g==
-01.05.2014 13:01:57
-Info: Wrote to Client: X-Received: by 10.15.52.195 with SMTP id p43mr9334446eew.72.1398941404651;
-01.05.2014 13:01:57
-Info: Wrote to Client:         Thu, 01 May 2014 03:50:04 -0700 (PDT)
-01.05.2014 13:01:57
-Info: Wrote to Client: Received: from [192.168.1.53] (f054113194.adsl.alicedsl.de. [78.54.113.194])
-01.05.2014 13:01:57
-Info: Wrote to Client:         by mx.google.com with ESMTPSA id t4sm75390640eeb.29.2014.05.01.03.50.03
-01.05.2014 13:01:57
-Info: Wrote to Client:         for <steffen@theinbox.de>
-01.05.2014 13:01:57
-Info: Wrote to Client:         (version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-01.05.2014 13:01:57
-Info: Wrote to Client:         Thu, 01 May 2014 03:50:03 -0700 (PDT)
-01.05.2014 13:01:57
-Info: Wrote to Client: Subject: Citgsdchbiscd
-01.05.2014 13:01:57
-Info: Wrote to Client: From: Steffen Giersch <artanoah@gmail.com>
-01.05.2014 13:01:57
-Info: Wrote to Client: Content-Type: text/plain;
-01.05.2014 13:01:57
-Info: Wrote to Client: 	charset=us-ascii
-01.05.2014 13:01:57
-Info: Wrote to Client: X-Mailer: iPad Mail (11D167)
-01.05.2014 13:01:57
-Info: Wrote to Client: Message-Id: <2919FA50-6C75-4C13-895D-EB8F010AE28F@gmail.com>
-01.05.2014 13:01:57
-Info: Wrote to Client: Date: Thu, 1 May 2014 12:50:01 +0200
-01.05.2014 13:01:57
-Info: Wrote to Client: To: steffen@theinbox.de
-01.05.2014 13:01:57
-Info: Wrote to Client: Content-Transfer-Encoding: 7bit
-01.05.2014 13:01:57
-Info: Wrote to Client: Mime-Version: 1.0 (1.0)
-01.05.2014 13:01:57
-Info: Wrote to Client: 
-01.05.2014 13:01:57
-Info: Wrote to Client: Vihbscdihbvsdihb
-01.05.2014 13:01:57
-Info: Wrote to Client: .
-01.05.2014 13:01:57
-Info: Client answer: DELE 2
-01.05.2014 13:01:57
-Info: Wrote to Client: +OK
-01.05.2014 13:01:57
-Info: Client answer: RETR 3
-01.05.2014 13:01:57
-Info: Wrote to Client: +OK
-01.05.2014 13:01:57
-Info: Wrote to Client: Ich bin eine Mail.
-01.05.2014 13:01:57
-Info: Wrote to Client: .
-01.05.2014 13:01:57
-Info: Client answer: DELE 3
-01.05.2014 13:01:57
-Info: Wrote to Client: +OK
-01.05.2014 13:01:57
+05.05.2014 11:29:37
 Info: Client answer: QUIT
-01.05.2014 13:01:58
-Info: Wrote to Client: +OK Es wurden 3 Nachrichten gelöscht
-01.05.2014 13:01:58
+05.05.2014 11:29:37
+Info: Wrote to Client: +OK Es wurden 1 Nachrichten geloescht
+05.05.2014 11:29:37
 Info: Client answer: null

@@ -25,7 +25,7 @@ public class ServerClientThread extends Thread {
 	private final char SPACE = ' ';
 	private final int POPPERIOD = 30000;
 	
-	private int name;
+	private int threadName;
 	private Socket socket;
 	boolean running = true;
 	
@@ -39,7 +39,7 @@ public class ServerClientThread extends Thread {
 	
 	
 	public ServerClientThread(int name) {
-		this.name = name;
+		this.threadName = name;
 	}
 	
 	public void run() {
@@ -77,8 +77,8 @@ public class ServerClientThread extends Thread {
 					
 					
 				} catch (UnknownHostException e) {
-					log.newWarning("Die Hostaddresse " + mailKonto.serverAddresse() + " konnte nicht aufgelöst werden");
-					System.out.println("Die Hostaddresse " + mailKonto.serverAddresse() + " konnte nicht aufgelöst werden");
+					log.newWarning("Die Hostaddresse " + mailKonto.serverAddresse() + " konnte nicht aufgelï¿½st werden");
+					System.out.println("Die Hostaddresse " + mailKonto.serverAddresse() + " konnte nicht aufgelï¿½st werden");
 					continue run;
 				} catch (IOException e) {
 					log.newWarning("Der Socket zu " + mailKonto.serverAddresse() + " konnte nicht erstellt werden");
@@ -132,7 +132,7 @@ public class ServerClientThread extends Thread {
 					//Schreibe "LIST" an den Server
 					writeToServer("LIST");
 					
-					//Erwarten +OK gefolgt von einer i langen Aufzählung an "nachrichtenNummer nachrichtengröße"
+					//Erwarten +OK gefolgt von einer i langen Aufzï¿½hlung an "nachrichtenNummer nachrichtengrï¿½ï¿½e"
 					inputFromServer = readFromServer();
 					
 					if(inputFromServer.indexOf("+OK") != 0) {
@@ -152,7 +152,7 @@ public class ServerClientThread extends Thread {
 							|| */inputFromServer.indexOf('.') != 0) {
 						
 						buffer = inputFromServer.split(" ")[0];			//Speicher den ersten Teilstring in den buffer
-						availableMessages.add(Integer.parseInt(buffer));//Parse den Buffer zu einem Integer und füge ihn zu den verfügbaren Nachrichten hinzu
+						availableMessages.add(Integer.parseInt(buffer));//Parse den Buffer zu einem Integer und fï¿½ge ihn zu den verfï¿½gbaren Nachrichten hinzu
 						
 						inputFromServer = readFromServer();
 						
@@ -192,8 +192,8 @@ public class ServerClientThread extends Thread {
 						inputFromServer = readFromServer();
 						
 						if(inputFromServer.indexOf("+OK") != 0) {
-							log.newWarning("Fehler beim Löschen von Nachricht Nummer " + messageNum + " vom Server " + mailKonto.serverAddresse());
-							System.out.println("Fehler beim Lölschen von Nachricht Nummer " + messageNum + " vom Server " + mailKonto.serverAddresse());
+							log.newWarning("Fehler beim Lï¿½schen von Nachricht Nummer " + messageNum + " vom Server " + mailKonto.serverAddresse());
+							System.out.println("Fehler beim Lï¿½lschen von Nachricht Nummer " + messageNum + " vom Server " + mailKonto.serverAddresse());
 							continue mailSchleife;
 						}
 					}
@@ -279,7 +279,7 @@ public class ServerClientThread extends Thread {
 	}
 	
 	private boolean terminition(String message) {
-		if(message.length() > 1) {										//Wenn die Zeile länger als ein Zeichen ist
+		if(message.length() > 1) {										//Wenn die Zeile lï¿½nger als ein Zeichen ist
 			return message.charAt(0) == '.' && message.charAt(1) != '.';//	True -> wenn das erste Zeichen = '.' und das zweite Zeichen != '.' ist | False -> sonst
 		} else if(message.length() == 1) {								//Wenn die Nachricht genau ein Zeichen lang ist
 			return message.charAt(0) == '.';							//	True -> wenn das Zeichen = '.' ist | False -> sonst
