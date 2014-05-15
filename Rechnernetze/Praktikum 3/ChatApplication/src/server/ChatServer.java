@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import data.ChatUser;
@@ -43,7 +44,7 @@ public class ChatServer {
 						connectionSocket.close();
 					} else  {
 						incrementThreadCounter();
-						(new ChatClientThread(++threadNameCounter, connectionSocket)).start();
+						(new ChatServerClientThread(++threadNameCounter, connectionSocket)).start();
 					}
 					
 				} catch (SocketTimeoutException e) {
@@ -79,6 +80,24 @@ public class ChatServer {
 	
 	public static void addUser(String userName, String host) {
 		userList.add(new ChatUser(userName, host));
+	}
+	
+	public static void deleteUser(String userName) {
+		List<ChatUser> mirror = new ArrayList<ChatUser>(userList);
+		for(ChatUser u : mirror) {
+			if(u.getUserName().equals(userName)) {
+				userList.remove(u);
+				break;
+			}
+		}
+	}
+	
+	public static int getUserCount() {
+		return userList.size();
+	}
+	
+	public static List<ChatUser> getUserList() {
+		return userList;
 	}
 }
 

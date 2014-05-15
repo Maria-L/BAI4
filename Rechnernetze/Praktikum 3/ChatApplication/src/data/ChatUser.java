@@ -1,6 +1,5 @@
 package data;
 
-import java.net.Socket;
 
 public class ChatUser {
 	private String userName;
