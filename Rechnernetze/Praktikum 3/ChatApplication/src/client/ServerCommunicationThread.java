@@ -55,12 +55,14 @@ public class ServerCommunicationThread extends Thread {
 
 		} catch (UnknownHostException e) {
 			log.newWarning("Die Hostaddresse konnte nicht aufgeloesst werden");
-			running = false;
+			main.terminate();
 		} catch (IOException e) {
 			log.newWarning("Der Socket zu konnte nicht erstellt werden");
-			running = false;
+			main.terminate();
 			return;
 		}
+		
+		log.newInfo("ServerCommunicationThread erfolgreich gestartet");
 
 		inputFromServer = "";
 		answerToServer = "";
@@ -73,7 +75,7 @@ public class ServerCommunicationThread extends Thread {
 			
 			if(inputFromServer.indexOf("OK") != 0) {
 				log.newWarning("userName nicht nutzbar");
-				running = false;
+				main.terminate();
 			}
 			
 			//Alle WAIDPERIOD ms "INFO" an den Server schicken und die User-Liste erneuern
@@ -91,15 +93,13 @@ public class ServerCommunicationThread extends Thread {
 				main.refreshUserList(akku);
 				
 				try {
-					this.wait(WAITPERIOD);
+					Thread.sleep(WAITPERIOD);
 				} catch (InterruptedException e) {
 					log.newWarning("Thread wurde unterbrochen");
 				}
 			}
 			
-		}
-
-		catch (IOException e) {
+		} catch (IOException e) {
 			log.newWarning(e.getMessage());
 		}
 
@@ -117,7 +117,7 @@ public class ServerCommunicationThread extends Thread {
 		}
 	}
 	
-	private static void turnOff() {
+	public static void turnOff() {
 		running = false;
 	}
 

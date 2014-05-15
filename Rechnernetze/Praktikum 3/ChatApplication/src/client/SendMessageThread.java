@@ -10,38 +10,32 @@ import data.ChatUser;
 
 public class SendMessageThread extends Thread {
 	
-	private DatagramSocket socket;
 	static boolean running = true;
 	private String userName;
+	private String host;
 	private String message;
-	private DatagramSocket host;
+	private DatagramSocket socket;
 
-	public SendMessageThread(String userName, DatagramSocket host, String message) {
-		this.userName = userName;
+	public SendMessageThread(ChatUser user, DatagramSocket socket, String message) {
+		this.userName = user.getUserName();
 		this.message = message;
-		this.host = host;
+		this.socket = socket;
+		this.host = user.getHost();
 	}
 	
-	public void run() {
+	public synchronized void run() {
 		
 		byte[] answerToServer;
-		
-		try {
-			socket = new DatagramSocket();
-		} catch (IOException e) {
-			System.out.println("Der Socket konnte nicht erstellt werden");
-			running = false;
-		}
 		
 		message = userName + ": " + message;
 		answerToServer = message.getBytes();
 		
 		for(ChatUser u : main.getUserList()) {
 			try {
-				DatagramPacket sendPacket = new DatagramPacket(answerToServer, answerToServer.length, host.getInetAddress(), 50001);
+				DatagramPacket sendPacket = new DatagramPacket(answerToServer, answerToServer.length, InetAddress.getByName(host), 50001);
 				socket.send(sendPacket);
 			} catch (IOException e) {
-				System.out.println("Nachricht an "+ host + " konnte nicht versandt werden");
+				System.out.println("Nachricht an "+ socket + " konnte nicht versandt werden");
 			}
 		}
 	}

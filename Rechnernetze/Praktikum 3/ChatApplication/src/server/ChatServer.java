@@ -12,7 +12,7 @@ import data.ChatUser;
 import data.Log;
 
 public class ChatServer {
-	private static final int MAX_THREADS = 1;
+	private static final int MAX_THREADS = 30;
 	private static final int WAITING_TIME_MS = 500;
 	public static int port = 50000;
 		
@@ -26,6 +26,7 @@ public class ChatServer {
 	
 	
 	public static void main(String[] args) {
+		System.out.println("ChatServerMain");
 		
 		welcomeSocket = null;
 		Socket connectionSocket = null;
@@ -40,7 +41,7 @@ public class ChatServer {
 				try {
 					connectionSocket = welcomeSocket.accept();
 					
-					if (threadCounter >= MAX_THREADS || !serverRunning){
+					if (threadCounter >= MAX_THREADS || !serverRunning) {
 						connectionSocket.close();
 					} else  {
 						incrementThreadCounter();

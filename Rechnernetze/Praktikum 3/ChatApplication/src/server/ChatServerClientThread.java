@@ -38,6 +38,7 @@ public class ChatServerClientThread extends Thread {
 	public ChatServerClientThread(int name, Socket socket) {
 		this.name = name;
 		this.socket = socket;
+		userName = "";
 	}
 	
 	public void run() {
@@ -49,7 +50,6 @@ public class ChatServerClientThread extends Thread {
 		
 		
 		//Ausnullen zur Sicherheit
-		socket = null;
 		outputStream = null;
 		inputStream = null;
 		
@@ -68,6 +68,8 @@ public class ChatServerClientThread extends Thread {
 			log.newWarning("Der Socket zu konnte nicht erstellt werden");
 			running = false;
 		}
+		
+		log.newInfo("Verbindung wurde erfolgreich aufgebaut");
 		
 		while(running) {		//Runningschleife Anfang
 			
@@ -125,7 +127,12 @@ public class ChatServerClientThread extends Thread {
 					
 				case INFO:
 					
-					if(userName.equals(""))
+					if(userName.equals("")) {
+						writeToClient("ERROR Es muss zuerst ein Name gewaehlt werden");
+						running = false;
+						break;
+					}
+					
 					answerToUser = "LIST " + ChatServer.getUserCount();
 					
 					for(ChatUser u : ChatServer.getUserList()) {
@@ -145,6 +152,7 @@ public class ChatServerClientThread extends Thread {
 			
 			} catch (IOException e) {
 				log.newWarning(e.getMessage());
+				running = false;
 			}
 			
 		}						//Runningschleife Ende
@@ -159,16 +167,16 @@ public class ChatServerClientThread extends Thread {
 	private void writeToClient(String request) throws IOException {
 		
 		da.writeBytes(request + "\n");
-		log.newInfo("Wrote to Server: " + request);
-		System.out.println("Wrote to Server: " + request);
+		log.newInfo("Wrote to Client: " + request);
+		System.out.println("Wrote to Client: " + request);
 	
 	}
 	
 	private String readFromClient() throws IOException {
 		
 		String request = br.readLine();
-		log.newInfo("Server answer: " + request);
-		System.out.println("Server answer: " + request);
+		log.newInfo("Client request: " + request);
+		System.out.println("Client request: " + request);
 		return request;
 		
 	}
