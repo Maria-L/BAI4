@@ -1,0 +1,2 @@
+19.05.2014 11:12:34
+Info: Der Chat-Server laeuft auf TCP-Port 50000

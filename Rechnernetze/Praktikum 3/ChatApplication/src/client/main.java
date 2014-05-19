@@ -59,7 +59,7 @@ public class main {
 			}
 		}
 		
-		
+		sendMessage("BYE");
 	}
 
 	public static void refreshUserList(List<ChatUser> users) {
@@ -84,5 +84,6 @@ public class main {
 	public static void terminate() {
 		serverCommunicationThread.turnOff();
 		recieveMessageThread.turnOff();
+		running = false;
 	}
 }
