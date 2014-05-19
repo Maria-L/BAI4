@@ -13,6 +13,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class clientGUI {
 
@@ -49,12 +53,23 @@ public class clientGUI {
 	public static void incomingMessage(String m) {
 		recievedMessagesTextWindow.append(m + "\n");
 	}
+	
+	public static void turnOff() {
+		System.exit(0);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				main.close();
+			}
+		});
+
 		frame.setBounds(100, 100, 541, 410);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -72,6 +87,15 @@ public class clientGUI {
 		frame.getContentPane().add(writeMessageScrollPane);
 		
 		JTextArea writeMessageTextWindow = new JTextArea();
+		writeMessageTextWindow.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					main.sendMessage(inputTextWindow.getText().trim());
+					inputTextWindow.setText("");
+				}
+			}
+		});
 		writeMessageScrollPane.setViewportView(writeMessageTextWindow);
 		
 		JButton sendButton = new JButton("Send");

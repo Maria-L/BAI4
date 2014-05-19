@@ -99,6 +99,7 @@ public class ChatServerClientThread extends Thread {
 				}
 			} catch (IOException e) {
 				log.newWarning(e.getMessage());
+				running = false;
 			}
 			
 			//Input verarbeiten
@@ -162,6 +163,8 @@ public class ChatServerClientThread extends Thread {
 		} catch (IOException e) {
 			log.newWarning("Socket konnte nicht erfolgreich geschlossen werden");
 		}
+		
+		ChatServer.decrementThreadCounter();
 	}
 	
 	private void writeToClient(String request) throws IOException {

@@ -10,6 +10,8 @@ import data.ChatUser;
 
 public class SendMessageThread extends Thread {
 	
+	private final int MAXMESSAGELENGTH = 100;
+	
 	static boolean running = true;
 	private String userName;
 	private String host;
@@ -23,7 +25,11 @@ public class SendMessageThread extends Thread {
 		this.host = user.getHost();
 	}
 	
-	public synchronized void run() {
+	public synchronized void run() throws IllegalArgumentException {
+		
+		if(message.length() > MAXMESSAGELENGTH) {
+			throw new IllegalArgumentException("Die eingegebene Nachricht ist zu lang.");
+		}
 		
 		byte[] answerToServer;
 		

@@ -1,17 +1,19 @@
 package client;
 
+import java.io.IOException;
 import java.net.DatagramSocket;
+import java.net.Socket;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
 import data.ChatUser;
 import data.Log;
 
-import org.eclipse.swt.widgets.*;
-
 public class main {
 	private static final int MESSAGEMAX = 20;
+	private static final int MAXJOINTIME = 5000;
 	private static boolean running = true;
 	
 	private static String userName = "";
@@ -21,6 +23,7 @@ public class main {
 	private static volatile List<ChatUser> userList = new ArrayList<ChatUser>();
 	private static volatile List<String> recievedMessageList = new ArrayList<String>();
 	private static volatile DatagramSocket udpSocket = null;
+	private static volatile Socket tcpSocket = null;
 	
 	static ServerCommunicationThread serverCommunicationThread = null;
 	static RecieveMessageThread recieveMessageThread = null;
@@ -36,13 +39,26 @@ public class main {
 		
 		//DatagramSocket udpSocket = null;
 		try {
+			tcpSocket = new Socket(hostAddresse, 50000);
+		} catch (SocketException e) {
+			log.newWarning("TCP-Socket konnte nicht erstellt werden - Beende");
+			return;
+		} catch (UnknownHostException e) {
+			log.newWarning("TCP-Socket konnte nicht erstellt werden - Beende");
+			return;
+		} catch (IOException e) {
+			log.newWarning("TCP-Socket konnte nicht erstellt werden - Beende");
+			return;
+		}
+		
+		try {
 			udpSocket = new DatagramSocket(50001);
 		} catch (SocketException e) {
 			log.newWarning("UDP-Socket konnte nicht erstellt werden - Beende");
 			return;
 		}
 		
-		serverCommunicationThread = new ServerCommunicationThread(userName, hostAddresse);
+		serverCommunicationThread = new ServerCommunicationThread(userName, tcpSocket);
 		recieveMessageThread = new RecieveMessageThread(udpSocket);
 		
 		serverCommunicationThread.start();
@@ -58,8 +74,6 @@ public class main {
 				e.printStackTrace();
 			}
 		}
-		
-		sendMessage("BYE");
 	}
 
 	public static void refreshUserList(List<ChatUser> users) {
@@ -82,8 +96,22 @@ public class main {
 	}
 	
 	public static void terminate() {
-		serverCommunicationThread.turnOff();
 		recieveMessageThread.turnOff();
+		serverCommunicationThread.turnOff();
+		clientGUI.turnOff();
 		running = false;
+	}
+	
+	public static void close() {
+		try {
+			recieveMessageThread.turnOff();
+			serverCommunicationThread.turnOff();
+			recieveMessageThread.join();
+			serverCommunicationThread.join();
+			running = false;
+		} catch (InterruptedException e) {
+			log.newWarning("Es konnte nicht auf Threads gewartet werden");
+		}
+		
 	}
 }

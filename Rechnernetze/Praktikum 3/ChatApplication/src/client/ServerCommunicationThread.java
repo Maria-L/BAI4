@@ -23,7 +23,6 @@ public class ServerCommunicationThread extends Thread {
 	private Socket socket;
 	static boolean running = true;
 	private String userName;
-	private String serverName;
 
 	private InputStream inputStream;
 	private OutputStream outputStream;
@@ -33,9 +32,9 @@ public class ServerCommunicationThread extends Thread {
 
 	private Log log = new Log("ServerCommunicationThread");
 
-	public ServerCommunicationThread(String userName, String hostName) {
+	public ServerCommunicationThread(String userName, Socket socket) {
 		this.userName = userName;
-		this.serverName = serverName;
+		this.socket = socket;
 	}
 
 	public void run() {
@@ -45,19 +44,14 @@ public class ServerCommunicationThread extends Thread {
 
 		// Verbindung zum Host herstellen
 		try {
-			socket = new Socket(serverName, 50000);
-
 			outputStream = socket.getOutputStream();
 			inputStream = socket.getInputStream();
 
 			br = new BufferedReader(new InputStreamReader(inputStream));
 			da = new DataOutputStream(outputStream);
 
-		} catch (UnknownHostException e) {
-			log.newWarning("Die Hostaddresse konnte nicht aufgeloesst werden");
-			main.terminate();
 		} catch (IOException e) {
-			log.newWarning("Der Socket zu konnte nicht erstellt werden");
+			log.newWarning("Die Socket-Streams konnten nicht erstellt werden");
 			main.terminate();
 			return;
 		}
