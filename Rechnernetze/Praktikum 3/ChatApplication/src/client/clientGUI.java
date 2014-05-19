@@ -3,12 +3,15 @@ package client;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import java.awt.TextField;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -21,11 +24,9 @@ import java.awt.event.KeyEvent;
 public class clientGUI {
 
 	private static JFrame frame;
-	private static boolean running = true;
 	
 	private static JTextArea recievedMessagesTextWindow;
 	private static JTextArea inputTextWindow;
-	private static JButton sendButton;
 
 	/**
 	 * Launch the application.
@@ -66,7 +67,7 @@ public class clientGUI {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				main.close();
+				ChatClientMain.close();
 			}
 		});
 
@@ -91,7 +92,7 @@ public class clientGUI {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					main.sendMessage(inputTextWindow.getText().trim());
+					ChatClientMain.sendMessage(inputTextWindow.getText().trim());
 					inputTextWindow.setText("");
 				}
 			}
@@ -102,7 +103,7 @@ public class clientGUI {
 		sendButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				main.sendMessage(inputTextWindow.getText());
+				ChatClientMain.sendMessage(inputTextWindow.getText());
 				inputTextWindow.setText("");
 			}
 		});
@@ -111,7 +112,6 @@ public class clientGUI {
 		
 		this.recievedMessagesTextWindow = recievedMessagesTextWindow;
 		this.inputTextWindow = writeMessageTextWindow;
-		this.sendButton = sendButton;
 		
 		this.recievedMessagesTextWindow.setText("");
 	}

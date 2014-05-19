@@ -170,16 +170,16 @@ public class ChatServerClientThread extends Thread {
 	private void writeToClient(String request) throws IOException {
 		
 		da.writeBytes(request + "\n");
-		log.newInfo("Wrote to Client: " + request);
-		System.out.println("Wrote to Client: " + request);
+		log.newInfo("Wrote to Client " + name + ": " + request);
+		System.out.println("Wrote to Client " + name + ": " + request);
 	
 	}
 	
 	private String readFromClient() throws IOException {
 		
 		String request = br.readLine();
-		log.newInfo("Client request: " + request);
-		System.out.println("Client request: " + request);
+		log.newInfo("Client " + name +" request: " + request);
+		System.out.println("Client " + name +" request: " + request);
 		return request;
 		
 	}

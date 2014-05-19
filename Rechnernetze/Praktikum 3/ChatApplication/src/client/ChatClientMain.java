@@ -11,9 +11,7 @@ import java.util.List;
 import data.ChatUser;
 import data.Log;
 
-public class main {
-	private static final int MESSAGEMAX = 20;
-	private static final int MAXJOINTIME = 5000;
+public class ChatClientMain {
 	private static boolean running = true;
 	
 	private static String userName = "";

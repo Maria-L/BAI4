@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import data.ChatUser;
 
@@ -14,7 +13,6 @@ public class SendMessageThread extends Thread {
 	
 	static boolean running = true;
 	private String userName;
-	private String host;
 	private String message;
 	private DatagramSocket socket;
 
@@ -22,8 +20,7 @@ public class SendMessageThread extends Thread {
 		this.userName = user.getUserName();
 		this.message = message;
 		this.socket = socket;
-		this.host = user.getHost();
-	}
+		}
 	
 	public synchronized void run() throws IllegalArgumentException {
 		
@@ -36,9 +33,9 @@ public class SendMessageThread extends Thread {
 		message = userName + ": " + message;
 		answerToServer = message.getBytes();
 		
-		for(ChatUser u : main.getUserList()) {
+		for(ChatUser u : ChatClientMain.getUserList()) {
 			try {
-				DatagramPacket sendPacket = new DatagramPacket(answerToServer, answerToServer.length, InetAddress.getByName(host), 50001);
+				DatagramPacket sendPacket = new DatagramPacket(answerToServer, answerToServer.length, InetAddress.getByName(u.getHost()), 50001);
 				socket.send(sendPacket);
 			} catch (IOException e) {
 				System.out.println("Nachricht an "+ socket + " konnte nicht versandt werden");

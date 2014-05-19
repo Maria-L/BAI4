@@ -1,26 +1,22 @@
-19.05.2014 13:45:28
+19.05.2014 18:30:49
 Info: ServerCommunicationThread erfolgreich gestartet
-19.05.2014 13:45:28
-Info: Wrote to Server: NEW 18?sdfjinsd
-19.05.2014 13:45:28
+19.05.2014 18:30:49
+Info: Wrote to Server: NEW Artanoah
+19.05.2014 18:30:49
 Info: Server answer: OK
-19.05.2014 13:45:28
+19.05.2014 18:30:49
 Info: Wrote to Server: INFO
-19.05.2014 13:45:28
-Info: Server answer: LIST 1 127.0.0.1 18?sdfjinsd
-19.05.2014 13:45:30
+19.05.2014 18:30:49
+Info: Server answer: LIST 1 192.168.1.12 Artanoah
+19.05.2014 18:30:51
 Info: Wrote to Server: INFO
-19.05.2014 13:45:30
-Info: Server answer: LIST 1 127.0.0.1 18?sdfjinsd
-19.05.2014 13:45:33
+19.05.2014 18:30:51
+Info: Server answer: LIST 1 192.168.1.12 Artanoah
+19.05.2014 18:30:54
 Info: Wrote to Server: INFO
-19.05.2014 13:45:33
-Info: Server answer: LIST 1 127.0.0.1 18?sdfjinsd
-19.05.2014 13:45:35
-Info: Wrote to Server: INFO
-19.05.2014 13:45:35
-Info: Server answer: LIST 1 127.0.0.1 18?sdfjinsd
-19.05.2014 13:45:38
+19.05.2014 18:30:54
+Info: Server answer: LIST 1 192.168.1.12 Artanoah
+19.05.2014 18:30:56
 Info: Wrote to Server: BYE
-19.05.2014 13:45:38
+19.05.2014 18:30:56
 Info: Server answer: BYE
