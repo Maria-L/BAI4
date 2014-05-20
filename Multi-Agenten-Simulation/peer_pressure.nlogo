@@ -9,6 +9,9 @@ globals [
   akku_social
   akku_income
   akku_wealth
+
+  empty
+  empty_group
   
   turtle_desire_wealth
   turtle_desire_social
@@ -79,7 +82,7 @@ to setup-turtles
    
     set wealth 20                                                              ;;Start-Wert
     set consumption 10                                                         ;;Random Consumption
-    set income (1 / ((random-float wealth_gap) ^ 2 + 1)) * 1000 * mean_income  ;;Random Multiplikation
+    set income (1 / ((random-float wealth_gap) ^ 2 + 1)) * 100 * mean_income   ;;Random Multiplikation
     set group_id 0                                                             ;;Gruppe der Gruppenlosen
     
     set desire_wealth random-poisson mean_desire_wealth
@@ -109,9 +112,11 @@ to go
     
     ;;Gruppen beitreten
     set want_to_join 0
+    set empty_group 0
+    
     if group_id = 0 [
       ;; Grund 1, mehr Ausgabe als Éinnahme
-      if consumption - income > 0 OR desire_wealth > 50 [
+      if consumption - income > 0 [
         
         set j 1
         set want_to_join 0
@@ -138,23 +143,46 @@ to go
         ]
       
       ;; Grund 2, sozial wert ist hoch -> ich habe das verlangen nach einer gruppe
-       if desire_social > 50 AND want_to_join = 0 [
+       if want_to_join = 0 [
        
          set j 1
          set want_to_join 0
-         set want_to_join_surplus -1000000000
+         set want_to_join_surplus 0
          
          ;;Suche Gruppe zum Beitreten
          while [ j < number_of_groups ] [
-           set akku 0
+           set i 0
+           set akku_social 0
+           set akku_income 0
+           set akku_wealth 0
+           set empty false
            
            ask turtles with [ group_id = j ] [
-             set akku akku + desire_social
+  
+             set akku_social akku_social + desire_social
+             set akku_income akku_income + income
+             set akku_wealth akku_wealth + wealth
+  
+             set i i + 1
            ]
+  
+           carefully [
+             set akku_social akku_social / i
+             set akku_income akku_income / i
+             set akku_wealth akku_wealth / i
+           ] [
+             set empty true
+           ]
+  
+           set akku (akku_social - desire_social + 5) * desire_social + (akku_income - income) * desire_wealth + (((akku_wealth - wealth) /  (mean_income * 1000))) * desire_wealth
            
-           if want_to_join_surplus < akku AND want_to_join_last != j [
-             set want_to_join_surplus akku
-             set want_to_join j
+           ifelse empty [
+             set empty_group j
+           ] [
+             if want_to_join_surplus <= akku AND want_to_join_last != j [
+               set want_to_join_surplus akku
+               set want_to_join j
+             ]
            ]
            
            set j j + 1
@@ -162,6 +190,7 @@ to go
          
          set want_to_join_last want_to_join
        ]
+       
        
        ;;Gruppe entscheidet über Beitritt 
        if want_to_join != 0 [
@@ -175,8 +204,8 @@ to go
          set akku 0
          
          ask turtles with [ group_id = want_to_join ] [
-           set i (turtle_desire_social - desire_social + 5) * desire_social + (turtle_income - turtle_consumption) * desire_wealth + (wealth / 500) * desire_wealth + (turtle_consumption - turtle_income) * desire_justice
-           ifelse i < 0 [
+           set i (turtle_desire_social - desire_social + 5) * desire_social + (turtle_income - turtle_consumption) * desire_wealth + (turtle_consumption - turtle_income) * desire_justice + (wealth /  (mean_income * 1000)) * desire_wealth
+           ifelse i < 10 [
              set akku akku - 1
            ] [
              set akku akku + 1
@@ -188,6 +217,12 @@ to go
          ]
        ]
     ]
+    
+    
+     ;;Wenn ich noch immer in keiner Gruppe bin, gründe ich mit einer gewissen Change eine eigene 
+     if group_id = 0 AND random-float 1 < 0.01 [
+       set group_id empty_group
+     ]
     
     
     
@@ -205,7 +240,7 @@ to go
    
       ask turtles with [ turtle_group_id = group_id ] [
         
-        set i (turtle_desire_social - desire_social + 5) * desire_social + (turtle_income - turtle_consumption) * desire_wealth + (wealth / 500) * desire_wealth + (turtle_consumption - turtle_income) * desire_justice
+        set i (turtle_desire_social - desire_social + 5) * desire_social + (turtle_income - turtle_consumption) * desire_wealth + (turtle_consumption - turtle_income) * desire_justice + (wealth / (mean_income * 1000)) * desire_wealth 
            ifelse i < -1 * desire_justice / 2 [
              set akku akku + 1
            ] [
@@ -232,7 +267,7 @@ to go
       set i group_id  ;;Gruppen-ID
       
       ask turtles with [ group_id = i ] [  
-        set akku akku + income * (1 - tax)      ;;Addiere alle Abgaben in gruppe i zusammen und speichere sie in akku
+        set akku akku + income * tax                         ;;Addiere alle Abgaben in gruppe i zusammen und speichere sie in akku
       ]
       
       ask turtles with [ group_id = i ] [
@@ -256,8 +291,10 @@ to go
     ;;Gruppen verlassen
     if group_id != 0 [
       ;;Wenn die Gruppe mich nicht versorgen kann, verlasse sie
-      if this_group_wealth < 0 AND tick_count mod 30 = 0 [ set group_id 0 ]
-      
+      if this_group_wealth < 0 [ set group_id 0 ]
+    ]
+     
+    if group_id != 0 [ 
       ;;Wenn die soziale Einstellung der Gruppe meinen Vorstellungen nicht mehr entspricht, verlasse sie
       set turtle_group_id group_id
       set akku_social 0
@@ -276,7 +313,7 @@ to go
       set akku_income akku_income / i
       set akku_wealth akku_wealth / i
       
-      ifelse (akku_social - desire_social) * desire_social + (akku_income - income) * desire_wealth + ((akku_wealth - wealth) / 10) * desire_wealth < 0 [
+      ifelse (akku_social - desire_social + 5) * desire_social + (akku_income - income) * desire_wealth + ((akku_wealth - wealth) / (mean_income * 1000)) * desire_wealth < 0 [
         set unhappy_count unhappy_count + 1
         
         if unhappy_count > desire_justice / 4 [
@@ -339,21 +376,6 @@ to-report get-group-color [ k ]
   
   report akku 
 end
-
-to spawn-new-turtle
-  create-turtles 1 [
-        set wealth 20                                                ;;Start-Wert
-        set consumption 10                                           ;;Random Consumption
-        set income (1 / (random-float mean_income ^ 2)) * 200 * 30   ;;Random Multiplikation
-        set group_id 0                                               ;;Gruppe der Gruppenlosen
-    
-        set desire_wealth random-poisson mean_desire_wealth
-        set desire_social random-poisson mean_desire_social
-        set desire_justice random-poisson mean_desire_justice
-    
-        set tick_count 0
-      ]
-end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -399,7 +421,7 @@ INPUTBOX
 185
 275
 number_of_turtles
-150
+100
 1
 0
 Number
@@ -430,7 +452,7 @@ mean_desire_wealth
 mean_desire_wealth
 1
 100
-51.5
+49
 0.5
 1
 NIL
@@ -445,7 +467,7 @@ mean_desire_social
 mean_desire_social
 1
 100
-70.5
+90
 0.5
 1
 NIL
@@ -460,7 +482,7 @@ mean_desire_justice
 mean_desire_justice
 1
 100
-47.5
+33
 0.5
 1
 NIL
@@ -475,7 +497,7 @@ mean_income
 mean_income
 1
 100
-32
+100
 0.5
 1
 NIL
@@ -533,7 +555,7 @@ tax
 tax
 0
 0.99
-0.3
+0.37
 0.01
 1
 NIL
@@ -566,10 +588,10 @@ PENS
 "G8" 1.0 0 -14835848 true "" "plot sum [ wealth ] of turtles with [ group_id = 8 ]"
 
 PLOT
-259
-352
-459
-502
+209
+345
+520
+519
 Turtles with < 0 wealth
 NIL
 NIL
@@ -617,8 +639,8 @@ SLIDER
 wealth_gap
 wealth_gap
 0
-100
-36
+25
+3
 1
 1
 1 / n ^2
