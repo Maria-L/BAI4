@@ -77,10 +77,10 @@ to setup-turtles
   
   ask turtles [
    
-    set wealth 20                                                         ;;Start-Wert
-    set consumption 10                                                    ;;Random Consumption
-    set income (1 / ((random-float mean_income) ^ 2 + 1)) * 1000 * 30     ;;Random Multiplikation
-    set group_id 0                                                        ;;Gruppe der Gruppenlosen
+    set wealth 20                                                              ;;Start-Wert
+    set consumption 10                                                         ;;Random Consumption
+    set income (1 / ((random-float wealth_gap) ^ 2 + 1)) * 1000 * mean_income  ;;Random Multiplikation
+    set group_id 0                                                             ;;Gruppe der Gruppenlosen
     
     set desire_wealth random-poisson mean_desire_wealth
     set desire_social random-poisson mean_desire_social
@@ -475,7 +475,7 @@ mean_income
 mean_income
 1
 100
-18.5
+32
 0.5
 1
 NIL
@@ -503,7 +503,7 @@ PLOT
 11
 979
 186
-Group Distribution
+Group Member Numbers
 ticks
 number of members
 0.0
@@ -525,10 +525,10 @@ PENS
 "G8" 1.0 0 -14835848 true "" "plot count turtles with [group_id = 8]"
 
 SLIDER
-20
-460
-192
-493
+18
+504
+190
+537
 tax
 tax
 0
@@ -566,10 +566,10 @@ PENS
 "G8" 1.0 0 -14835848 true "" "plot sum [ wealth ] of turtles with [ group_id = 8 ]"
 
 PLOT
-388
-464
-588
-614
+259
+352
+459
+502
 Turtles with < 0 wealth
 NIL
 NIL
@@ -582,6 +582,73 @@ false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" "plot count turtles with [ wealth < 0 ]"
+
+PLOT
+527
+527
+982
+688
+Average group social desire
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"G0" 1.0 0 -16777216 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 0 ] ] [ plot 0 ]"
+"G1" 1.0 0 -7500403 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 1 ] ] [ plot 0 ]"
+"G2" 1.0 0 -2674135 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 2 ] ] [ plot 0 ]"
+"G3" 1.0 0 -955883 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 3 ] ] [ plot 0 ]"
+"G4" 1.0 0 -6459832 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 4 ] ] [ plot 0 ]"
+"G5" 1.0 0 -1184463 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 5 ] ] [ plot 0 ]"
+"G6" 1.0 0 -10899396 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 6 ] ] [ plot 0 ]"
+"G7" 1.0 0 -13840069 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 7 ] ] [ plot 0 ]"
+"G8" 1.0 0 -14835848 true "" "carefully [ plot mean [ desire_social ] of turtles with [ group_id = 8 ] ] [ plot 0 ]"
+
+SLIDER
+18
+459
+190
+492
+wealth_gap
+wealth_gap
+0
+100
+36
+1
+1
+1 / n ^2
+HORIZONTAL
+
+PLOT
+527
+358
+982
+519
+Average group income
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"G0" 1.0 0 -16777216 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 0 ] ] [ plot 0 ]"
+"G1" 1.0 0 -7500403 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 1 ] ] [ plot 0 ]"
+"G2" 1.0 0 -2674135 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 2 ] ] [ plot 0 ]"
+"G3" 1.0 0 -955883 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 3 ] ] [ plot 0 ]"
+"G4" 1.0 0 -6459832 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 4 ] ] [ plot 0 ]"
+"G5" 1.0 0 -1184463 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 5 ] ] [ plot 0 ]"
+"G6" 1.0 0 -10899396 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 6 ] ] [ plot 0 ]"
+"G7" 1.0 0 -13840069 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 7 ] ] [ plot 0 ]"
+"G8" 1.0 0 -14835848 true "" "carefully [ plot mean [ income ] of turtles with [ group_id = 8 ] ] [ plot 0 ]"
 
 @#$#@#$#@
 ## WHAT IS IT?
