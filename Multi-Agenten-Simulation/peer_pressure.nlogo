@@ -639,9 +639,9 @@ SLIDER
 wealth_gap
 wealth_gap
 0
-25
-3
-1
+10
+0
+0.01
 1
 1 / n ^2
 HORIZONTAL
