@@ -1,0 +1,5 @@
+SDA+SDA=SDA
+-+-
+DAD-DAS=SAD
+===
+DSA-ASD=DSA
