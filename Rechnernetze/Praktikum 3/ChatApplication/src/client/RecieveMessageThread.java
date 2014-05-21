@@ -22,7 +22,7 @@ public class RecieveMessageThread extends Thread {
 			socket.setSoTimeout(500);
 		} catch (SocketException e1) {
 			System.out.println("Timeour konnte nicht gesetzt werden - beende");
-			main.terminate();
+			ChatClientMain.terminate();
 		}
 		
 		while(running) {
@@ -35,7 +35,7 @@ public class RecieveMessageThread extends Thread {
 				socket.receive(recievePacket);
 				answerFromClient = new String(recievePacket.getData(), 0, recievePacket.getLength());
 				
-				main.addMessage(answerFromClient);
+				ChatClientMain.addMessage(answerFromClient);
 			} catch (SocketTimeoutException e) {
 				//Gewollte Exception
 			} catch (IOException e) {

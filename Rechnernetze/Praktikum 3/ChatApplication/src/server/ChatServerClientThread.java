@@ -24,7 +24,7 @@ public class ChatServerClientThread extends Thread {
 	private Socket socket;
 	boolean running = true;
 	private String userName;
-	private Pattern userNamePattern = Pattern.compile("[^a-z0-9 ], Pattern.CASEINSENSITIVE");
+	private Pattern userNamePattern = Pattern.compile("[^a-z0-9A-Z], Pattern.CASEINSENSITIVE");
 	
 	private InputStream inputStream;
 	private OutputStream outputStream;
@@ -99,6 +99,7 @@ public class ChatServerClientThread extends Thread {
 				}
 			} catch (IOException e) {
 				log.newWarning(e.getMessage());
+				running = false;
 			}
 			
 			//Input verarbeiten
@@ -162,21 +163,23 @@ public class ChatServerClientThread extends Thread {
 		} catch (IOException e) {
 			log.newWarning("Socket konnte nicht erfolgreich geschlossen werden");
 		}
+		
+		ChatServer.decrementThreadCounter();
 	}
 	
 	private void writeToClient(String request) throws IOException {
 		
 		da.writeBytes(request + "\n");
-		log.newInfo("Wrote to Client: " + request);
-		System.out.println("Wrote to Client: " + request);
+		log.newInfo("Wrote to Client " + name + ": " + request);
+		System.out.println("Wrote to Client " + name + ": " + request);
 	
 	}
 	
 	private String readFromClient() throws IOException {
 		
 		String request = br.readLine();
-		log.newInfo("Client request: " + request);
-		System.out.println("Client request: " + request);
+		log.newInfo("Client " + name +" request: " + request);
+		System.out.println("Client " + name +" request: " + request);
 		return request;
 		
 	}

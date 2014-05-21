@@ -7,23 +7,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-import data.*;
-
+import data.ChatUser;
 import data.Log;
 
 public class ServerCommunicationThread extends Thread {
 	
 	private final int WAITPERIOD = 2500;
 
-	private int name;
 	private Socket socket;
 	static boolean running = true;
 	private String userName;
-	private String serverName;
 
 	private InputStream inputStream;
 	private OutputStream outputStream;
@@ -33,9 +29,9 @@ public class ServerCommunicationThread extends Thread {
 
 	private Log log = new Log("ServerCommunicationThread");
 
-	public ServerCommunicationThread(String userName, String hostName) {
+	public ServerCommunicationThread(String userName, Socket socket) {
 		this.userName = userName;
-		this.serverName = serverName;
+		this.socket = socket;
 	}
 
 	public void run() {
@@ -45,20 +41,15 @@ public class ServerCommunicationThread extends Thread {
 
 		// Verbindung zum Host herstellen
 		try {
-			socket = new Socket(serverName, 50000);
-
 			outputStream = socket.getOutputStream();
 			inputStream = socket.getInputStream();
 
 			br = new BufferedReader(new InputStreamReader(inputStream));
 			da = new DataOutputStream(outputStream);
 
-		} catch (UnknownHostException e) {
-			log.newWarning("Die Hostaddresse konnte nicht aufgeloesst werden");
-			main.terminate();
 		} catch (IOException e) {
-			log.newWarning("Der Socket zu konnte nicht erstellt werden");
-			main.terminate();
+			log.newWarning("Die Socket-Streams konnten nicht erstellt werden");
+			ChatClientMain.terminate();
 			return;
 		}
 		
@@ -75,7 +66,7 @@ public class ServerCommunicationThread extends Thread {
 			
 			if(inputFromServer.indexOf("OK") != 0) {
 				log.newWarning("userName nicht nutzbar");
-				main.terminate();
+				ChatClientMain.terminate();
 			}
 			
 			//Alle WAIDPERIOD ms "INFO" an den Server schicken und die User-Liste erneuern
@@ -87,10 +78,10 @@ public class ServerCommunicationThread extends Thread {
 				List<ChatUser> akku = new ArrayList<>();
 				
 				for(int i = 2; i < buffer.length; i = i + 2){
-					akku.add(new ChatUser(buffer[i], buffer[i+1]));
+					akku.add(new ChatUser(buffer[i+1], buffer[i]));
 				}
 				
-				main.refreshUserList(akku);
+				ChatClientMain.refreshUserList(akku);
 				
 				try {
 					Thread.sleep(WAITPERIOD);
