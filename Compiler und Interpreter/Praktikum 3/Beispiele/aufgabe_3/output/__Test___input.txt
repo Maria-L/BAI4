@@ -1,0 +1,12 @@
+program
+  integer i;
+begin
+  if bla then
+    bier := 'lecker';
+    if foo then
+      fasdf := 4 + 2;
+    else
+      asdf := 'bla';
+    fi;
+  fi;
+end

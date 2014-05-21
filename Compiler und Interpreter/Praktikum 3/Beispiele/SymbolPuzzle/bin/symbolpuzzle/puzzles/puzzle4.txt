@@ -1,0 +1,16 @@
+
+/**
+ * Das Symbolrätsel aus der Praktikumsaufgabe!
+ */
+
+      BGDG   +   BEEA   =     CAGG    // A=0?
+
+         +          +            +
+
+      CKAF   -    JDK   =     CAHG    //
+
+         =          =            = 
+
+      FFCB   +    GBB   =     GBED    // F=0?
+
+//    Keine Lösung gefunden!

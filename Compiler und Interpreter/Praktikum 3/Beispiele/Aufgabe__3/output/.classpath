@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="lib/" kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/antlr-3.5-complete.jar"/>
+	<classpathentry kind="lib" path="lib/choco-solver-2.1.5.jar"/>
+	<classpathentry kind="lib" path="/Users/r3l4x/Dropbox/__AKTUELLES/Geteilte Ordner/BAI Lerngruppe/B-AI4/CI/Aufgaben/SS2013/Team Thorsten und Bjoern/Aufgabe 3/Eclipse/lib/antlr-3.5-complete.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

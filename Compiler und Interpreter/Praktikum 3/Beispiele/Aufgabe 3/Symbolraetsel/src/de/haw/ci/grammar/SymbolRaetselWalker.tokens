@@ -1,0 +1,6 @@
+NUMBER=4
+EQ=5
+ADD=6
+SUB=7
+SYM=8
+WS=9

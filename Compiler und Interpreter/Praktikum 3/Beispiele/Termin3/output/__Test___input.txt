@@ -1,0 +1,26 @@
+program 
+
+integer rnd,inp,counter;
+string name, input;
+
+begin 
+
+rnd := 'ddd';
+rnd:=42;
+sss:=333;
+
+println(ggg);
+println('jjj');
+println(ggg);
+
+read(iii);
+
+if name < hhh then println(aaa); fi
+if 10 < 54 then println(aaa); else println(bbb); fi
+
+while 10 > 44
+do
+println('jjj');
+od
+
+end
