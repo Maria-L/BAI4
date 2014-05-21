@@ -1,22 +1,74 @@
-19.05.2014 18:30:49
+21.05.2014 12:38:20
 Info: ServerCommunicationThread erfolgreich gestartet
-19.05.2014 18:30:49
-Info: Wrote to Server: NEW Artanoah
-19.05.2014 18:30:49
+21.05.2014 12:38:20
+Info: Wrote to Server: NEW φόδ!?
+21.05.2014 12:38:20
 Info: Server answer: OK
-19.05.2014 18:30:49
+21.05.2014 12:38:20
 Info: Wrote to Server: INFO
-19.05.2014 18:30:49
-Info: Server answer: LIST 1 192.168.1.12 Artanoah
-19.05.2014 18:30:51
+21.05.2014 12:38:20
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:22
 Info: Wrote to Server: INFO
-19.05.2014 18:30:51
-Info: Server answer: LIST 1 192.168.1.12 Artanoah
-19.05.2014 18:30:54
+21.05.2014 12:38:22
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:25
 Info: Wrote to Server: INFO
-19.05.2014 18:30:54
-Info: Server answer: LIST 1 192.168.1.12 Artanoah
-19.05.2014 18:30:56
+21.05.2014 12:38:25
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:27
+Info: Wrote to Server: INFO
+21.05.2014 12:38:27
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:30
+Info: Wrote to Server: INFO
+21.05.2014 12:38:30
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:32
+Info: Wrote to Server: INFO
+21.05.2014 12:38:32
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:35
+Info: Wrote to Server: INFO
+21.05.2014 12:38:35
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:37
+Info: Wrote to Server: INFO
+21.05.2014 12:38:37
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:40
+Info: Wrote to Server: INFO
+21.05.2014 12:38:40
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:42
+Info: Wrote to Server: INFO
+21.05.2014 12:38:42
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:45
+Info: Wrote to Server: INFO
+21.05.2014 12:38:45
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:47
+Info: Wrote to Server: INFO
+21.05.2014 12:38:47
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:50
+Info: Wrote to Server: INFO
+21.05.2014 12:38:50
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:52
+Info: Wrote to Server: INFO
+21.05.2014 12:38:52
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:55
+Info: Wrote to Server: INFO
+21.05.2014 12:38:55
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:38:57
+Info: Wrote to Server: INFO
+21.05.2014 12:38:57
+Info: Server answer: LIST 1 127.0.0.1 φόδ!?
+21.05.2014 12:39:00
 Info: Wrote to Server: BYE
-19.05.2014 18:30:56
+21.05.2014 12:39:00
 Info: Server answer: BYE

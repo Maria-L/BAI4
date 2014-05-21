@@ -1,4 +1,2 @@
-19.05.2014 13:14:07
+21.05.2014 12:37:34
 Info: Der Chat-Server laeuft auf TCP-Port 50000
-19.05.2014 13:14:07
-Warning: Address already in use: JVM_Bind
