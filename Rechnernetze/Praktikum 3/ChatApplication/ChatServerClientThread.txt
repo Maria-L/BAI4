@@ -1,74 +1,26 @@
-21.05.2014 12:38:20
+26.05.2014 13:21:43
 Info: Verbindung wurde erfolgreich aufgebaut
-21.05.2014 12:38:20
-Info: Client 1 request: NEW φόδ!?
-21.05.2014 12:38:20
+26.05.2014 13:21:49
+Info: Client 1 request: NEW tester1
+26.05.2014 13:21:49
 Info: Wrote to Client 1: OK
-21.05.2014 12:38:20
+26.05.2014 13:21:53
 Info: Client 1 request: INFO
-21.05.2014 12:38:20
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:22
+26.05.2014 13:21:53
+Info: Wrote to Client 1: LIST 1 lab22.cpt.haw-hamburg.de tester1
+26.05.2014 13:21:54
 Info: Client 1 request: INFO
-21.05.2014 12:38:22
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:25
+26.05.2014 13:21:54
+Info: Wrote to Client 1: LIST 1 lab22.cpt.haw-hamburg.de tester1
+26.05.2014 13:21:54
 Info: Client 1 request: INFO
-21.05.2014 12:38:25
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:27
+26.05.2014 13:21:54
+Info: Wrote to Client 1: LIST 1 lab22.cpt.haw-hamburg.de tester1
+26.05.2014 13:21:55
 Info: Client 1 request: INFO
-21.05.2014 12:38:27
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:30
-Info: Client 1 request: INFO
-21.05.2014 12:38:30
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:32
-Info: Client 1 request: INFO
-21.05.2014 12:38:32
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:35
-Info: Client 1 request: INFO
-21.05.2014 12:38:35
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:37
-Info: Client 1 request: INFO
-21.05.2014 12:38:37
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:40
-Info: Client 1 request: INFO
-21.05.2014 12:38:40
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:42
-Info: Client 1 request: INFO
-21.05.2014 12:38:42
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:45
-Info: Client 1 request: INFO
-21.05.2014 12:38:45
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:47
-Info: Client 1 request: INFO
-21.05.2014 12:38:47
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:50
-Info: Client 1 request: INFO
-21.05.2014 12:38:50
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:52
-Info: Client 1 request: INFO
-21.05.2014 12:38:52
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:55
-Info: Client 1 request: INFO
-21.05.2014 12:38:55
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:38:57
-Info: Client 1 request: INFO
-21.05.2014 12:38:57
-Info: Wrote to Client 1: LIST 1 127.0.0.1 φόδ!?
-21.05.2014 12:39:00
+26.05.2014 13:21:55
+Info: Wrote to Client 1: LIST 1 lab22.cpt.haw-hamburg.de tester1
+26.05.2014 13:21:57
 Info: Client 1 request: BYE
-21.05.2014 12:39:00
+26.05.2014 13:21:57
 Info: Wrote to Client 1: BYE

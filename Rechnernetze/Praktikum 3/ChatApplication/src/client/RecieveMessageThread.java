@@ -8,6 +8,7 @@ import java.net.SocketTimeoutException;
 
 public class RecieveMessageThread extends Thread {
 	private final int BUFFER_SIZE = 130;
+	private final int OFFSET = 0;
 	
 	private DatagramSocket socket;
 	private static boolean running = true;
@@ -33,7 +34,7 @@ public class RecieveMessageThread extends Thread {
 				DatagramPacket recievePacket = new DatagramPacket(recieveData, BUFFER_SIZE);
 				
 				socket.receive(recievePacket);
-				answerFromClient = new String(recievePacket.getData(), 0, recievePacket.getLength());
+				answerFromClient = new String(recievePacket.getData(), OFFSET, recievePacket.getLength());
 				
 				ChatClientMain.addMessage(answerFromClient);
 			} catch (SocketTimeoutException e) {

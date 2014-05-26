@@ -12,6 +12,9 @@ import data.ChatUser;
 import data.Log;
 
 public class ChatClientMain {
+	private static int TCPPORT = 50000; 
+	private static int UDPPORT = 50001;
+	
 	private static boolean running = true;
 	
 	private static String userName = "";
@@ -37,7 +40,7 @@ public class ChatClientMain {
 		
 		//DatagramSocket udpSocket = null;
 		try {
-			tcpSocket = new Socket(hostAddresse, 50000);
+			tcpSocket = new Socket(hostAddresse, TCPPORT);
 		} catch (SocketException e) {
 			log.newWarning("TCP-Socket konnte nicht erstellt werden - Beende");
 			return;
@@ -50,7 +53,7 @@ public class ChatClientMain {
 		}
 		
 		try {
-			udpSocket = new DatagramSocket(50001);
+			udpSocket = new DatagramSocket(UDPPORT);
 		} catch (SocketException e) {
 			log.newWarning("UDP-Socket konnte nicht erstellt werden - Beende");
 			return;
@@ -64,14 +67,14 @@ public class ChatClientMain {
 
 		clientGUI.main();
 		
-		while(running) {
+		/*while(running) {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 	public static void refreshUserList(List<ChatUser> users) {
@@ -86,7 +89,7 @@ public class ChatClientMain {
 	}
 	
 	public static void sendMessage(String m) {
-		(new SendMessageThread(user, udpSocket, m)).start();
+		(new SendMessageThread(user, udpSocket, m + "\n")).start();
 	}
 	
 	public static List<ChatUser> getUserList() {
