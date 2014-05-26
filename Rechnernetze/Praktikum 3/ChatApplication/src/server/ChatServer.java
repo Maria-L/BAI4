@@ -99,5 +99,15 @@ public class ChatServer {
 	public static List<ChatUser> getUserList() {
 		return userList;
 	}
+	
+	public static boolean userAlreadyInUse(String userName) {
+		for(ChatUser u : userList) {
+			if(u.getUserName().equals(userName)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
 

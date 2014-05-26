@@ -20,11 +20,13 @@ public class ChatServerClientThread extends Thread {
 	private final String INFO = "INFO";
 	private final String BYE = "BYE";
 	
+	private final int MAXNAMELENGTH = 20;
+	
 	private int name;
 	private Socket socket;
 	boolean running = true;
 	private String userName;
-	private Pattern userNamePattern = Pattern.compile("[^a-z0-9A-Z], Pattern.CASEINSENSITIVE");
+	private Pattern userNamePattern = Pattern.compile(".*[^a-z0-9A-Z]+.*");
 	
 	private InputStream inputStream;
 	private OutputStream outputStream;
@@ -47,7 +49,6 @@ public class ChatServerClientThread extends Thread {
 		String answerToUser;
 		String command;
 		String argument;
-		
 		
 		//Ausnullen zur Sicherheit
 		outputStream = null;
@@ -99,7 +100,9 @@ public class ChatServerClientThread extends Thread {
 				}
 			} catch (IOException e) {
 				log.newWarning(e.getMessage());
+				ChatServer.deleteUser(userName);
 				running = false;
+				break;
 			}
 			
 			//Input verarbeiten
@@ -111,13 +114,16 @@ public class ChatServerClientThread extends Thread {
 					Matcher m = userNamePattern.matcher(argument);
 					
 					if(userName != "") {
-						writeToClient("ERROR Es wurde schon ein Name gewaehlt");
+						writeToClient("ERROR Es wurde schon ein Name gewaehlt oder der eingegebene Name ist leer");
 						running = false;
-					} else if (argument.length() > 20) {
+					} else if (argument.length() > MAXNAMELENGTH) {
 						writeToClient("ERROR Der Name enthaelt zu viele Zeichen");
 						running = false;
-					} else if (m.find()) {
+					} else if (m.matches()) {
 						writeToClient("ERROR Der Name enthaelt Sonderzeichen");
+						running = false;
+					} else if (ChatServer.userAlreadyInUse(argument)) {
+						writeToClient("ERROR Der Name ist schon vergeben");
 						running = false;
 					} else {
 						ChatServer.addUser(argument, socket.getInetAddress().getCanonicalHostName());
@@ -149,10 +155,18 @@ public class ChatServerClientThread extends Thread {
 					ChatServer.deleteUser(userName);
 					writeToClient("BYE");
 					break;
+					
+				default:
+					
+					running = false;
+					ChatServer.deleteUser(userName);
+					writeToClient("ERROR Unbekanntes Argument");
+					break;
 				}
 			
 			} catch (IOException e) {
 				log.newWarning(e.getMessage());
+				ChatServer.deleteUser(userName);
 				running = false;
 			}
 			
@@ -180,6 +194,12 @@ public class ChatServerClientThread extends Thread {
 		String request = br.readLine();
 		log.newInfo("Client " + name +" request: " + request);
 		System.out.println("Client " + name +" request: " + request);
+		
+		if(request == null) {
+			log.newWarning("Client hat die Verbindung unplanungsmäßig abgebrochen");
+			throw new IOException("Client hat die Verbindung unplanungsmäßig abgebrochen");
+		}
+		
 		return request;
 		
 	}

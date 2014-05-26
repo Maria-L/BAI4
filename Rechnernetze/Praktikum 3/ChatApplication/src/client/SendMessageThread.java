@@ -10,6 +10,7 @@ import data.ChatUser;
 public class SendMessageThread extends Thread {
 	
 	private final int MAXMESSAGELENGTH = 100;
+	private final int UDPPORT = 50001;
 	
 	static boolean running = true;
 	private String userName;
@@ -35,7 +36,7 @@ public class SendMessageThread extends Thread {
 		
 		for(ChatUser u : ChatClientMain.getUserList()) {
 			try {
-				DatagramPacket sendPacket = new DatagramPacket(answerToServer, answerToServer.length, InetAddress.getByName(u.getHost()), 50001);
+				DatagramPacket sendPacket = new DatagramPacket(answerToServer, answerToServer.length, InetAddress.getByName(u.getHost()), UDPPORT);
 				socket.send(sendPacket);
 			} catch (IOException e) {
 				System.out.println("Nachricht an "+ socket + " konnte nicht versandt werden");
