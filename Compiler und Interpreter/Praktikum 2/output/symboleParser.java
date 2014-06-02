@@ -1,32 +1,31 @@
-// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g 2014-05-21 13:29:17
+// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g 2014-05-26 16:38:30
 
 import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.antlr.runtime.debug.*;
-import java.io.IOException;
 import org.antlr.runtime.tree.*;
 
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
-public class symboleParser extends DebugParser {
+public class symboleParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BCHAR", "COLUMN", "COMMENT", "EQ", "LINE", "NL", "OP", "SIGN", "START", "WS"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ADD", "BCHAR", "COLUMN", "COMMENT", "EQ", "LINE", "NL", "SIGN", "START", "SUB", "WS"
     };
 
     public static final int EOF=-1;
-    public static final int BCHAR=4;
-    public static final int COLUMN=5;
-    public static final int COMMENT=6;
-    public static final int EQ=7;
-    public static final int LINE=8;
-    public static final int NL=9;
-    public static final int OP=10;
+    public static final int ADD=4;
+    public static final int BCHAR=5;
+    public static final int COLUMN=6;
+    public static final int COMMENT=7;
+    public static final int EQ=8;
+    public static final int LINE=9;
+    public static final int NL=10;
     public static final int SIGN=11;
     public static final int START=12;
-    public static final int WS=13;
+    public static final int SUB=13;
+    public static final int WS=14;
 
     // delegates
     public Parser[] getDelegates() {
@@ -36,64 +35,21 @@ public class symboleParser extends DebugParser {
     // delegators
 
 
-public static final String[] ruleNames = new String[] {
-    "invalidRule", "start", "signline", "signs"
-};
-
-public static final boolean[] decisionCanBacktrack = new boolean[] {
-    false, // invalid decision
-    false, false, false, false, false, false
-};
-
- 
-    public int ruleLevel = 0;
-    public int getRuleLevel() { return ruleLevel; }
-    public void incRuleLevel() { ruleLevel++; }
-    public void decRuleLevel() { ruleLevel--; }
     public symboleParser(TokenStream input) {
-        this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
+        this(input, new RecognizerSharedState());
     }
-    public symboleParser(TokenStream input, int port, RecognizerSharedState state) {
+    public symboleParser(TokenStream input, RecognizerSharedState state) {
         super(input, state);
-        DebugEventSocketProxy proxy =
-            new DebugEventSocketProxy(this,port,adaptor);
-        setDebugListener(proxy);
-        setTokenStream(new DebugTokenStream(input,proxy));
-        try {
-            proxy.handshake();
-        }
-        catch (IOException ioe) {
-            reportError(ioe);
-        }
-        TreeAdaptor adap = new CommonTreeAdaptor();
-        setTreeAdaptor(adap);
-        proxy.setTreeAdaptor(adap);
     }
 
-public symboleParser(TokenStream input, DebugEventListener dbg) {
-    super(input, dbg);
-     
-    TreeAdaptor adap = new CommonTreeAdaptor();
-    setTreeAdaptor(adap);
+protected TreeAdaptor adaptor = new CommonTreeAdaptor();
 
-
-}
-
-protected boolean evalPredicate(boolean result, String predicate) {
-    dbg.semanticPredicate(result, predicate);
-    return result;
-}
-
-protected DebugTreeAdaptor adaptor;
 public void setTreeAdaptor(TreeAdaptor adaptor) {
-    this.adaptor = new DebugTreeAdaptor(dbg,adaptor);
-
-
+    this.adaptor = adaptor;
 }
 public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
-
     public String[] getTokenNames() { return symboleParser.tokenNames; }
     public String getGrammarFileName() { return "Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g"; }
 
@@ -105,7 +61,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "start"
-    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:1: start : si1= signs op1= OP si2= signs EQ si3= signs ( NL )+ op3= OP op4= OP op5= OP ( NL )+ si4= signs op6= OP si7= signs EQ si8= signs ( NL )+ EQ EQ EQ ( NL )+ si9= signs op7= OP si10= signs EQ si11= signs ( NL )* -> ^( START ^( LINE $si1 $op1 $si2 EQ $si3) ^( LINE $si4 $op6 $si7 EQ $si8) ^( LINE $si9 $op7 $si10 EQ $si11) ^( COLUMN $si1 $op3 $si4 EQ $si9) ^( COLUMN $si2 $op4 $si7 EQ $si10) ^( COLUMN $si3 $op5 $si8 EQ $si11) ) ;
+    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:1: start : si1= signs (op1= ADD |op1= SUB ) si2= signs EQ si3= signs ( NL )+ (op3= ADD |op3= SUB ) (op4= ADD |op4= SUB ) (op5= ADD |op5= SUB ) ( NL )+ si4= signs (op6= ADD |op6= SUB ) si7= signs EQ si8= signs ( NL )+ EQ EQ EQ ( NL )+ si9= signs (op7= ADD |op7= SUB ) si10= signs EQ si11= signs ( NL )* -> ^( LINE $si1 $op1 $si2 EQ $si3) ^( LINE $si4 $op6 $si7 EQ $si8) ^( LINE $si9 $op7 $si10 EQ $si11) ^( COLUMN $si1 $op3 $si4 EQ $si9) ^( COLUMN $si2 $op4 $si7 EQ $si10) ^( COLUMN $si3 $op5 $si8 EQ $si11) ;
     public final symboleParser.start_return start() throws RecognitionException {
         symboleParser.start_return retval = new symboleParser.start_return();
         retval.start = input.LT(1);
@@ -166,117 +122,85 @@ public TreeAdaptor getTreeAdaptor() {
         CommonTree NL9_tree=null;
         CommonTree EQ10_tree=null;
         CommonTree NL11_tree=null;
-        RewriteRuleTokenStream stream_OP=new RewriteRuleTokenStream(adaptor,"token OP");
+        RewriteRuleTokenStream stream_ADD=new RewriteRuleTokenStream(adaptor,"token ADD");
+        RewriteRuleTokenStream stream_SUB=new RewriteRuleTokenStream(adaptor,"token SUB");
         RewriteRuleTokenStream stream_EQ=new RewriteRuleTokenStream(adaptor,"token EQ");
         RewriteRuleTokenStream stream_NL=new RewriteRuleTokenStream(adaptor,"token NL");
         RewriteRuleSubtreeStream stream_signs=new RewriteRuleSubtreeStream(adaptor,"rule signs");
-        try { dbg.enterRule(getGrammarFileName(), "start");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(17, 0);
-
         try {
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:8: (si1= signs op1= OP si2= signs EQ si3= signs ( NL )+ op3= OP op4= OP op5= OP ( NL )+ si4= signs op6= OP si7= signs EQ si8= signs ( NL )+ EQ EQ EQ ( NL )+ si9= signs op7= OP si10= signs EQ si11= signs ( NL )* -> ^( START ^( LINE $si1 $op1 $si2 EQ $si3) ^( LINE $si4 $op6 $si7 EQ $si8) ^( LINE $si9 $op7 $si10 EQ $si11) ^( COLUMN $si1 $op3 $si4 EQ $si9) ^( COLUMN $si2 $op4 $si7 EQ $si10) ^( COLUMN $si3 $op5 $si8 EQ $si11) ) )
-            dbg.enterAlt(1);
-
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:11: si1= signs op1= OP si2= signs EQ si3= signs ( NL )+ op3= OP op4= OP op5= OP ( NL )+ si4= signs op6= OP si7= signs EQ si8= signs ( NL )+ EQ EQ EQ ( NL )+ si9= signs op7= OP si10= signs EQ si11= signs ( NL )*
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:8: (si1= signs (op1= ADD |op1= SUB ) si2= signs EQ si3= signs ( NL )+ (op3= ADD |op3= SUB ) (op4= ADD |op4= SUB ) (op5= ADD |op5= SUB ) ( NL )+ si4= signs (op6= ADD |op6= SUB ) si7= signs EQ si8= signs ( NL )+ EQ EQ EQ ( NL )+ si9= signs (op7= ADD |op7= SUB ) si10= signs EQ si11= signs ( NL )* -> ^( LINE $si1 $op1 $si2 EQ $si3) ^( LINE $si4 $op6 $si7 EQ $si8) ^( LINE $si9 $op7 $si10 EQ $si11) ^( COLUMN $si1 $op3 $si4 EQ $si9) ^( COLUMN $si2 $op4 $si7 EQ $si10) ^( COLUMN $si3 $op5 $si8 EQ $si11) )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:11: si1= signs (op1= ADD |op1= SUB ) si2= signs EQ si3= signs ( NL )+ (op3= ADD |op3= SUB ) (op4= ADD |op4= SUB ) (op5= ADD |op5= SUB ) ( NL )+ si4= signs (op6= ADD |op6= SUB ) si7= signs EQ si8= signs ( NL )+ EQ EQ EQ ( NL )+ si9= signs (op7= ADD |op7= SUB ) si10= signs EQ si11= signs ( NL )*
             {
-            dbg.location(17,14);
             pushFollow(FOLLOW_signs_in_start54);
             si1=signs();
 
             state._fsp--;
 
             stream_signs.add(si1.getTree());
-            dbg.location(17,25);
-            op1=(Token)match(input,OP,FOLLOW_OP_in_start59);  
-            stream_OP.add(op1);
 
-            dbg.location(17,33);
-            pushFollow(FOLLOW_signs_in_start64);
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:22: (op1= ADD |op1= SUB )
+            int alt1=2;
+            int LA1_0 = input.LA(1);
+
+            if ( (LA1_0==ADD) ) {
+                alt1=1;
+            }
+            else if ( (LA1_0==SUB) ) {
+                alt1=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 1, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt1) {
+                case 1 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:23: op1= ADD
+                    {
+                    op1=(Token)match(input,ADD,FOLLOW_ADD_in_start60);  
+                    stream_ADD.add(op1);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:31: op1= SUB
+                    {
+                    op1=(Token)match(input,SUB,FOLLOW_SUB_in_start64);  
+                    stream_SUB.add(op1);
+
+
+                    }
+                    break;
+
+            }
+
+
+            pushFollow(FOLLOW_signs_in_start70);
             si2=signs();
 
             state._fsp--;
 
             stream_signs.add(si2.getTree());
-            dbg.location(17,41);
-            EQ1=(Token)match(input,EQ,FOLLOW_EQ_in_start67);  
+
+            EQ1=(Token)match(input,EQ,FOLLOW_EQ_in_start73);  
             stream_EQ.add(EQ1);
 
-            dbg.location(17,48);
-            pushFollow(FOLLOW_signs_in_start72);
+
+            pushFollow(FOLLOW_signs_in_start78);
             si3=signs();
 
             state._fsp--;
 
             stream_signs.add(si3.getTree());
-            dbg.location(17,55);
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:55: ( NL )+
-            int cnt1=0;
-            try { dbg.enterSubRule(1);
 
-            loop1:
-            do {
-                int alt1=2;
-                try { dbg.enterDecision(1, decisionCanBacktrack[1]);
-
-                int LA1_0 = input.LA(1);
-
-                if ( (LA1_0==NL) ) {
-                    alt1=1;
-                }
-
-
-                } finally {dbg.exitDecision(1);}
-
-                switch (alt1) {
-            	case 1 :
-            	    dbg.enterAlt(1);
-
-            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:55: NL
-            	    {
-            	    dbg.location(17,55);
-            	    NL2=(Token)match(input,NL,FOLLOW_NL_in_start74);  
-            	    stream_NL.add(NL2);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt1 >= 1 ) break loop1;
-                        EarlyExitException eee =
-                            new EarlyExitException(1, input);
-                        dbg.recognitionException(eee);
-
-                        throw eee;
-                }
-                cnt1++;
-            } while (true);
-            } finally {dbg.exitSubRule(1);}
-
-            dbg.location(18,7);
-            op3=(Token)match(input,OP,FOLLOW_OP_in_start83);  
-            stream_OP.add(op3);
-
-            dbg.location(18,17);
-            op4=(Token)match(input,OP,FOLLOW_OP_in_start90);  
-            stream_OP.add(op4);
-
-            dbg.location(18,26);
-            op5=(Token)match(input,OP,FOLLOW_OP_in_start96);  
-            stream_OP.add(op5);
-
-            dbg.location(18,30);
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:30: ( NL )+
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:68: ( NL )+
             int cnt2=0;
-            try { dbg.enterSubRule(2);
-
             loop2:
             do {
                 int alt2=2;
-                try { dbg.enterDecision(2, decisionCanBacktrack[2]);
-
                 int LA2_0 = input.LA(1);
 
                 if ( (LA2_0==NL) ) {
@@ -284,17 +208,12 @@ public TreeAdaptor getTreeAdaptor() {
                 }
 
 
-                } finally {dbg.exitDecision(2);}
-
                 switch (alt2) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
-            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:30: NL
+            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:17:68: NL
             	    {
-            	    dbg.location(18,30);
-            	    NL3=(Token)match(input,NL,FOLLOW_NL_in_start98);  
-            	    stream_NL.add(NL3);
+            	    NL2=(Token)match(input,NL,FOLLOW_NL_in_start82);  
+            	    stream_NL.add(NL2);
 
 
             	    }
@@ -304,70 +223,247 @@ public TreeAdaptor getTreeAdaptor() {
             	    if ( cnt2 >= 1 ) break loop2;
                         EarlyExitException eee =
                             new EarlyExitException(2, input);
-                        dbg.recognitionException(eee);
-
                         throw eee;
                 }
                 cnt2++;
             } while (true);
-            } finally {dbg.exitSubRule(2);}
 
-            dbg.location(19,7);
-            pushFollow(FOLLOW_signs_in_start107);
+
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:4: (op3= ADD |op3= SUB )
+            int alt3=2;
+            int LA3_0 = input.LA(1);
+
+            if ( (LA3_0==ADD) ) {
+                alt3=1;
+            }
+            else if ( (LA3_0==SUB) ) {
+                alt3=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 3, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt3) {
+                case 1 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:5: op3= ADD
+                    {
+                    op3=(Token)match(input,ADD,FOLLOW_ADD_in_start92);  
+                    stream_ADD.add(op3);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:13: op3= SUB
+                    {
+                    op3=(Token)match(input,SUB,FOLLOW_SUB_in_start96);  
+                    stream_SUB.add(op3);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:25: (op4= ADD |op4= SUB )
+            int alt4=2;
+            int LA4_0 = input.LA(1);
+
+            if ( (LA4_0==ADD) ) {
+                alt4=1;
+            }
+            else if ( (LA4_0==SUB) ) {
+                alt4=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 4, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt4) {
+                case 1 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:26: op4= ADD
+                    {
+                    op4=(Token)match(input,ADD,FOLLOW_ADD_in_start105);  
+                    stream_ADD.add(op4);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:34: op4= SUB
+                    {
+                    op4=(Token)match(input,SUB,FOLLOW_SUB_in_start109);  
+                    stream_SUB.add(op4);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:43: (op5= ADD |op5= SUB )
+            int alt5=2;
+            int LA5_0 = input.LA(1);
+
+            if ( (LA5_0==ADD) ) {
+                alt5=1;
+            }
+            else if ( (LA5_0==SUB) ) {
+                alt5=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 5, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt5) {
+                case 1 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:44: op5= ADD
+                    {
+                    op5=(Token)match(input,ADD,FOLLOW_ADD_in_start115);  
+                    stream_ADD.add(op5);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:52: op5= SUB
+                    {
+                    op5=(Token)match(input,SUB,FOLLOW_SUB_in_start119);  
+                    stream_SUB.add(op5);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:62: ( NL )+
+            int cnt6=0;
+            loop6:
+            do {
+                int alt6=2;
+                int LA6_0 = input.LA(1);
+
+                if ( (LA6_0==NL) ) {
+                    alt6=1;
+                }
+
+
+                switch (alt6) {
+            	case 1 :
+            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:18:62: NL
+            	    {
+            	    NL3=(Token)match(input,NL,FOLLOW_NL_in_start123);  
+            	    stream_NL.add(NL3);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    if ( cnt6 >= 1 ) break loop6;
+                        EarlyExitException eee =
+                            new EarlyExitException(6, input);
+                        throw eee;
+                }
+                cnt6++;
+            } while (true);
+
+
+            pushFollow(FOLLOW_signs_in_start132);
             si4=signs();
 
             state._fsp--;
 
             stream_signs.add(si4.getTree());
-            dbg.location(19,18);
-            op6=(Token)match(input,OP,FOLLOW_OP_in_start112);  
-            stream_OP.add(op6);
 
-            dbg.location(19,26);
-            pushFollow(FOLLOW_signs_in_start117);
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:19:15: (op6= ADD |op6= SUB )
+            int alt7=2;
+            int LA7_0 = input.LA(1);
+
+            if ( (LA7_0==ADD) ) {
+                alt7=1;
+            }
+            else if ( (LA7_0==SUB) ) {
+                alt7=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 7, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt7) {
+                case 1 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:19:16: op6= ADD
+                    {
+                    op6=(Token)match(input,ADD,FOLLOW_ADD_in_start138);  
+                    stream_ADD.add(op6);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:19:24: op6= SUB
+                    {
+                    op6=(Token)match(input,SUB,FOLLOW_SUB_in_start142);  
+                    stream_SUB.add(op6);
+
+
+                    }
+                    break;
+
+            }
+
+
+            pushFollow(FOLLOW_signs_in_start148);
             si7=signs();
 
             state._fsp--;
 
             stream_signs.add(si7.getTree());
-            dbg.location(19,34);
-            EQ4=(Token)match(input,EQ,FOLLOW_EQ_in_start120);  
+
+            EQ4=(Token)match(input,EQ,FOLLOW_EQ_in_start151);  
             stream_EQ.add(EQ4);
 
-            dbg.location(19,41);
-            pushFollow(FOLLOW_signs_in_start125);
+
+            pushFollow(FOLLOW_signs_in_start156);
             si8=signs();
 
             state._fsp--;
 
             stream_signs.add(si8.getTree());
-            dbg.location(19,48);
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:19:48: ( NL )+
-            int cnt3=0;
-            try { dbg.enterSubRule(3);
 
-            loop3:
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:19:61: ( NL )+
+            int cnt8=0;
+            loop8:
             do {
-                int alt3=2;
-                try { dbg.enterDecision(3, decisionCanBacktrack[3]);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                int LA3_0 = input.LA(1);
-
-                if ( (LA3_0==NL) ) {
-                    alt3=1;
+                if ( (LA8_0==NL) ) {
+                    alt8=1;
                 }
 
 
-                } finally {dbg.exitDecision(3);}
-
-                switch (alt3) {
+                switch (alt8) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
-            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:19:48: NL
+            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:19:61: NL
             	    {
-            	    dbg.location(19,48);
-            	    NL5=(Token)match(input,NL,FOLLOW_NL_in_start127);  
+            	    NL5=(Token)match(input,NL,FOLLOW_NL_in_start160);  
             	    stream_NL.add(NL5);
 
 
@@ -375,56 +471,44 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    if ( cnt3 >= 1 ) break loop3;
+            	    if ( cnt8 >= 1 ) break loop8;
                         EarlyExitException eee =
-                            new EarlyExitException(3, input);
-                        dbg.recognitionException(eee);
-
+                            new EarlyExitException(8, input);
                         throw eee;
                 }
-                cnt3++;
+                cnt8++;
             } while (true);
-            } finally {dbg.exitSubRule(3);}
 
-            dbg.location(20,4);
-            EQ6=(Token)match(input,EQ,FOLLOW_EQ_in_start134);  
+
+            EQ6=(Token)match(input,EQ,FOLLOW_EQ_in_start167);  
             stream_EQ.add(EQ6);
 
-            dbg.location(20,10);
-            EQ7=(Token)match(input,EQ,FOLLOW_EQ_in_start139);  
+
+            EQ7=(Token)match(input,EQ,FOLLOW_EQ_in_start174);  
             stream_EQ.add(EQ7);
 
-            dbg.location(20,16);
-            EQ8=(Token)match(input,EQ,FOLLOW_EQ_in_start144);  
+
+            EQ8=(Token)match(input,EQ,FOLLOW_EQ_in_start179);  
             stream_EQ.add(EQ8);
 
-            dbg.location(20,19);
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:20:19: ( NL )+
-            int cnt4=0;
-            try { dbg.enterSubRule(4);
 
-            loop4:
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:20:24: ( NL )+
+            int cnt9=0;
+            loop9:
             do {
-                int alt4=2;
-                try { dbg.enterDecision(4, decisionCanBacktrack[4]);
+                int alt9=2;
+                int LA9_0 = input.LA(1);
 
-                int LA4_0 = input.LA(1);
-
-                if ( (LA4_0==NL) ) {
-                    alt4=1;
+                if ( (LA9_0==NL) ) {
+                    alt9=1;
                 }
 
 
-                } finally {dbg.exitDecision(4);}
-
-                switch (alt4) {
+                switch (alt9) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
-            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:20:19: NL
+            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:20:24: NL
             	    {
-            	    dbg.location(20,19);
-            	    NL9=(Token)match(input,NL,FOLLOW_NL_in_start146);  
+            	    NL9=(Token)match(input,NL,FOLLOW_NL_in_start184);  
             	    stream_NL.add(NL9);
 
 
@@ -432,72 +516,96 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    if ( cnt4 >= 1 ) break loop4;
+            	    if ( cnt9 >= 1 ) break loop9;
                         EarlyExitException eee =
-                            new EarlyExitException(4, input);
-                        dbg.recognitionException(eee);
-
+                            new EarlyExitException(9, input);
                         throw eee;
                 }
-                cnt4++;
+                cnt9++;
             } while (true);
-            } finally {dbg.exitSubRule(4);}
 
-            dbg.location(21,7);
-            pushFollow(FOLLOW_signs_in_start155);
+
+            pushFollow(FOLLOW_signs_in_start193);
             si9=signs();
 
             state._fsp--;
 
             stream_signs.add(si9.getTree());
-            dbg.location(21,18);
-            op7=(Token)match(input,OP,FOLLOW_OP_in_start160);  
-            stream_OP.add(op7);
 
-            dbg.location(21,27);
-            pushFollow(FOLLOW_signs_in_start165);
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:21:15: (op7= ADD |op7= SUB )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
+
+            if ( (LA10_0==ADD) ) {
+                alt10=1;
+            }
+            else if ( (LA10_0==SUB) ) {
+                alt10=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 10, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt10) {
+                case 1 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:21:16: op7= ADD
+                    {
+                    op7=(Token)match(input,ADD,FOLLOW_ADD_in_start199);  
+                    stream_ADD.add(op7);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:21:24: op7= SUB
+                    {
+                    op7=(Token)match(input,SUB,FOLLOW_SUB_in_start203);  
+                    stream_SUB.add(op7);
+
+
+                    }
+                    break;
+
+            }
+
+
+            pushFollow(FOLLOW_signs_in_start209);
             si10=signs();
 
             state._fsp--;
 
             stream_signs.add(si10.getTree());
-            dbg.location(21,35);
-            EQ10=(Token)match(input,EQ,FOLLOW_EQ_in_start168);  
+
+            EQ10=(Token)match(input,EQ,FOLLOW_EQ_in_start212);  
             stream_EQ.add(EQ10);
 
-            dbg.location(21,43);
-            pushFollow(FOLLOW_signs_in_start173);
+
+            pushFollow(FOLLOW_signs_in_start217);
             si11=signs();
 
             state._fsp--;
 
             stream_signs.add(si11.getTree());
-            dbg.location(21,50);
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:21:50: ( NL )*
-            try { dbg.enterSubRule(5);
 
-            loop5:
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:21:63: ( NL )*
+            loop11:
             do {
-                int alt5=2;
-                try { dbg.enterDecision(5, decisionCanBacktrack[5]);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                int LA5_0 = input.LA(1);
-
-                if ( (LA5_0==NL) ) {
-                    alt5=1;
+                if ( (LA11_0==NL) ) {
+                    alt11=1;
                 }
 
 
-                } finally {dbg.exitDecision(5);}
-
-                switch (alt5) {
+                switch (alt11) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
-            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:21:50: NL
+            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:21:63: NL
             	    {
-            	    dbg.location(21,50);
-            	    NL11=(Token)match(input,NL,FOLLOW_NL_in_start175);  
+            	    NL11=(Token)match(input,NL,FOLLOW_NL_in_start221);  
             	    stream_NL.add(NL11);
 
 
@@ -505,16 +613,15 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop5;
+            	    break loop11;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(5);}
 
 
             // AST REWRITE
-            // elements: si7, op7, op6, EQ, si3, EQ, si4, si9, si8, si7, EQ, si10, EQ, si10, si4, si3, si9, si1, EQ, si8, si2, op4, si11, si11, si1, op1, EQ, si2, op3, op5
+            // elements: si2, si11, si7, EQ, si8, si7, si10, op5, si2, op4, EQ, op1, op6, EQ, op3, si4, si11, si1, EQ, EQ, si9, si8, si3, si9, si1, EQ, si3, op7, si4, si10
             // token labels: op1, op4, op3, op6, op5, op7
-            // rule labels: si7, si10, si9, si8, si11, si1, si3, si2, retval, si4
+            // rule labels: si7, si10, si9, si11, si8, si1, si3, si2, retval, si4
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
@@ -528,8 +635,8 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_si7=new RewriteRuleSubtreeStream(adaptor,"rule si7",si7!=null?si7.tree:null);
             RewriteRuleSubtreeStream stream_si10=new RewriteRuleSubtreeStream(adaptor,"rule si10",si10!=null?si10.tree:null);
             RewriteRuleSubtreeStream stream_si9=new RewriteRuleSubtreeStream(adaptor,"rule si9",si9!=null?si9.tree:null);
-            RewriteRuleSubtreeStream stream_si8=new RewriteRuleSubtreeStream(adaptor,"rule si8",si8!=null?si8.tree:null);
             RewriteRuleSubtreeStream stream_si11=new RewriteRuleSubtreeStream(adaptor,"rule si11",si11!=null?si11.tree:null);
+            RewriteRuleSubtreeStream stream_si8=new RewriteRuleSubtreeStream(adaptor,"rule si8",si8!=null?si8.tree:null);
             RewriteRuleSubtreeStream stream_si1=new RewriteRuleSubtreeStream(adaptor,"rule si1",si1!=null?si1.tree:null);
             RewriteRuleSubtreeStream stream_si3=new RewriteRuleSubtreeStream(adaptor,"rule si3",si3!=null?si3.tree:null);
             RewriteRuleSubtreeStream stream_si2=new RewriteRuleSubtreeStream(adaptor,"rule si2",si2!=null?si2.tree:null);
@@ -537,161 +644,136 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_si4=new RewriteRuleSubtreeStream(adaptor,"rule si4",si4!=null?si4.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 22:3: -> ^( START ^( LINE $si1 $op1 $si2 EQ $si3) ^( LINE $si4 $op6 $si7 EQ $si8) ^( LINE $si9 $op7 $si10 EQ $si11) ^( COLUMN $si1 $op3 $si4 EQ $si9) ^( COLUMN $si2 $op4 $si7 EQ $si10) ^( COLUMN $si3 $op5 $si8 EQ $si11) )
+            // 22:3: -> ^( LINE $si1 $op1 $si2 EQ $si3) ^( LINE $si4 $op6 $si7 EQ $si8) ^( LINE $si9 $op7 $si10 EQ $si11) ^( COLUMN $si1 $op3 $si4 EQ $si9) ^( COLUMN $si2 $op4 $si7 EQ $si10) ^( COLUMN $si3 $op5 $si8 EQ $si11)
             {
-                dbg.location(23,3);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:23:3: ^( START ^( LINE $si1 $op1 $si2 EQ $si3) ^( LINE $si4 $op6 $si7 EQ $si8) ^( LINE $si9 $op7 $si10 EQ $si11) ^( COLUMN $si1 $op3 $si4 EQ $si9) ^( COLUMN $si2 $op4 $si7 EQ $si10) ^( COLUMN $si3 $op5 $si8 EQ $si11) )
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:23:3: ^( LINE $si1 $op1 $si2 EQ $si3)
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
-                dbg.location(23,5);
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(START, "START")
+                (CommonTree)adaptor.create(LINE, "LINE")
                 , root_1);
 
-                dbg.location(24,3);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:24:3: ^( LINE $si1 $op1 $si2 EQ $si3)
+                adaptor.addChild(root_1, stream_si1.nextTree());
+
+                adaptor.addChild(root_1, stream_op1.nextNode());
+
+                adaptor.addChild(root_1, stream_si2.nextTree());
+
+                adaptor.addChild(root_1, 
+                stream_EQ.nextNode()
+                );
+
+                adaptor.addChild(root_1, stream_si3.nextTree());
+
+                adaptor.addChild(root_0, root_1);
+                }
+
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:24:3: ^( LINE $si4 $op6 $si7 EQ $si8)
                 {
-                CommonTree root_2 = (CommonTree)adaptor.nil();
-                dbg.location(24,5);
-                root_2 = (CommonTree)adaptor.becomeRoot(
+                CommonTree root_1 = (CommonTree)adaptor.nil();
+                root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(LINE, "LINE")
-                , root_2);
+                , root_1);
 
-                dbg.location(24,11);
-                adaptor.addChild(root_2, stream_si1.nextTree());
-                dbg.location(24,16);
-                adaptor.addChild(root_2, stream_op1.nextNode());
-                dbg.location(24,21);
-                adaptor.addChild(root_2, stream_si2.nextTree());
-                dbg.location(24,25);
-                adaptor.addChild(root_2, 
+                adaptor.addChild(root_1, stream_si4.nextTree());
+
+                adaptor.addChild(root_1, stream_op6.nextNode());
+
+                adaptor.addChild(root_1, stream_si7.nextTree());
+
+                adaptor.addChild(root_1, 
                 stream_EQ.nextNode()
                 );
-                dbg.location(24,29);
-                adaptor.addChild(root_2, stream_si3.nextTree());
 
-                adaptor.addChild(root_1, root_2);
+                adaptor.addChild(root_1, stream_si8.nextTree());
+
+                adaptor.addChild(root_0, root_1);
                 }
-                dbg.location(25,3);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:25:3: ^( LINE $si4 $op6 $si7 EQ $si8)
+
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:25:3: ^( LINE $si9 $op7 $si10 EQ $si11)
                 {
-                CommonTree root_2 = (CommonTree)adaptor.nil();
-                dbg.location(25,5);
-                root_2 = (CommonTree)adaptor.becomeRoot(
+                CommonTree root_1 = (CommonTree)adaptor.nil();
+                root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(LINE, "LINE")
-                , root_2);
+                , root_1);
 
-                dbg.location(25,11);
-                adaptor.addChild(root_2, stream_si4.nextTree());
-                dbg.location(25,16);
-                adaptor.addChild(root_2, stream_op6.nextNode());
-                dbg.location(25,21);
-                adaptor.addChild(root_2, stream_si7.nextTree());
-                dbg.location(25,25);
-                adaptor.addChild(root_2, 
+                adaptor.addChild(root_1, stream_si9.nextTree());
+
+                adaptor.addChild(root_1, stream_op7.nextNode());
+
+                adaptor.addChild(root_1, stream_si10.nextTree());
+
+                adaptor.addChild(root_1, 
                 stream_EQ.nextNode()
                 );
-                dbg.location(25,29);
-                adaptor.addChild(root_2, stream_si8.nextTree());
 
-                adaptor.addChild(root_1, root_2);
+                adaptor.addChild(root_1, stream_si11.nextTree());
+
+                adaptor.addChild(root_0, root_1);
                 }
-                dbg.location(26,3);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:26:3: ^( LINE $si9 $op7 $si10 EQ $si11)
-                {
-                CommonTree root_2 = (CommonTree)adaptor.nil();
-                dbg.location(26,5);
-                root_2 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(LINE, "LINE")
-                , root_2);
 
-                dbg.location(26,11);
-                adaptor.addChild(root_2, stream_si9.nextTree());
-                dbg.location(26,16);
-                adaptor.addChild(root_2, stream_op7.nextNode());
-                dbg.location(26,21);
-                adaptor.addChild(root_2, stream_si10.nextTree());
-                dbg.location(26,26);
-                adaptor.addChild(root_2, 
-                stream_EQ.nextNode()
-                );
-                dbg.location(26,30);
-                adaptor.addChild(root_2, stream_si11.nextTree());
-
-                adaptor.addChild(root_1, root_2);
-                }
-                dbg.location(27,3);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:27:3: ^( COLUMN $si1 $op3 $si4 EQ $si9)
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:26:3: ^( COLUMN $si1 $op3 $si4 EQ $si9)
                 {
-                CommonTree root_2 = (CommonTree)adaptor.nil();
-                dbg.location(27,5);
-                root_2 = (CommonTree)adaptor.becomeRoot(
+                CommonTree root_1 = (CommonTree)adaptor.nil();
+                root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(COLUMN, "COLUMN")
-                , root_2);
+                , root_1);
 
-                dbg.location(27,13);
-                adaptor.addChild(root_2, stream_si1.nextTree());
-                dbg.location(27,18);
-                adaptor.addChild(root_2, stream_op3.nextNode());
-                dbg.location(27,23);
-                adaptor.addChild(root_2, stream_si4.nextTree());
-                dbg.location(27,27);
-                adaptor.addChild(root_2, 
+                adaptor.addChild(root_1, stream_si1.nextTree());
+
+                adaptor.addChild(root_1, stream_op3.nextNode());
+
+                adaptor.addChild(root_1, stream_si4.nextTree());
+
+                adaptor.addChild(root_1, 
                 stream_EQ.nextNode()
                 );
-                dbg.location(27,31);
-                adaptor.addChild(root_2, stream_si9.nextTree());
 
-                adaptor.addChild(root_1, root_2);
+                adaptor.addChild(root_1, stream_si9.nextTree());
+
+                adaptor.addChild(root_0, root_1);
                 }
-                dbg.location(28,3);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:28:3: ^( COLUMN $si2 $op4 $si7 EQ $si10)
+
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:27:3: ^( COLUMN $si2 $op4 $si7 EQ $si10)
                 {
-                CommonTree root_2 = (CommonTree)adaptor.nil();
-                dbg.location(28,5);
-                root_2 = (CommonTree)adaptor.becomeRoot(
+                CommonTree root_1 = (CommonTree)adaptor.nil();
+                root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(COLUMN, "COLUMN")
-                , root_2);
+                , root_1);
 
-                dbg.location(28,13);
-                adaptor.addChild(root_2, stream_si2.nextTree());
-                dbg.location(28,18);
-                adaptor.addChild(root_2, stream_op4.nextNode());
-                dbg.location(28,23);
-                adaptor.addChild(root_2, stream_si7.nextTree());
-                dbg.location(28,27);
-                adaptor.addChild(root_2, 
+                adaptor.addChild(root_1, stream_si2.nextTree());
+
+                adaptor.addChild(root_1, stream_op4.nextNode());
+
+                adaptor.addChild(root_1, stream_si7.nextTree());
+
+                adaptor.addChild(root_1, 
                 stream_EQ.nextNode()
                 );
-                dbg.location(28,31);
-                adaptor.addChild(root_2, stream_si10.nextTree());
 
-                adaptor.addChild(root_1, root_2);
+                adaptor.addChild(root_1, stream_si10.nextTree());
+
+                adaptor.addChild(root_0, root_1);
                 }
-                dbg.location(29,3);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:29:3: ^( COLUMN $si3 $op5 $si8 EQ $si11)
+
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:28:3: ^( COLUMN $si3 $op5 $si8 EQ $si11)
                 {
-                CommonTree root_2 = (CommonTree)adaptor.nil();
-                dbg.location(29,5);
-                root_2 = (CommonTree)adaptor.becomeRoot(
+                CommonTree root_1 = (CommonTree)adaptor.nil();
+                root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(COLUMN, "COLUMN")
-                , root_2);
+                , root_1);
 
-                dbg.location(29,13);
-                adaptor.addChild(root_2, stream_si3.nextTree());
-                dbg.location(29,18);
-                adaptor.addChild(root_2, stream_op5.nextNode());
-                dbg.location(29,23);
-                adaptor.addChild(root_2, stream_si8.nextTree());
-                dbg.location(29,27);
-                adaptor.addChild(root_2, 
+                adaptor.addChild(root_1, stream_si3.nextTree());
+
+                adaptor.addChild(root_1, stream_op5.nextNode());
+
+                adaptor.addChild(root_1, stream_si8.nextTree());
+
+                adaptor.addChild(root_1, 
                 stream_EQ.nextNode()
                 );
-                dbg.location(29,31);
-                adaptor.addChild(root_2, stream_si11.nextTree());
 
-                adaptor.addChild(root_1, root_2);
-                }
+                adaptor.addChild(root_1, stream_si11.nextTree());
 
                 adaptor.addChild(root_0, root_1);
                 }
@@ -720,15 +802,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(31, 2);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "start");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "start"
@@ -741,7 +814,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "signline"
-    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:33:1: signline : signs OP signs EQ signs ;
+    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:32:1: signline : signs ( ADD | SUB ) signs EQ signs ;
     public final symboleParser.signline_return signline() throws RecognitionException {
         symboleParser.signline_return retval = new symboleParser.signline_return();
         retval.start = input.LT(1);
@@ -749,7 +822,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         CommonTree root_0 = null;
 
-        Token OP13=null;
+        Token set13=null;
         Token EQ15=null;
         symboleParser.signs_return signs12 =null;
 
@@ -758,53 +831,53 @@ public TreeAdaptor getTreeAdaptor() {
         symboleParser.signs_return signs16 =null;
 
 
-        CommonTree OP13_tree=null;
+        CommonTree set13_tree=null;
         CommonTree EQ15_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "signline");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(33, 0);
-
         try {
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:33:9: ( signs OP signs EQ signs )
-            dbg.enterAlt(1);
-
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:33:11: signs OP signs EQ signs
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:32:9: ( signs ( ADD | SUB ) signs EQ signs )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:32:11: signs ( ADD | SUB ) signs EQ signs
             {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            dbg.location(33,11);
-            pushFollow(FOLLOW_signs_in_signline319);
+            pushFollow(FOLLOW_signs_in_signline359);
             signs12=signs();
 
             state._fsp--;
 
             adaptor.addChild(root_0, signs12.getTree());
-            dbg.location(33,17);
-            OP13=(Token)match(input,OP,FOLLOW_OP_in_signline321); 
-            OP13_tree = 
-            (CommonTree)adaptor.create(OP13)
-            ;
-            adaptor.addChild(root_0, OP13_tree);
 
-            dbg.location(33,20);
-            pushFollow(FOLLOW_signs_in_signline323);
+            set13=(Token)input.LT(1);
+
+            if ( input.LA(1)==ADD||input.LA(1)==SUB ) {
+                input.consume();
+                adaptor.addChild(root_0, 
+                (CommonTree)adaptor.create(set13)
+                );
+                state.errorRecovery=false;
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                throw mse;
+            }
+
+
+            pushFollow(FOLLOW_signs_in_signline367);
             signs14=signs();
 
             state._fsp--;
 
             adaptor.addChild(root_0, signs14.getTree());
-            dbg.location(33,26);
-            EQ15=(Token)match(input,EQ,FOLLOW_EQ_in_signline325); 
+
+            EQ15=(Token)match(input,EQ,FOLLOW_EQ_in_signline369); 
             EQ15_tree = 
             (CommonTree)adaptor.create(EQ15)
             ;
             adaptor.addChild(root_0, EQ15_tree);
 
-            dbg.location(33,29);
-            pushFollow(FOLLOW_signs_in_signline327);
+
+            pushFollow(FOLLOW_signs_in_signline371);
             signs16=signs();
 
             state._fsp--;
@@ -830,15 +903,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(34, 2);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "signline");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "signline"
@@ -851,7 +915,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "signs"
-    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:37:1: signs : (id+= BCHAR )+ -> ^( SIGN ( $id)* ) ;
+    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:36:1: signs : (id+= BCHAR )+ -> ^( SIGN ( $id)* ) ;
     public final symboleParser.signs_return signs() throws RecognitionException {
         symboleParser.signs_return retval = new symboleParser.signs_return();
         retval.start = input.LT(1);
@@ -865,44 +929,27 @@ public TreeAdaptor getTreeAdaptor() {
         CommonTree id_tree=null;
         RewriteRuleTokenStream stream_BCHAR=new RewriteRuleTokenStream(adaptor,"token BCHAR");
 
-        try { dbg.enterRule(getGrammarFileName(), "signs");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(37, 0);
-
         try {
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:37:7: ( (id+= BCHAR )+ -> ^( SIGN ( $id)* ) )
-            dbg.enterAlt(1);
-
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:37:9: (id+= BCHAR )+
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:36:7: ( (id+= BCHAR )+ -> ^( SIGN ( $id)* ) )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:36:9: (id+= BCHAR )+
             {
-            dbg.location(37,11);
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:37:11: (id+= BCHAR )+
-            int cnt6=0;
-            try { dbg.enterSubRule(6);
-
-            loop6:
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:36:11: (id+= BCHAR )+
+            int cnt12=0;
+            loop12:
             do {
-                int alt6=2;
-                try { dbg.enterDecision(6, decisionCanBacktrack[6]);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                int LA6_0 = input.LA(1);
-
-                if ( (LA6_0==BCHAR) ) {
-                    alt6=1;
+                if ( (LA12_0==BCHAR) ) {
+                    alt12=1;
                 }
 
 
-                } finally {dbg.exitDecision(6);}
-
-                switch (alt6) {
+                switch (alt12) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
-            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:37:11: id+= BCHAR
+            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:36:11: id+= BCHAR
             	    {
-            	    dbg.location(37,11);
-            	    id=(Token)match(input,BCHAR,FOLLOW_BCHAR_in_signs344);  
+            	    id=(Token)match(input,BCHAR,FOLLOW_BCHAR_in_signs388);  
             	    stream_BCHAR.add(id);
 
             	    if (list_id==null) list_id=new ArrayList();
@@ -913,16 +960,13 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    if ( cnt6 >= 1 ) break loop6;
+            	    if ( cnt12 >= 1 ) break loop12;
                         EarlyExitException eee =
-                            new EarlyExitException(6, input);
-                        dbg.recognitionException(eee);
-
+                            new EarlyExitException(12, input);
                         throw eee;
                 }
-                cnt6++;
+                cnt12++;
             } while (true);
-            } finally {dbg.exitSubRule(6);}
 
 
             // AST REWRITE
@@ -937,21 +981,17 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 37:20: -> ^( SIGN ( $id)* )
+            // 36:20: -> ^( SIGN ( $id)* )
             {
-                dbg.location(37,23);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:37:23: ^( SIGN ( $id)* )
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:36:23: ^( SIGN ( $id)* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
-                dbg.location(37,25);
                 root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(SIGN, "SIGN")
                 , root_1);
 
-                dbg.location(37,31);
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:37:31: ( $id)*
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:36:31: ( $id)*
                 while ( stream_id.hasNext() ) {
-                    dbg.location(37,31);
                     adaptor.addChild(root_1, stream_id.nextNode());
 
                 }
@@ -984,15 +1024,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(38, 2);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "signs");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "signs"
@@ -1002,37 +1033,43 @@ public TreeAdaptor getTreeAdaptor() {
 
  
 
-    public static final BitSet FOLLOW_signs_in_start54 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_OP_in_start59 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_signs_in_start64 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_EQ_in_start67 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_signs_in_start72 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_NL_in_start74 = new BitSet(new long[]{0x0000000000000600L});
-    public static final BitSet FOLLOW_OP_in_start83 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_OP_in_start90 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_OP_in_start96 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_NL_in_start98 = new BitSet(new long[]{0x0000000000000210L});
-    public static final BitSet FOLLOW_signs_in_start107 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_OP_in_start112 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_signs_in_start117 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_EQ_in_start120 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_signs_in_start125 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_NL_in_start127 = new BitSet(new long[]{0x0000000000000280L});
-    public static final BitSet FOLLOW_EQ_in_start134 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_EQ_in_start139 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_EQ_in_start144 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_NL_in_start146 = new BitSet(new long[]{0x0000000000000210L});
-    public static final BitSet FOLLOW_signs_in_start155 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_OP_in_start160 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_signs_in_start165 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_EQ_in_start168 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_signs_in_start173 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_NL_in_start175 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_signs_in_signline319 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_OP_in_signline321 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_signs_in_signline323 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_EQ_in_signline325 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_signs_in_signline327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BCHAR_in_signs344 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_signs_in_start54 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_ADD_in_start60 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SUB_in_start64 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_signs_in_start70 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQ_in_start73 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_signs_in_start78 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_NL_in_start82 = new BitSet(new long[]{0x0000000000002410L});
+    public static final BitSet FOLLOW_ADD_in_start92 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_SUB_in_start96 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_ADD_in_start105 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_SUB_in_start109 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_ADD_in_start115 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_SUB_in_start119 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_NL_in_start123 = new BitSet(new long[]{0x0000000000000420L});
+    public static final BitSet FOLLOW_signs_in_start132 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_ADD_in_start138 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SUB_in_start142 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_signs_in_start148 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQ_in_start151 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_signs_in_start156 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_NL_in_start160 = new BitSet(new long[]{0x0000000000000500L});
+    public static final BitSet FOLLOW_EQ_in_start167 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQ_in_start174 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQ_in_start179 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_NL_in_start184 = new BitSet(new long[]{0x0000000000000420L});
+    public static final BitSet FOLLOW_signs_in_start193 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_ADD_in_start199 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SUB_in_start203 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_signs_in_start209 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQ_in_start212 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_signs_in_start217 = new BitSet(new long[]{0x0000000000000402L});
+    public static final BitSet FOLLOW_NL_in_start221 = new BitSet(new long[]{0x0000000000000402L});
+    public static final BitSet FOLLOW_signs_in_signline359 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_set_in_signline361 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_signs_in_signline367 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQ_in_signline369 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_signs_in_signline371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BCHAR_in_signs388 = new BitSet(new long[]{0x0000000000000022L});
 
 }

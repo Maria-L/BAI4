@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g 2014-05-21 13:29:17
+// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g 2014-05-26 16:38:31
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,16 +8,17 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class symboleLexer extends Lexer {
     public static final int EOF=-1;
-    public static final int BCHAR=4;
-    public static final int COLUMN=5;
-    public static final int COMMENT=6;
-    public static final int EQ=7;
-    public static final int LINE=8;
-    public static final int NL=9;
-    public static final int OP=10;
+    public static final int ADD=4;
+    public static final int BCHAR=5;
+    public static final int COLUMN=6;
+    public static final int COMMENT=7;
+    public static final int EQ=8;
+    public static final int LINE=9;
+    public static final int NL=10;
     public static final int SIGN=11;
     public static final int START=12;
-    public static final int WS=13;
+    public static final int SUB=13;
+    public static final int WS=14;
 
     // delegates
     // delegators
@@ -39,7 +40,7 @@ public class symboleLexer extends Lexer {
         try {
             int _type = BCHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:41:7: ( ( 'A' .. 'Z' ) )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:40:7: ( ( 'A' .. 'Z' ) )
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -63,23 +64,15 @@ public class symboleLexer extends Lexer {
     }
     // $ANTLR end "BCHAR"
 
-    // $ANTLR start "OP"
-    public final void mOP() throws RecognitionException {
+    // $ANTLR start "ADD"
+    public final void mADD() throws RecognitionException {
         try {
-            int _type = OP;
+            int _type = ADD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:44:4: ( ( '+' | '-' ) )
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:46:5: ( '+' )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:46:7: '+'
             {
-            if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
-                input.consume();
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;
-            }
-
+            match('+'); 
 
             }
 
@@ -90,15 +83,36 @@ public class symboleLexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "OP"
+    // $ANTLR end "ADD"
+
+    // $ANTLR start "SUB"
+    public final void mSUB() throws RecognitionException {
+        try {
+            int _type = SUB;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:49:5: ( '-' )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:49:7: '-'
+            {
+            match('-'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "SUB"
 
     // $ANTLR start "NL"
     public final void mNL() throws RecognitionException {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:47:4: ( '\\n' )
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:47:6: '\\n'
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:52:4: ( '\\n' )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:52:6: '\\n'
             {
             match('\n'); 
 
@@ -118,8 +132,8 @@ public class symboleLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:50:4: ( '=' )
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:50:6: '='
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:55:4: ( '=' )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:55:6: '='
             {
             match('='); 
 
@@ -139,7 +153,7 @@ public class symboleLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:56:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:61:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -169,13 +183,13 @@ public class symboleLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:56:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:61:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
 
 
-                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:56:14: (~ ( '\\n' | '\\r' ) )*
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:61:14: (~ ( '\\n' | '\\r' ) )*
                     loop1:
                     do {
                         int alt1=2;
@@ -209,7 +223,7 @@ public class symboleLexer extends Lexer {
                     } while (true);
 
 
-                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:56:28: ( '\\r' )?
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:61:28: ( '\\r' )?
                     int alt2=2;
                     int LA2_0 = input.LA(1);
 
@@ -218,7 +232,7 @@ public class symboleLexer extends Lexer {
                     }
                     switch (alt2) {
                         case 1 :
-                            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:56:28: '\\r'
+                            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:61:28: '\\r'
                             {
                             match('\r'); 
 
@@ -235,13 +249,13 @@ public class symboleLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:57:9: '/*' ( options {greedy=false; } : . )* '*/'
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:62:9: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
 
 
-                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:57:14: ( options {greedy=false; } : . )*
+                    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:62:14: ( options {greedy=false; } : . )*
                     loop3:
                     do {
                         int alt3=2;
@@ -266,7 +280,7 @@ public class symboleLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:57:42: .
+                    	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:62:42: .
                     	    {
                     	    matchAny(); 
 
@@ -303,8 +317,8 @@ public class symboleLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:60:5: ( ( ' ' | '\\t' | '\\r' ) )
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:60:9: ( ' ' | '\\t' | '\\r' )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:65:5: ( ( ' ' | '\\t' | '\\r' ) )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:65:9: ( ' ' | '\\t' | '\\r' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -330,8 +344,8 @@ public class symboleLexer extends Lexer {
     // $ANTLR end "WS"
 
     public void mTokens() throws RecognitionException {
-        // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:8: ( BCHAR | OP | NL | EQ | COMMENT | WS )
-        int alt5=6;
+        // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:8: ( BCHAR | ADD | SUB | NL | EQ | COMMENT | WS )
+        int alt5=7;
         switch ( input.LA(1) ) {
         case 'A':
         case 'B':
@@ -364,31 +378,35 @@ public class symboleLexer extends Lexer {
             }
             break;
         case '+':
-        case '-':
             {
             alt5=2;
             }
             break;
-        case '\n':
+        case '-':
             {
             alt5=3;
             }
             break;
-        case '=':
+        case '\n':
             {
             alt5=4;
             }
             break;
-        case '/':
+        case '=':
             {
             alt5=5;
+            }
+            break;
+        case '/':
+            {
+            alt5=6;
             }
             break;
         case '\t':
         case '\r':
         case ' ':
             {
-            alt5=6;
+            alt5=7;
             }
             break;
         default:
@@ -409,39 +427,47 @@ public class symboleLexer extends Lexer {
                 }
                 break;
             case 2 :
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:16: OP
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:16: ADD
                 {
-                mOP(); 
+                mADD(); 
 
 
                 }
                 break;
             case 3 :
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:19: NL
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:20: SUB
+                {
+                mSUB(); 
+
+
+                }
+                break;
+            case 4 :
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:24: NL
                 {
                 mNL(); 
 
 
                 }
                 break;
-            case 4 :
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:22: EQ
+            case 5 :
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:27: EQ
                 {
                 mEQ(); 
 
 
                 }
                 break;
-            case 5 :
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:25: COMMENT
+            case 6 :
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:30: COMMENT
                 {
                 mCOMMENT(); 
 
 
                 }
                 break;
-            case 6 :
-                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:33: WS
+            case 7 :
+                // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g:1:38: WS
                 {
                 mWS(); 
 
