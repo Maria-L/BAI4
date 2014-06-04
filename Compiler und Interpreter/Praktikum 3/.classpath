@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="Z:/Projekte/choco/choco-solver-2.1.5.jar"/>
 	<classpathentry kind="lib" path="Z:/Projekte/choco/choco-solver-cpviz-2.1.5.jar"/>
 	<classpathentry kind="lib" path="Z:/Projekte/choco/samples-2.1.5.jar"/>
+	<classpathentry kind="lib" path="Z:/Projekte/antlr-3.5-complete.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

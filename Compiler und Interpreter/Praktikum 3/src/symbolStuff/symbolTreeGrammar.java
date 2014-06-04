@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g 2014-06-02 10:38:51
+// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g 2014-06-02 10:22:02
 
 	package symbolStuff;
 
@@ -9,11 +9,9 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.antlr.runtime.debug.*;
-import java.io.IOException;
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
-public class symbolTreeGrammar extends DebugTreeParser {
+public class symbolTreeGrammar extends TreeParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ADD", "BCHAR", "COLUMN", "COMMENT", "EQ", "LINE", "NL", "SIGN", "START", "SUB", "WS"
     };
@@ -39,64 +37,21 @@ public class symbolTreeGrammar extends DebugTreeParser {
     // delegators
 
 
-public static final String[] ruleNames = new String[] {
-    "invalidRule", "line", "column", "secondOp", "firstOp", "thirdOp", "start"
-};
-
-public static final boolean[] decisionCanBacktrack = new boolean[] {
-    false, // invalid decision
-    false, false, false, false, false
-};
-
- 
-    public int ruleLevel = 0;
-    public int getRuleLevel() { return ruleLevel; }
-    public void incRuleLevel() { ruleLevel++; }
-    public void decRuleLevel() { ruleLevel--; }
     public symbolTreeGrammar(TreeNodeStream input) {
-        this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
+        this(input, new RecognizerSharedState());
     }
-    public symbolTreeGrammar(TreeNodeStream input, int port, RecognizerSharedState state) {
+    public symbolTreeGrammar(TreeNodeStream input, RecognizerSharedState state) {
         super(input, state);
-        DebugEventSocketProxy proxy =
-            new DebugEventSocketProxy(this,port,input.getTreeAdaptor());
-        setDebugListener(proxy);
-        setTreeNodeStream(new DebugTreeNodeStream(input,proxy));
-        try {
-            proxy.handshake();
-        }
-        catch (IOException ioe) {
-            reportError(ioe);
-        }
-        TreeAdaptor adap = new CommonTreeAdaptor();
-        setTreeAdaptor(adap);
-        proxy.setTreeAdaptor(adap);
     }
 
-public symbolTreeGrammar(TreeNodeStream input, DebugEventListener dbg) {
-    super(input, dbg);
-     
-    TreeAdaptor adap = new CommonTreeAdaptor();
-    setTreeAdaptor(adap);
+protected TreeAdaptor adaptor = new CommonTreeAdaptor();
 
-
-}
-
-protected boolean evalPredicate(boolean result, String predicate) {
-    dbg.semanticPredicate(result, predicate);
-    return result;
-}
-
-protected DebugTreeAdaptor adaptor;
 public void setTreeAdaptor(TreeAdaptor adaptor) {
-    this.adaptor = new DebugTreeAdaptor(dbg,adaptor);
-
-
+    this.adaptor = adaptor;
 }
 public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
-
     public String[] getTokenNames() { return symbolTreeGrammar.tokenNames; }
     public String getGrammarFileName() { return "Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g"; }
 
@@ -133,21 +88,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "start");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(14, 0);
-
         try {
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:14:7: ( line line line column column column )
-            dbg.enterAlt(1);
-
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:14:9: line line line column column column
             {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            dbg.location(14,9);
             _last = (CommonTree)input.LT(1);
             pushFollow(FOLLOW_line_in_start51);
             line1=line();
@@ -156,7 +103,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             adaptor.addChild(root_0, line1.getTree());
 
-            dbg.location(14,14);
+
             _last = (CommonTree)input.LT(1);
             pushFollow(FOLLOW_line_in_start53);
             line2=line();
@@ -165,7 +112,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             adaptor.addChild(root_0, line2.getTree());
 
-            dbg.location(14,19);
+
             _last = (CommonTree)input.LT(1);
             pushFollow(FOLLOW_line_in_start55);
             line3=line();
@@ -174,7 +121,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             adaptor.addChild(root_0, line3.getTree());
 
-            dbg.location(14,24);
+
             _last = (CommonTree)input.LT(1);
             pushFollow(FOLLOW_column_in_start57);
             column4=column();
@@ -183,7 +130,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             adaptor.addChild(root_0, column4.getTree());
 
-            dbg.location(14,31);
+
             _last = (CommonTree)input.LT(1);
             pushFollow(FOLLOW_column_in_start59);
             column5=column();
@@ -192,7 +139,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             adaptor.addChild(root_0, column5.getTree());
 
-            dbg.location(14,38);
+
             _last = (CommonTree)input.LT(1);
             pushFollow(FOLLOW_column_in_start61);
             column6=column();
@@ -215,15 +162,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(15, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "start");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "start"
@@ -279,46 +217,25 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_firstOp=new RewriteRuleSubtreeStream(adaptor,"rule firstOp");
         RewriteRuleSubtreeStream stream_secondOp=new RewriteRuleSubtreeStream(adaptor,"rule secondOp");
         RewriteRuleSubtreeStream stream_thirdOp=new RewriteRuleSubtreeStream(adaptor,"rule thirdOp");
-        try { dbg.enterRule(getGrammarFileName(), "line");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(17, 0);
-
         try {
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:17:6: ( ^( LINE firstOp ADD secondOp EQ thirdOp ) -> ^( LINE firstOp ADD[\"+\"] secondOp EQ thirdOp ) | ^( LINE firstOp SUB secondOp EQ thirdOp ) -> ^( LINE secondOp ADD[\"+\"] thirdOp EQ firstOp ) )
             int alt1=2;
-            try { dbg.enterDecision(1, decisionCanBacktrack[1]);
-
-            try {
-                isCyclicDecision = true;
-                alt1 = dfa1.predict(input);
-            }
-            catch (NoViableAltException nvae) {
-                dbg.recognitionException(nvae);
-                throw nvae;
-            }
-            } finally {dbg.exitDecision(1);}
-
+            alt1 = dfa1.predict(input);
             switch (alt1) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:17:8: ^( LINE firstOp ADD secondOp EQ thirdOp )
                     {
-                    dbg.location(17,8);
                     _last = (CommonTree)input.LT(1);
                     {
                     CommonTree _save_last_1 = _last;
                     CommonTree _first_1 = null;
                     CommonTree root_1 = (CommonTree)adaptor.nil();
-                    dbg.location(17,10);
                     _last = (CommonTree)input.LT(1);
                     LINE7=(CommonTree)match(input,LINE,FOLLOW_LINE_in_line73);  
                     stream_LINE.add(LINE7);
 
 
                     match(input, Token.DOWN, null); 
-                    dbg.location(17,15);
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_firstOp_in_line75);
                     firstOp8=firstOp();
@@ -326,12 +243,12 @@ public TreeAdaptor getTreeAdaptor() {
                     state._fsp--;
 
                     stream_firstOp.add(firstOp8.getTree());
-                    dbg.location(17,23);
+
                     _last = (CommonTree)input.LT(1);
                     ADD9=(CommonTree)match(input,ADD,FOLLOW_ADD_in_line77);  
                     stream_ADD.add(ADD9);
 
-                    dbg.location(17,27);
+
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_secondOp_in_line79);
                     secondOp10=secondOp();
@@ -339,12 +256,12 @@ public TreeAdaptor getTreeAdaptor() {
                     state._fsp--;
 
                     stream_secondOp.add(secondOp10.getTree());
-                    dbg.location(17,36);
+
                     _last = (CommonTree)input.LT(1);
                     EQ11=(CommonTree)match(input,EQ,FOLLOW_EQ_in_line81);  
                     stream_EQ.add(EQ11);
 
-                    dbg.location(17,39);
+
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_thirdOp_in_line83);
                     thirdOp12=thirdOp();
@@ -360,7 +277,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: LINE, EQ, ADD, thirdOp, secondOp, firstOp
+                    // elements: secondOp, EQ, LINE, ADD, thirdOp, firstOp
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -372,28 +289,25 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
                     // 17:49: -> ^( LINE firstOp ADD[\"+\"] secondOp EQ thirdOp )
                     {
-                        dbg.location(17,52);
                         // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:17:52: ^( LINE firstOp ADD[\"+\"] secondOp EQ thirdOp )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
-                        dbg.location(17,54);
                         root_1 = (CommonTree)adaptor.becomeRoot(
                         stream_LINE.nextNode()
                         , root_1);
 
-                        dbg.location(17,59);
                         adaptor.addChild(root_1, stream_firstOp.nextTree());
-                        dbg.location(17,67);
+
                         adaptor.addChild(root_1, 
                         (CommonTree)adaptor.create(ADD, "+")
                         );
-                        dbg.location(17,76);
+
                         adaptor.addChild(root_1, stream_secondOp.nextTree());
-                        dbg.location(17,85);
+
                         adaptor.addChild(root_1, 
                         stream_EQ.nextNode()
                         );
-                        dbg.location(17,88);
+
                         adaptor.addChild(root_1, stream_thirdOp.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -407,24 +321,19 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:18:4: ^( LINE firstOp SUB secondOp EQ thirdOp )
                     {
-                    dbg.location(18,4);
                     _last = (CommonTree)input.LT(1);
                     {
                     CommonTree _save_last_1 = _last;
                     CommonTree _first_1 = null;
                     CommonTree root_1 = (CommonTree)adaptor.nil();
-                    dbg.location(18,6);
                     _last = (CommonTree)input.LT(1);
                     LINE13=(CommonTree)match(input,LINE,FOLLOW_LINE_in_line108);  
                     stream_LINE.add(LINE13);
 
 
                     match(input, Token.DOWN, null); 
-                    dbg.location(18,11);
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_firstOp_in_line110);
                     firstOp14=firstOp();
@@ -432,12 +341,12 @@ public TreeAdaptor getTreeAdaptor() {
                     state._fsp--;
 
                     stream_firstOp.add(firstOp14.getTree());
-                    dbg.location(18,19);
+
                     _last = (CommonTree)input.LT(1);
                     SUB15=(CommonTree)match(input,SUB,FOLLOW_SUB_in_line112);  
                     stream_SUB.add(SUB15);
 
-                    dbg.location(18,23);
+
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_secondOp_in_line114);
                     secondOp16=secondOp();
@@ -445,12 +354,12 @@ public TreeAdaptor getTreeAdaptor() {
                     state._fsp--;
 
                     stream_secondOp.add(secondOp16.getTree());
-                    dbg.location(18,32);
+
                     _last = (CommonTree)input.LT(1);
                     EQ17=(CommonTree)match(input,EQ,FOLLOW_EQ_in_line116);  
                     stream_EQ.add(EQ17);
 
-                    dbg.location(18,35);
+
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_thirdOp_in_line118);
                     thirdOp18=thirdOp();
@@ -478,28 +387,25 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
                     // 18:45: -> ^( LINE secondOp ADD[\"+\"] thirdOp EQ firstOp )
                     {
-                        dbg.location(18,48);
                         // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:18:48: ^( LINE secondOp ADD[\"+\"] thirdOp EQ firstOp )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
-                        dbg.location(18,50);
                         root_1 = (CommonTree)adaptor.becomeRoot(
                         stream_LINE.nextNode()
                         , root_1);
 
-                        dbg.location(18,55);
                         adaptor.addChild(root_1, stream_secondOp.nextTree());
-                        dbg.location(18,64);
+
                         adaptor.addChild(root_1, 
                         (CommonTree)adaptor.create(ADD, "+")
                         );
-                        dbg.location(18,73);
+
                         adaptor.addChild(root_1, stream_thirdOp.nextTree());
-                        dbg.location(18,81);
+
                         adaptor.addChild(root_1, 
                         stream_EQ.nextNode()
                         );
-                        dbg.location(18,84);
+
                         adaptor.addChild(root_1, stream_firstOp.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -525,15 +431,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(19, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "line");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "line"
@@ -589,46 +486,25 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_firstOp=new RewriteRuleSubtreeStream(adaptor,"rule firstOp");
         RewriteRuleSubtreeStream stream_secondOp=new RewriteRuleSubtreeStream(adaptor,"rule secondOp");
         RewriteRuleSubtreeStream stream_thirdOp=new RewriteRuleSubtreeStream(adaptor,"rule thirdOp");
-        try { dbg.enterRule(getGrammarFileName(), "column");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(21, 0);
-
         try {
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:21:8: ( ^( COLUMN firstOp ADD secondOp EQ thirdOp ) -> ^( COLUMN firstOp ADD[\"+\"] secondOp EQ thirdOp ) | ^( COLUMN firstOp SUB secondOp EQ thirdOp ) -> ^( COLUMN secondOp ADD[\"+\"] thirdOp EQ firstOp ) )
             int alt2=2;
-            try { dbg.enterDecision(2, decisionCanBacktrack[2]);
-
-            try {
-                isCyclicDecision = true;
-                alt2 = dfa2.predict(input);
-            }
-            catch (NoViableAltException nvae) {
-                dbg.recognitionException(nvae);
-                throw nvae;
-            }
-            } finally {dbg.exitDecision(2);}
-
+            alt2 = dfa2.predict(input);
             switch (alt2) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:21:10: ^( COLUMN firstOp ADD secondOp EQ thirdOp )
                     {
-                    dbg.location(21,10);
                     _last = (CommonTree)input.LT(1);
                     {
                     CommonTree _save_last_1 = _last;
                     CommonTree _first_1 = null;
                     CommonTree root_1 = (CommonTree)adaptor.nil();
-                    dbg.location(21,12);
                     _last = (CommonTree)input.LT(1);
                     COLUMN19=(CommonTree)match(input,COLUMN,FOLLOW_COLUMN_in_column149);  
                     stream_COLUMN.add(COLUMN19);
 
 
                     match(input, Token.DOWN, null); 
-                    dbg.location(21,19);
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_firstOp_in_column151);
                     firstOp20=firstOp();
@@ -636,12 +512,12 @@ public TreeAdaptor getTreeAdaptor() {
                     state._fsp--;
 
                     stream_firstOp.add(firstOp20.getTree());
-                    dbg.location(21,27);
+
                     _last = (CommonTree)input.LT(1);
                     ADD21=(CommonTree)match(input,ADD,FOLLOW_ADD_in_column153);  
                     stream_ADD.add(ADD21);
 
-                    dbg.location(21,31);
+
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_secondOp_in_column155);
                     secondOp22=secondOp();
@@ -649,12 +525,12 @@ public TreeAdaptor getTreeAdaptor() {
                     state._fsp--;
 
                     stream_secondOp.add(secondOp22.getTree());
-                    dbg.location(21,40);
+
                     _last = (CommonTree)input.LT(1);
                     EQ23=(CommonTree)match(input,EQ,FOLLOW_EQ_in_column157);  
                     stream_EQ.add(EQ23);
 
-                    dbg.location(21,43);
+
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_thirdOp_in_column159);
                     thirdOp24=thirdOp();
@@ -670,7 +546,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: EQ, firstOp, ADD, COLUMN, secondOp, thirdOp
+                    // elements: thirdOp, secondOp, EQ, COLUMN, firstOp, ADD
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -682,28 +558,25 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
                     // 21:52: -> ^( COLUMN firstOp ADD[\"+\"] secondOp EQ thirdOp )
                     {
-                        dbg.location(21,55);
                         // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:21:55: ^( COLUMN firstOp ADD[\"+\"] secondOp EQ thirdOp )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
-                        dbg.location(21,57);
                         root_1 = (CommonTree)adaptor.becomeRoot(
                         stream_COLUMN.nextNode()
                         , root_1);
 
-                        dbg.location(21,64);
                         adaptor.addChild(root_1, stream_firstOp.nextTree());
-                        dbg.location(21,72);
+
                         adaptor.addChild(root_1, 
                         (CommonTree)adaptor.create(ADD, "+")
                         );
-                        dbg.location(21,81);
+
                         adaptor.addChild(root_1, stream_secondOp.nextTree());
-                        dbg.location(21,90);
+
                         adaptor.addChild(root_1, 
                         stream_EQ.nextNode()
                         );
-                        dbg.location(21,93);
+
                         adaptor.addChild(root_1, stream_thirdOp.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -717,24 +590,19 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:22:4: ^( COLUMN firstOp SUB secondOp EQ thirdOp )
                     {
-                    dbg.location(22,4);
                     _last = (CommonTree)input.LT(1);
                     {
                     CommonTree _save_last_1 = _last;
                     CommonTree _first_1 = null;
                     CommonTree root_1 = (CommonTree)adaptor.nil();
-                    dbg.location(22,6);
                     _last = (CommonTree)input.LT(1);
                     COLUMN25=(CommonTree)match(input,COLUMN,FOLLOW_COLUMN_in_column183);  
                     stream_COLUMN.add(COLUMN25);
 
 
                     match(input, Token.DOWN, null); 
-                    dbg.location(22,13);
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_firstOp_in_column185);
                     firstOp26=firstOp();
@@ -742,12 +610,12 @@ public TreeAdaptor getTreeAdaptor() {
                     state._fsp--;
 
                     stream_firstOp.add(firstOp26.getTree());
-                    dbg.location(22,21);
+
                     _last = (CommonTree)input.LT(1);
                     SUB27=(CommonTree)match(input,SUB,FOLLOW_SUB_in_column187);  
                     stream_SUB.add(SUB27);
 
-                    dbg.location(22,25);
+
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_secondOp_in_column189);
                     secondOp28=secondOp();
@@ -755,12 +623,12 @@ public TreeAdaptor getTreeAdaptor() {
                     state._fsp--;
 
                     stream_secondOp.add(secondOp28.getTree());
-                    dbg.location(22,34);
+
                     _last = (CommonTree)input.LT(1);
                     EQ29=(CommonTree)match(input,EQ,FOLLOW_EQ_in_column191);  
                     stream_EQ.add(EQ29);
 
-                    dbg.location(22,37);
+
                     _last = (CommonTree)input.LT(1);
                     pushFollow(FOLLOW_thirdOp_in_column193);
                     thirdOp30=thirdOp();
@@ -776,7 +644,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: COLUMN, EQ, secondOp, thirdOp, firstOp
+                    // elements: firstOp, thirdOp, EQ, secondOp, COLUMN
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -788,28 +656,25 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
                     // 22:46: -> ^( COLUMN secondOp ADD[\"+\"] thirdOp EQ firstOp )
                     {
-                        dbg.location(22,49);
                         // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:22:49: ^( COLUMN secondOp ADD[\"+\"] thirdOp EQ firstOp )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
-                        dbg.location(22,51);
                         root_1 = (CommonTree)adaptor.becomeRoot(
                         stream_COLUMN.nextNode()
                         , root_1);
 
-                        dbg.location(22,58);
                         adaptor.addChild(root_1, stream_secondOp.nextTree());
-                        dbg.location(22,67);
+
                         adaptor.addChild(root_1, 
                         (CommonTree)adaptor.create(ADD, "+")
                         );
-                        dbg.location(22,76);
+
                         adaptor.addChild(root_1, stream_thirdOp.nextTree());
-                        dbg.location(22,84);
+
                         adaptor.addChild(root_1, 
                         stream_EQ.nextNode()
                         );
-                        dbg.location(22,87);
+
                         adaptor.addChild(root_1, stream_firstOp.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -835,15 +700,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(23, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "column");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "column"
@@ -873,27 +729,18 @@ public TreeAdaptor getTreeAdaptor() {
         CommonTree SIGN31_tree=null;
         CommonTree BCHAR32_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "firstOp");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(25, 0);
-
         try {
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:25:9: ( ^( SIGN ( BCHAR )+ ) )
-            dbg.enterAlt(1);
-
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:25:11: ^( SIGN ( BCHAR )+ )
             {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            dbg.location(25,11);
             _last = (CommonTree)input.LT(1);
             {
             CommonTree _save_last_1 = _last;
             CommonTree _first_1 = null;
             CommonTree root_1 = (CommonTree)adaptor.nil();
-            dbg.location(25,13);
             _last = (CommonTree)input.LT(1);
             SIGN31=(CommonTree)match(input,SIGN,FOLLOW_SIGN_in_firstOp223); 
             SIGN31_tree = (CommonTree)adaptor.dupNode(SIGN31);
@@ -903,16 +750,11 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             match(input, Token.DOWN, null); 
-            dbg.location(25,18);
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:25:18: ( BCHAR )+
             int cnt3=0;
-            try { dbg.enterSubRule(3);
-
             loop3:
             do {
                 int alt3=2;
-                try { dbg.enterDecision(3, decisionCanBacktrack[3]);
-
                 int LA3_0 = input.LA(1);
 
                 if ( (LA3_0==BCHAR) ) {
@@ -920,15 +762,10 @@ public TreeAdaptor getTreeAdaptor() {
                 }
 
 
-                } finally {dbg.exitDecision(3);}
-
                 switch (alt3) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:25:18: BCHAR
             	    {
-            	    dbg.location(25,18);
             	    _last = (CommonTree)input.LT(1);
             	    BCHAR32=(CommonTree)match(input,BCHAR,FOLLOW_BCHAR_in_firstOp225); 
             	    BCHAR32_tree = (CommonTree)adaptor.dupNode(BCHAR32);
@@ -944,13 +781,10 @@ public TreeAdaptor getTreeAdaptor() {
             	    if ( cnt3 >= 1 ) break loop3;
                         EarlyExitException eee =
                             new EarlyExitException(3, input);
-                        dbg.recognitionException(eee);
-
                         throw eee;
                 }
                 cnt3++;
             } while (true);
-            } finally {dbg.exitSubRule(3);}
 
 
             match(input, Token.UP, null); 
@@ -972,15 +806,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(26, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "firstOp");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "firstOp"
@@ -1010,27 +835,18 @@ public TreeAdaptor getTreeAdaptor() {
         CommonTree SIGN33_tree=null;
         CommonTree BCHAR34_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "secondOp");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(28, 0);
-
         try {
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:28:9: ( ^( SIGN ( BCHAR )+ ) )
-            dbg.enterAlt(1);
-
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:28:11: ^( SIGN ( BCHAR )+ )
             {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            dbg.location(28,11);
             _last = (CommonTree)input.LT(1);
             {
             CommonTree _save_last_1 = _last;
             CommonTree _first_1 = null;
             CommonTree root_1 = (CommonTree)adaptor.nil();
-            dbg.location(28,13);
             _last = (CommonTree)input.LT(1);
             SIGN33=(CommonTree)match(input,SIGN,FOLLOW_SIGN_in_secondOp238); 
             SIGN33_tree = (CommonTree)adaptor.dupNode(SIGN33);
@@ -1040,16 +856,11 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             match(input, Token.DOWN, null); 
-            dbg.location(28,18);
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:28:18: ( BCHAR )+
             int cnt4=0;
-            try { dbg.enterSubRule(4);
-
             loop4:
             do {
                 int alt4=2;
-                try { dbg.enterDecision(4, decisionCanBacktrack[4]);
-
                 int LA4_0 = input.LA(1);
 
                 if ( (LA4_0==BCHAR) ) {
@@ -1057,15 +868,10 @@ public TreeAdaptor getTreeAdaptor() {
                 }
 
 
-                } finally {dbg.exitDecision(4);}
-
                 switch (alt4) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:28:18: BCHAR
             	    {
-            	    dbg.location(28,18);
             	    _last = (CommonTree)input.LT(1);
             	    BCHAR34=(CommonTree)match(input,BCHAR,FOLLOW_BCHAR_in_secondOp240); 
             	    BCHAR34_tree = (CommonTree)adaptor.dupNode(BCHAR34);
@@ -1081,13 +887,10 @@ public TreeAdaptor getTreeAdaptor() {
             	    if ( cnt4 >= 1 ) break loop4;
                         EarlyExitException eee =
                             new EarlyExitException(4, input);
-                        dbg.recognitionException(eee);
-
                         throw eee;
                 }
                 cnt4++;
             } while (true);
-            } finally {dbg.exitSubRule(4);}
 
 
             match(input, Token.UP, null); 
@@ -1109,15 +912,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(29, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "secondOp");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "secondOp"
@@ -1147,27 +941,18 @@ public TreeAdaptor getTreeAdaptor() {
         CommonTree SIGN35_tree=null;
         CommonTree BCHAR36_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "thirdOp");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(31, 0);
-
         try {
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:31:9: ( ^( SIGN ( BCHAR )+ ) )
-            dbg.enterAlt(1);
-
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:31:11: ^( SIGN ( BCHAR )+ )
             {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            dbg.location(31,11);
             _last = (CommonTree)input.LT(1);
             {
             CommonTree _save_last_1 = _last;
             CommonTree _first_1 = null;
             CommonTree root_1 = (CommonTree)adaptor.nil();
-            dbg.location(31,13);
             _last = (CommonTree)input.LT(1);
             SIGN35=(CommonTree)match(input,SIGN,FOLLOW_SIGN_in_thirdOp254); 
             SIGN35_tree = (CommonTree)adaptor.dupNode(SIGN35);
@@ -1177,16 +962,11 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             match(input, Token.DOWN, null); 
-            dbg.location(31,18);
             // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:31:18: ( BCHAR )+
             int cnt5=0;
-            try { dbg.enterSubRule(5);
-
             loop5:
             do {
                 int alt5=2;
-                try { dbg.enterDecision(5, decisionCanBacktrack[5]);
-
                 int LA5_0 = input.LA(1);
 
                 if ( (LA5_0==BCHAR) ) {
@@ -1194,15 +974,10 @@ public TreeAdaptor getTreeAdaptor() {
                 }
 
 
-                } finally {dbg.exitDecision(5);}
-
                 switch (alt5) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbolTreeGrammar.g:31:18: BCHAR
             	    {
-            	    dbg.location(31,18);
             	    _last = (CommonTree)input.LT(1);
             	    BCHAR36=(CommonTree)match(input,BCHAR,FOLLOW_BCHAR_in_thirdOp256); 
             	    BCHAR36_tree = (CommonTree)adaptor.dupNode(BCHAR36);
@@ -1218,13 +993,10 @@ public TreeAdaptor getTreeAdaptor() {
             	    if ( cnt5 >= 1 ) break loop5;
                         EarlyExitException eee =
                             new EarlyExitException(5, input);
-                        dbg.recognitionException(eee);
-
                         throw eee;
                 }
                 cnt5++;
             } while (true);
-            } finally {dbg.exitSubRule(5);}
 
 
             match(input, Token.UP, null); 
@@ -1246,15 +1018,6 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(32, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "thirdOp");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "thirdOp"
@@ -1320,9 +1083,6 @@ public TreeAdaptor getTreeAdaptor() {
         public String getDescription() {
             return "17:1: line : ( ^( LINE firstOp ADD secondOp EQ thirdOp ) -> ^( LINE firstOp ADD[\"+\"] secondOp EQ thirdOp ) | ^( LINE firstOp SUB secondOp EQ thirdOp ) -> ^( LINE secondOp ADD[\"+\"] thirdOp EQ firstOp ) );";
         }
-        public void error(NoViableAltException nvae) {
-            dbg.recognitionException(nvae);
-        }
     }
     static final String DFA2_eotS =
         "\11\uffff";
@@ -1379,9 +1139,6 @@ public TreeAdaptor getTreeAdaptor() {
         }
         public String getDescription() {
             return "21:1: column : ( ^( COLUMN firstOp ADD secondOp EQ thirdOp ) -> ^( COLUMN firstOp ADD[\"+\"] secondOp EQ thirdOp ) | ^( COLUMN firstOp SUB secondOp EQ thirdOp ) -> ^( COLUMN secondOp ADD[\"+\"] thirdOp EQ firstOp ) );";
-        }
-        public void error(NoViableAltException nvae) {
-            dbg.recognitionException(nvae);
         }
     }
  

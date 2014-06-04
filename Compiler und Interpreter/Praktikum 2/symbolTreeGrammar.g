@@ -6,6 +6,10 @@ options {
     output=AST;
 }
 
+@header {
+	package symbolStuff;
+}
+
 
 start	:	line line line column column column
 	;

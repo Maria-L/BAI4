@@ -1,4 +1,5 @@
 // $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 2\\symbole.g 2014-06-02 10:21:55
+package symbolStuff;
 
 import org.antlr.runtime.*;
 import java.util.Stack;

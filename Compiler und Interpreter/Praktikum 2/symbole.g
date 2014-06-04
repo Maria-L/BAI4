@@ -1,5 +1,6 @@
 grammar symbole;
 
+
 options {
 	ASTLabelType=CommonTree;
 	output=AST;
@@ -10,6 +11,10 @@ tokens {
 	COLUMN;
 	SIGN;
 	START;
+}
+
+@header {
+	package symbolStuff;
 }
 
 
