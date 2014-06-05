@@ -2,10 +2,5 @@
 
 ./deleteSettings.sh
 
-sudo /usr/sbin/iptables -P INPUT ACCEPT
-sudo /usr/sbin/iptables -P OUTPUT ACCEPT
-
-sudo /usr/sbin/iptables -A INPUT  -s 192.168.17.0/24 -i eth0 -j ACCEPT
-sudo /usr/sbin/iptables -A OUTPUT -d 192.168.17.0/24 -o eth0 -j ACCEPT
-sudo /usr/sbin/iptables -A INPUT  -s 192.168.17.0/24 -i eth1 -j DROP
-sudo /usr/sbin/iptables -A OUTPUT -d 192.168.17.0/24 -o eth1 -j DROP
+#Von 192.168.18.0/24 über den Router nach 192.168.17.0/24
+route add 192.168.17.0 netmask 255.255.255.0 gw 192.168.18.2

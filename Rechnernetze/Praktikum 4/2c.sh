@@ -3,8 +3,8 @@
 ./deleteSettings.sh
 
 #Setze das Standartverhalten auf ACCEPT
-iptables -P INPUT ACCEPT
-iptables -P OUTPUT ACCEPT
+sudo /usr/sbin/iptables -P INPUT ACCEPT
+sudo /usr/sbin/iptables -P OUTPUT ACCEPT
 
 #Blockiere eingehende icmp-Verbindungen
-iptables -A INPUT -s 172.16.1.0/24 -p icmp -j DROP
+sudo /usr/sbin/iptables -A INPUT -s 172.16.1.0/24 -p tcp -m state --state NEW -j DROP
