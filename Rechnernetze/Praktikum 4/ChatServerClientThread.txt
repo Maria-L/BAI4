@@ -1,0 +1,26 @@
+12.06.2014 17:29:21
+Info: Verbindung wurde erfolgreich aufgebaut
+12.06.2014 17:29:21
+Info: Client 1 request: NEW Mooni
+12.06.2014 17:29:21
+Info: Wrote to Client 1: OK
+12.06.2014 17:29:21
+Info: Client 1 request: INFO
+12.06.2014 17:29:21
+Info: Wrote to Client 1: LIST 1 172.16.1.11 Mooni
+12.06.2014 17:29:24
+Info: Client 1 request: INFO
+12.06.2014 17:29:24
+Info: Wrote to Client 1: LIST 1 172.16.1.11 Mooni
+12.06.2014 17:29:26
+Info: Client 1 request: INFO
+12.06.2014 17:29:26
+Info: Wrote to Client 1: LIST 1 172.16.1.11 Mooni
+12.06.2014 17:29:29
+Info: Client 1 request: INFO
+12.06.2014 17:29:29
+Info: Wrote to Client 1: LIST 1 172.16.1.11 Mooni
+12.06.2014 17:29:31
+Info: Client 1 request: BYE
+12.06.2014 17:29:31
+Info: Wrote to Client 1: BYE
