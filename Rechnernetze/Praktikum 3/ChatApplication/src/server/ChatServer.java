@@ -13,7 +13,7 @@ import data.Log;
 public class ChatServer {
 	private static final int MAX_THREADS = 30;
 	private static final int WAITING_TIME_MS = 500;
-	public static int port = 50000;
+	public static int port = 51000;
 		
 	private static ServerSocket welcomeSocket;
 	private static int threadNameCounter = 0;

@@ -5,14 +5,19 @@ options {
   output = AST;
   ASTLabelType=CommonTree;
 }
+
 tokens{
-RAETSEL;
-NUMBER;
+	RAETSEL;
+	NUMBER;
 }
+
 @parser::header {
-package zahlenraetsel.generated;
+	package zahlenraetsel.generated;
 }
-@lexer::header {package zahlenraetsel.generated;}
+
+@lexer::header {
+	package zahlenraetsel.generated;
+}
 
 prog: stat+;
 stat: STAT_START z11=number op1=operator z12=number GLEICH z13=number  

@@ -14,8 +14,8 @@ public class main  extends PApplet {
 	public float gbesty = 0;
 	public float gbestVal = Float.MIN_VALUE;
 	
-	private int bestx = 100;
-	private int besty = 100;
+	private int bestx = 200;
+	private int besty = 200;
 	
 	public void setup() {
 		size(800,600);
@@ -51,7 +51,22 @@ public class main  extends PApplet {
 	}
 	
 	public float fitness(float x, float y) {
-		return (float) (-1 * Math.sqrt(Math.pow((x - bestx), 2) + Math.pow((y - besty), 2)));
+		//return (float) (-1 * Math.sqrt(Math.pow((x - bestx), 2) + Math.pow((y - besty), 2)));
+		float akku1, akku2;
+		
+		if(bestx - x > 0) {
+			akku1 = (bestx - x) * -1;
+		} else {
+			akku1 = (bestx - x);
+		}
+		
+		if(besty - y > 0) {
+			akku2 = (besty - y) * -1;
+		} else {
+			akku2 = (besty - y);
+		}
+		
+		return akku1 - akku2;
 	}
 
 	public float gbestx() {

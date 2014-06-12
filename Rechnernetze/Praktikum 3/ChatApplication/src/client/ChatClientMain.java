@@ -12,7 +12,7 @@ import data.ChatUser;
 import data.Log;
 
 public class ChatClientMain {
-	private static int TCPPORT = 50000; 
+	private static int TCPPORT = 51000; 
 	private static int UDPPORT = 50001;
 	
 	private static boolean running = true;

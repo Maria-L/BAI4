@@ -1,0 +1,97 @@
+#Hilfescript zum Flushen aller bisherigen Regeln und neuen 
+#Freigeben von 141.22.192.100, cifs.informatik.haw-hamburg.de
+#und localhost
+
+iptables -F
+iptables -A INPUT -s 141.22.192.100 -j ACCEPT
+iptables -A INPUT -s cifs.informatik.haw-hamburg.de -j ACCEPT
+iptables -A INPUT -s localhost -j ACCEPT
+
+iptables -A OUTPUT -d 141.22.192.100 -j ACCEPT
+iptables -A OUTPUT -d cifs.informatik.haw-hamburg.de -j ACCEPT
+iptables -A OUTPUT -d localhost -j ACCEPT
+
+
+Aufgabe 2
+a) Auf einem Ihrer beiden Rechner soll der Zugang vom und 
+zum Netzwerk 172.16.1.0/24 vollständig gesperrt werden.
+
+#Setze das Standart-Verhalten auf ACCEPT
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+
+#Blocke alle ein- und ausgehenden Verbindungen auf 172.16.1.0/24
+iptables -A INPUT -s 172.16.1.0/24 -p all -j DROP
+iptables -A OUTPUT -d 172.16.1.0/24 -p all -j DROP
+
+
+b) Stellen Sie die Firewall des Rechners so ein, dass dort 
+über das Netz 172.16.1.0/24 nur ein TCP-Server auf Port 51000
+genutzt werden kann. Alle anderen Verbindungen über dieses
+Netz sollen gesperrt sein.
+
+#Setze das Standart-Verhalten auf ACCEPT
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+
+#Nehme nur Verbindungen auf 172.16.1.0/24 an, die über TCP:51000 laufen und NEW oder ESTABLISHED sind
+iptables -A INPUT -s 172.16.1.0/24 -p tcp --dport 51000 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -s 172.16.1.0/24 -p all -j DROP
+
+#Lass Verbindungen auf 172.16.1.0/24 über TCP:51000 die ESTABLISHED sind heraus
+iptables -A OUTPUT -d 172.16.1.0/24 -p tcp --sport 51000 -m state --state ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -d 172.16.1.0/24 -p all -j DROP
+
+
+c) Konfigurieren Sie den Rechner so, dass man keine dort 
+laufenden TCP-Server über das Netz 172.16.1.0/24 ansprechen
+kann. Alle anderen Verbindungen über dieses Netz sollen
+hingegen möglich sein.
+
+#Setze das Standartverhalten auf ACCEPT
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+
+#Verhindere neue Verbindungsanfragen über tcp in 172.16.1.0/24
+iptables -A OUTPUT -d 172.16.1.0/24 -p tcp -m state --state NEW -j DROP
+
+
+d)Stellen Sie die Firewall Ihres Rechners so ein, dass von dort
+ein ping auf andere Rechner/Geräte im Netz 172.16.1.0/24 möglich 
+ist, nicht aber umgekehrt
+
+#Setze das Standartverhalten auf ACCEPT
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+
+#Blockiere eingehende icmp-Verbindungen
+iptables -A INPUT -s 172.16.1.0/24 -p icmp -j DROP
+
+
+Aufgabe 3
+#Von 192.168.17.0/24 über den Router nach 192.168.18.0/24
+
+route add 192.168.18.0 netmask 255.255.255.0 gw 192.168.17.2
+
+#Von 192.168.17.0/24 über die ISDN-Anlage nach 192.168.18.0/24
+
+route add 192.168.18.0 netmask 255.255.255.0 gw 192.168.17.1
+
+
+#Von 192.168.18.0/24 über den Router nach 192.168.17.0/24
+
+route add 192.168.17.0 netmask 255.255.255.0 gw 192.168.18.2
+
+#Von 192.168.18.0/24 über die ISDN-Anlage nach 192.168.17.0/24
+
+route add 192.168.17.0 netmask 255.255.255.0 gw 192.168.18.1
+
+
+
+Aufgabe 4
+c)
+
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+
+iptables -A INPUT -s ! www.dmi.dk -p tcp --sport 80 -j DROP
