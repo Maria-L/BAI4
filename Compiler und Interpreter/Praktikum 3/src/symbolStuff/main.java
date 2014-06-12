@@ -22,11 +22,13 @@ public class main {
 			symboleParser parser = new symboleParser(tokens);
 			
 			CommonTree gameTree = (CommonTree) parser.start().getTree();
+			
 			CommonTreeNodeStream nodes = new CommonTreeNodeStream(gameTree);
 			symbolTreeGrammar walker = new symbolTreeGrammar(nodes);
-			symbolTreeGrammar.start_return walkerRes = walker.start();
-			CommonTree walkerTree = (CommonTree) walkerRes.getTree();
 			
+			symbolTreeGrammar.start_return walkerRes = walker.start();
+			
+			CommonTree walkerTree = (CommonTree) walkerRes.getTree();
 			DOTTreeGenerator gen = new DOTTreeGenerator();
 			StringTemplate walkerTemplate = gen.toDOT(walkerTree);
 			System.out.println(walkerTemplate);
