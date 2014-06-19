@@ -13,7 +13,7 @@ public class Number {
 	public void setDigits(List<?extends Object> objects) {
 		@SuppressWarnings("unchecked")
 		List<Tree> tokens=(List<Tree>)objects;
-		digits =new char[tokens.size()];
+		digits = new char[tokens.size()];
 		for (int i = 0; i < tokens.size(); i++) {
 			Tree tree = tokens.get(i);
 			char c = Character.toLowerCase(tree.getText().charAt(0));

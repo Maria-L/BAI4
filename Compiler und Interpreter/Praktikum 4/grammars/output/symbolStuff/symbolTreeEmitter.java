@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g 2014-06-12 15:26:48
+// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g 2014-06-19 15:22:41
 
 	package symbolStuff;
 	import java.util.Set;
@@ -163,10 +163,29 @@ public static class STAttrMap extends HashMap {
             		retval.constraints.add((cl1!=null?cl1.st:null).toString());
             		retval.constraints.add((cl2!=null?cl2.st:null).toString());
             		retval.constraints.add((cl3!=null?cl3.st:null).toString());
+            		
+            		System.out.println((ln1!=null?ln1.st:null).toString());
+            		System.out.println((ln2!=null?ln2.st:null).toString());
+            		System.out.println((ln3!=null?ln3.st:null).toString());
+            		System.out.println((cl1!=null?cl1.st:null).toString());
+            		System.out.println((cl2!=null?cl2.st:null).toString());
+            		System.out.println((cl3!=null?cl3.st:null).toString());
+            		
+            		System.out.println((ln1!=null?ln1.letters:null).toString());
+            		System.out.println((ln2!=null?ln2.letters:null).toString());
+            		System.out.println((ln3!=null?ln3.letters:null).toString());
+            		System.out.println((cl1!=null?cl1.letters:null).toString());
+            		System.out.println((cl2!=null?cl2.letters:null).toString());
+            		System.out.println((cl3!=null?cl3.letters:null).toString());
+            		
+            		System.out.println("---- constraints ----");
+            		for(String st : retval.constraints) {
+            			System.out.println(st);
+            		}
             	
 
             // TEMPLATE REWRITE
-            // 40:2: -> sums(constraints=$constraintsletters=$letterspackage=$packagePathclassName=$classNamepathToPuzzleFile=$pathToPuzzleFile)
+            // 59:2: -> sums(constraints=$constraintsletters=$letterspackage=$packagePathclassName=$classNamepathToPuzzleFile=$pathToPuzzleFile)
             {
                 retval.st = templateLib.getInstanceOf("sums",new STAttrMap().put("constraints", retval.constraints).put("letters", retval.letters).put("package", packagePath).put("className", className).put("pathToPuzzleFile", pathToPuzzleFile));
             }
@@ -198,7 +217,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "line"
-    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:44:1: line returns [Set<Character> letters] : ^( LINE n1= number ADD n2= number EQ n3= number ) -> sum(num1=n1.numbernum2=n2.numbernum3=n3.number);
+    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:63:1: line returns [Set<Character> letters] : ^( LINE n1= number ADD n2= number EQ n3= number ) -> sum(num1=$n1.numbernum2=$n2.numbernum3=$n3.number);
     public final symbolTreeEmitter.line_return line() throws RecognitionException {
         symbolTreeEmitter.line_return retval = new symbolTreeEmitter.line_return();
         retval.start = input.LT(1);
@@ -212,8 +231,8 @@ public static class STAttrMap extends HashMap {
 
 
         try {
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:50:2: ( ^( LINE n1= number ADD n2= number EQ n3= number ) -> sum(num1=n1.numbernum2=n2.numbernum3=n3.number))
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:50:4: ^( LINE n1= number ADD n2= number EQ n3= number )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:70:2: ( ^( LINE n1= number ADD n2= number EQ n3= number ) -> sum(num1=$n1.numbernum2=$n2.numbernum3=$n3.number))
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:70:4: ^( LINE n1= number ADD n2= number EQ n3= number )
             {
             match(input,LINE,FOLLOW_LINE_in_line146); 
 
@@ -244,9 +263,9 @@ public static class STAttrMap extends HashMap {
 
 
             // TEMPLATE REWRITE
-            // 51:2: -> sum(num1=n1.numbernum2=n2.numbernum3=n3.number)
+            // 71:2: -> sum(num1=$n1.numbernum2=$n2.numbernum3=$n3.number)
             {
-                retval.st = templateLib.getInstanceOf("sum",new STAttrMap().put("num1", n1.number).put("num2", n2.number).put("num3", n3.number));
+                retval.st = templateLib.getInstanceOf("sum",new STAttrMap().put("num1", (n1!=null?n1.number:null)).put("num2", (n2!=null?n2.number:null)).put("num3", (n3!=null?n3.number:null)));
             }
 
 
@@ -254,6 +273,7 @@ public static class STAttrMap extends HashMap {
             }
 
 
+            		retval.letters = new HashSet<Character>();
             		retval.letters.addAll((n1!=null?n1.number:null).getCharacters());
             		retval.letters.addAll((n2!=null?n2.number:null).getCharacters());
             		retval.letters.addAll((n3!=null?n3.number:null).getCharacters());
@@ -281,7 +301,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "column"
-    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:55:1: column returns [Set<Character> letters] : ^( COLUMN n1= number ADD n2= number EQ n3= number ) -> sum(num1=n1.numbernum2=n2.numbernum3=n3.number);
+    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:75:1: column returns [Set<Character> letters] : ^( COLUMN n1= number ADD n2= number EQ n3= number ) -> sum(num1=$n1.numbernum2=$n2.numbernum3=$n3.number);
     public final symbolTreeEmitter.column_return column() throws RecognitionException {
         symbolTreeEmitter.column_return retval = new symbolTreeEmitter.column_return();
         retval.start = input.LT(1);
@@ -295,8 +315,8 @@ public static class STAttrMap extends HashMap {
 
 
         try {
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:61:2: ( ^( COLUMN n1= number ADD n2= number EQ n3= number ) -> sum(num1=n1.numbernum2=n2.numbernum3=n3.number))
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:61:4: ^( COLUMN n1= number ADD n2= number EQ n3= number )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:82:2: ( ^( COLUMN n1= number ADD n2= number EQ n3= number ) -> sum(num1=$n1.numbernum2=$n2.numbernum3=$n3.number))
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:82:4: ^( COLUMN n1= number ADD n2= number EQ n3= number )
             {
             match(input,COLUMN,FOLLOW_COLUMN_in_column205); 
 
@@ -327,9 +347,9 @@ public static class STAttrMap extends HashMap {
 
 
             // TEMPLATE REWRITE
-            // 62:2: -> sum(num1=n1.numbernum2=n2.numbernum3=n3.number)
+            // 83:2: -> sum(num1=$n1.numbernum2=$n2.numbernum3=$n3.number)
             {
-                retval.st = templateLib.getInstanceOf("sum",new STAttrMap().put("num1", n1.number).put("num2", n2.number).put("num3", n3.number));
+                retval.st = templateLib.getInstanceOf("sum",new STAttrMap().put("num1", (n1!=null?n1.number:null)).put("num2", (n2!=null?n2.number:null)).put("num3", (n3!=null?n3.number:null)));
             }
 
 
@@ -337,6 +357,7 @@ public static class STAttrMap extends HashMap {
             }
 
 
+            		retval.letters = new HashSet<Character>();
             		retval.letters.addAll((n1!=null?n1.number:null).getCharacters());
             		retval.letters.addAll((n2!=null?n2.number:null).getCharacters());
             		retval.letters.addAll((n3!=null?n3.number:null).getCharacters());
@@ -364,7 +385,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "number"
-    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:65:1: number returns [Number number] : ^( SIGN (signs+= BCHAR )+ ) ;
+    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:86:1: number returns [Number number] : ^( SIGN (signs+= BCHAR )+ ) ;
     public final symbolTreeEmitter.number_return number() throws RecognitionException {
         symbolTreeEmitter.number_return retval = new symbolTreeEmitter.number_return();
         retval.start = input.LT(1);
@@ -374,13 +395,13 @@ public static class STAttrMap extends HashMap {
         List list_signs=null;
 
         try {
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:70:2: ( ^( SIGN (signs+= BCHAR )+ ) )
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:70:4: ^( SIGN (signs+= BCHAR )+ )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:91:2: ( ^( SIGN (signs+= BCHAR )+ ) )
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:91:4: ^( SIGN (signs+= BCHAR )+ )
             {
             match(input,SIGN,FOLLOW_SIGN_in_number264); 
 
             match(input, Token.DOWN, null); 
-            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:70:16: (signs+= BCHAR )+
+            // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:91:16: (signs+= BCHAR )+
             int cnt1=0;
             loop1:
             do {
@@ -394,7 +415,7 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt1) {
             	case 1 :
-            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:70:16: signs+= BCHAR
+            	    // Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeEmitter.g:91:16: signs+= BCHAR
             	    {
             	    signs=(CommonTree)match(input,BCHAR,FOLLOW_BCHAR_in_number268); 
             	    if (list_signs==null) list_signs=new ArrayList();

@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbole.g 2014-06-12 14:54:16
+// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbole.g 2014-06-19 14:28:49
 
 	package symbolStuff;
 
@@ -622,7 +622,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: op7, si7, EQ, EQ, si10, EQ, EQ, EQ, si9, si2, si9, op4, si7, si1, si8, si11, si3, si11, si4, si8, op6, si1, si3, op1, EQ, op3, si2, si4, si10, op5
+            // elements: si2, si8, si11, EQ, si7, si1, si8, si4, op6, EQ, EQ, si10, op7, si2, EQ, si3, op5, si9, si11, si3, op3, EQ, si10, op1, si7, si4, si9, EQ, si1, op4
             // token labels: op1, op4, op3, op6, op5, op7
             // rule labels: si7, si10, si9, si8, si11, si1, si3, si2, retval, si4
             // token list labels: 

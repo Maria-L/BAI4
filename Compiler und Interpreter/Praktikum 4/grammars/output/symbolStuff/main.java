@@ -24,7 +24,7 @@ public class main {
 	public static void main(String[] args) throws IOException, RecognitionException {
 		try {
 			generateSolver("raetsel.txt",
-			"zahlenraetsel.solver.Raetsel");
+			"output.Raetsel");
 		} catch (org.antlr.runtime.RecognitionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,7 +68,7 @@ public class main {
 		System.out.println("\n ************* \n JavaClass zum Lösen des Zahlenrätsels\n ************* \n");
 		System.out.println(output);
 		
-		File classFile=new File("./src/"+pathforClass.replace(".","/")+".java");
+		File classFile=new File("./"+pathforClass.replace(".","/")+".java");
 		
 		FileWriter filewriter=new FileWriter(classFile ,false);
 		filewriter.write(output);

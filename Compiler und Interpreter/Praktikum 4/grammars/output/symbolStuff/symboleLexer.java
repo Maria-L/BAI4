@@ -1,5 +1,5 @@
 package symbolStuff;
-// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbole.g 2014-06-12 14:54:16
+// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbole.g 2014-06-19 14:28:49
 
 import org.antlr.runtime.*;
 import java.util.Stack;

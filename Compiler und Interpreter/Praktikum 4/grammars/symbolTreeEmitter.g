@@ -43,23 +43,25 @@ start [String packagePath, String className, String pathToPuzzleFile]
 
 line	returns[Set<Character> letters]
 @after 	{
+		$letters = new HashSet<Character>();
 		$letters.addAll($n1.number.getCharacters());
 		$letters.addAll($n2.number.getCharacters());
 		$letters.addAll($n3.number.getCharacters());
 }
 	: ^(LINE n1=number ADD n2=number EQ n3=number)
-	-> sum(num1={n1.number}, num2={n2.number}, num3={n3.number})
+	-> sum(num1={$n1.number}, num2={$n2.number}, num3={$n3.number})
 	;
 
 
 column	returns[Set<Character> letters]
 @after 	{
+		$letters = new HashSet<Character>();
 		$letters.addAll($n1.number.getCharacters());
 		$letters.addAll($n2.number.getCharacters());
 		$letters.addAll($n3.number.getCharacters());
 }
 	: ^(COLUMN n1=number ADD n2=number EQ n3=number)
-	-> sum(num1={n1.number}, num2={n2.number}, num3={n3.number})
+	-> sum(num1={$n1.number}, num2={$n2.number}, num3={$n3.number})
 	;
 
 number	returns [Number number]

@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeGrammar.g 2014-06-12 15:48:17
+// $ANTLR 3.4 Z:\\Projekte\\BAI4\\Compiler und Interpreter\\Praktikum 4\\grammars\\symbolTreeGrammar.g 2014-06-19 14:29:01
 
 	package symbolStuff;
 
@@ -277,7 +277,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: thirdOp, LINE, EQ, ADD, secondOp, firstOp
+                    // elements: secondOp, thirdOp, LINE, EQ, ADD, firstOp
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -375,7 +375,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: EQ, secondOp, thirdOp, firstOp, LINE
+                    // elements: thirdOp, firstOp, LINE, EQ, secondOp
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -546,7 +546,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: firstOp, EQ, thirdOp, COLUMN, secondOp, ADD
+                    // elements: ADD, firstOp, EQ, secondOp, thirdOp, COLUMN
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -644,7 +644,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: firstOp, thirdOp, EQ, secondOp, COLUMN
+                    // elements: secondOp, firstOp, thirdOp, EQ, COLUMN
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
